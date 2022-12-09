@@ -1,5 +1,4 @@
 @file:Suppress("UnstableApiUsage")
-
 pluginManagement {
   includeBuild("build-logic")
   repositories {
@@ -25,3 +24,4 @@ include(":core-data")
 include(":core-designsystem")
 include(":core-navigation")
 include(":feature-chat")
+include(":benchmark")

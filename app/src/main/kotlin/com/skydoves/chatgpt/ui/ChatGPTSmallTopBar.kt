@@ -47,7 +47,7 @@ fun ChatGPTSmallTopBar() {
 
 @Preview
 @Composable
-private fun WhatsAppTopBarPreview() {
+private fun ChatGPTSmallTopBarPreview() {
   ChatGPTComposeTheme {
     ChatGPTSmallTopBar()
   }
@@ -55,7 +55,7 @@ private fun WhatsAppTopBarPreview() {
 
 @Preview
 @Composable
-private fun WhatsAppTopBarDarkPreview() {
+private fun ChatGPTSmallTopBarDarkPreview() {
   ChatGPTComposeTheme(darkTheme = true) {
     ChatGPTSmallTopBar()
   }

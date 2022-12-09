@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2022 skydoves (Jaewoong Eum)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+  <string name="chat_gpt_session">eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1UaEVOVUpHTkVNMVFURTRNMEZCTWpkQ05UZzVNRFUxUlRVd1FVSkRNRU13UmtGRVFrRXpSZyJ9.eyJodHRwczovL2FwaS5vcGVuYWkuY29tL3Byb2ZpbGUiOnsiZW1haWwiOiJqYWV3b29uZy5ldW1AZ2V0c3RyZWFtLmlvIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImdlb2lwX2NvdW50cnkiOiJVUyJ9LCJodHRwczovL2FwaS5vcGVuYWkuY29tL2F1dGgiOnsidXNlcl9pZCI6InVzZXItWTBQUVFsM2gwOTkySEkxMkpRNUJDNldXIn0sImlzcyI6Imh0dHBzOi8vYXV0aDAub3BlbmFpLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwOTEwNTI4MDkzNzMyOTE5MTkwNyIsImF1ZCI6WyJodHRwczovL2FwaS5vcGVuYWkuY29tL3YxIiwiaHR0cHM6Ly9vcGVuYWkuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTY3MDU0MTMyMiwiZXhwIjoxNjcwNjI3NzIyLCJhenAiOiJUZEpJY2JlMTZXb1RIdE45NW55eXdoNUU0eU9vNkl0RyIsInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUgbW9kZWwucmVhZCBtb2RlbC5yZXF1ZXN0IG9yZ2FuaXphdGlvbi5yZWFkIG9mZmxpbmVfYWNjZXNzIn0.TBZ_ZhoV-RIBAaKewlx2IDflMF2G6IoxaAw_2eDDrz_fqHYvF0pD8saymhHkFkc87COD0Lg-fI6iIW-jU4M0zgSAT8Ylo6buk8OJBmOKo5wFi5lpIqdKkuLzC4mq1AHkmuHKKyYcWNYg6HEbwJVp4n2bD4KkMcRFkIJr72vuZFuDg318ZA43Y37pNCuOucfDYlNFVRib9BywLa7ZNQ-IfJ-X7Ce1aXIljLa3PV0ldVi3GEXE-_8khLMXfutmg3Jmw-JzBcIGwnesYEaZ8HKvMeYb8UUT7x0uXd6WEpGhNDJOE6ymGNz24TrCL_b2Jf6xy0kwwQ9Nfo8gOXYGZW5oLw</string>
+  <string name="conversation_id">fc34d34f-c17d-4f58-81b5-82c28ad298df</string>
+  <string name="parent_message_id">e1387871-fd79-4d91-9d90-7ff79d0a33ab</string>
+</resources>

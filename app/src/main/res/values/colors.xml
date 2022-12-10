@@ -29,16 +29,15 @@
   <color name="floating_message_send">@color/green_dark</color>
 
   <!-- Palette Greens -->
-  <color name="green_lightest">#e2ffc7</color>
-  <color name="green_light">#7eb0ad</color>
-  <color name="green">#16cc3e</color>
-  <color name="green_dark">#19887a</color>
-  <color name="green_darker">#0e5e55</color>
-  <color name="green_darkest">#00574B</color>
-  <color name="green_dark_theme">#FF232D36</color>
+  <color name="green_lightest">#FFE2C7FF</color>
+  <color name="green_light">#FFA97EB0</color>
+  <color name="green">#FFA430B8</color>
+  <color name="green_dark">#FFAE38C3</color>
+  <color name="green_darker">#FFAE38C3</color>
+  <color name="green_darkest">#FF981E9F</color>
+  <color name="green_dark_theme">#FF4D0057</color>
 
   <!-- White & Gray -->
-
   <color name="white">#FFF</color>
   <color name="off_white">#e0e0e0</color>
   <color name="gray">#88898b</color>

@@ -37,7 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.skydoves.chatgpt.core.designsystem.component.ChatGPTLoadingIndicator
-import com.skydoves.chatgpt.core.designsystem.theme.GREEN500
+import com.skydoves.chatgpt.core.designsystem.theme.PURPLE500
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
 import com.skydoves.chatgpt.feature.chat.R
@@ -68,7 +68,7 @@ fun ChatGPTChannels(
           .align(Alignment.BottomEnd)
           .padding(16.dp)
           .size(58.dp),
-        containerColor = GREEN500,
+        containerColor = PURPLE500,
         shape = CircleShape,
         onClick = { viewModel.handleEvents(GPTChannelEvent.CreateChannel) }
       ) {

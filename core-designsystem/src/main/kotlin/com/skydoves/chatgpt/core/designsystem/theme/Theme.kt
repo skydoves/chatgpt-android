@@ -25,18 +25,18 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 
 private val DarkChatGPTColorScheme = darkColorScheme(
-  primary = DARK_GREEN200,
-  primaryContainer = DARK_GREEN300,
-  secondary = GREEN500,
-  background = DARK_GREEN300,
+  primary = DARK_PURPLE200,
+  primaryContainer = DARK_PURPLE300,
+  secondary = PURPLE500,
+  background = DARK_PURPLE300,
   tertiary = WHITE200,
   onTertiary = GRAY200
 )
 
 private val LightCHatGPTColorScheme = lightColorScheme(
-  primary = GREEN500,
-  primaryContainer = GREEN700,
-  secondary = GREEN300,
+  primary = PURPLE500,
+  primaryContainer = PURPLE700,
+  secondary = PURPLE300,
   background = WHITE200,
   tertiary = WHITE200,
   onTertiary = GRAY200
@@ -46,7 +46,7 @@ private val LightCHatGPTColorScheme = lightColorScheme(
 private val LightAndroidBackgroundTheme = BackgroundTheme(color = Color.White)
 
 /** Dark Android background theme */
-private val DarkAndroidBackgroundTheme = BackgroundTheme(color = DARK_GREEN300)
+private val DarkAndroidBackgroundTheme = BackgroundTheme(color = DARK_PURPLE300)
 
 @Composable
 fun ChatGPTComposeTheme(

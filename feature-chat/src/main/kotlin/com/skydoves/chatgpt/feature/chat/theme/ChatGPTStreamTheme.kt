@@ -18,10 +18,10 @@ package com.skydoves.chatgpt.feature.chat.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
-import com.skydoves.chatgpt.core.designsystem.theme.DARK_GREEN300
-import com.skydoves.chatgpt.core.designsystem.theme.GREEN200
-import com.skydoves.chatgpt.core.designsystem.theme.GREEN450
-import com.skydoves.chatgpt.core.designsystem.theme.GREEN600
+import com.skydoves.chatgpt.core.designsystem.theme.DARK_PURPLE300
+import com.skydoves.chatgpt.core.designsystem.theme.PURPLE200
+import com.skydoves.chatgpt.core.designsystem.theme.PURPLE450
+import com.skydoves.chatgpt.core.designsystem.theme.PURPLE600
 import com.skydoves.chatgpt.feature.chat.reactions.ChatGPTReactionFactory
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
 import io.getstream.chat.android.compose.ui.theme.StreamColors
@@ -33,14 +33,14 @@ fun ChatGPTStreamTheme(
 ) {
   val streamColors = if (darkTheme) {
     StreamColors.defaultDarkColors().copy(
-      appBackground = DARK_GREEN300,
-      primaryAccent = GREEN450,
-      ownMessagesBackground = GREEN600
+      appBackground = DARK_PURPLE300,
+      primaryAccent = PURPLE450,
+      ownMessagesBackground = PURPLE600
     )
   } else {
     StreamColors.defaultColors().copy(
-      primaryAccent = GREEN450,
-      ownMessagesBackground = GREEN200
+      primaryAccent = PURPLE450,
+      ownMessagesBackground = PURPLE200
     )
   }
 

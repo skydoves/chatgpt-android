@@ -37,6 +37,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.skydoves.chatgpt.core.data.chat.chatGPTUser
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
+import com.skydoves.chatgpt.feature.chat.R
 import com.skydoves.chatgpt.feature.chat.theme.ChatGPTStreamTheme
 import io.getstream.chat.android.client.models.Channel
 import io.getstream.chat.android.common.state.DeletedMessageVisibility
@@ -108,9 +109,7 @@ fun ChatGPTMessages(
 
   BackHandler(enabled = true, onBack = backAction)
 
-  LaunchedEffect(Unit) {
-    viewModel.sendHelloMessage(channelId)
-  }
+  HandleToastMessages(channelId = channelId)
 
   ChatGPTStreamTheme {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -211,6 +210,25 @@ fun ChatGPTMessages(
           MessageContainer(messageListItem = messageState)
         }
       }
+    }
+  }
+}
+
+@Composable
+private fun HandleToastMessages(
+  channelId: String,
+  viewModel: ChatGPTMessagesViewModel = hiltViewModel()
+) {
+  val context = LocalContext.current
+  val isError by viewModel.isError.collectAsState()
+
+  LaunchedEffect(key1 = Unit) {
+    viewModel.sendStreamChatMessage(channelId, context.getString(R.string.toast_hello))
+  }
+
+  LaunchedEffect(key1 = isError) {
+    if (isError) {
+      viewModel.sendStreamChatMessage(channelId, context.getString(R.string.toast_error_session))
     }
   }
 }

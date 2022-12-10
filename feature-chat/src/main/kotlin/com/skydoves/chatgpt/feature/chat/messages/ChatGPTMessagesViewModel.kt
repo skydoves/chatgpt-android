@@ -25,6 +25,7 @@ import com.skydoves.chatgpt.core.model.GPTContent
 import com.skydoves.chatgpt.core.model.GPTMessage
 import com.skydoves.chatgpt.core.network.BuildConfig.CONVERSATION_ID
 import com.skydoves.chatgpt.core.network.BuildConfig.PARENT_MESSAGE_ID
+import com.skydoves.sandwich.message
 import com.skydoves.sandwich.messageOrNull
 import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.suspendOnSuccess
@@ -37,6 +38,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -51,9 +53,14 @@ class ChatGPTMessagesViewModel @Inject constructor(
     it.isNotEmpty()
   }.stateIn(viewModelScope, WhileSubscribedOrRetained, false)
 
-  fun sendHelloMessage(channelId: String) {
+  private val mutableIsError: MutableStateFlow<String> = MutableStateFlow("")
+  val isError: StateFlow<Boolean> = mutableIsError.mapLatest {
+    it.isNotEmpty()
+  }.stateIn(viewModelScope, WhileSubscribedOrRetained, false)
+
+  fun sendStreamChatMessage(channelId: String, text: String) {
     viewModelScope.launch {
-      sendStreamMessage(channelId, "Hi, I'm OpenAI's ChatGPT. Ask me anything!")
+      sendStreamMessage(channelId, text)
     }
   }
 
@@ -77,6 +84,8 @@ class ChatGPTMessagesViewModel @Inject constructor(
           messageItemSet.value -= text
           sendStreamMessage(channelId, data)
         }.onFailure {
+          messageItemSet.value -= messageItemSet.value
+          mutableIsError.value = message()
           streamLog { "Failure: $messageOrNull" }
         }
       }

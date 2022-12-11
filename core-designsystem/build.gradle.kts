@@ -27,7 +27,6 @@ dependencies {
 
   api(libs.androidx.compose.runtime)
   api(libs.androidx.compose.ui)
-  api(libs.androidx.activity.compose)
   api(libs.androidx.compose.ui.tooling)
   api(libs.androidx.compose.ui.tooling.preview)
   api(libs.androidx.compose.material.iconsExtended)

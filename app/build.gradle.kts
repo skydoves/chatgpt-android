@@ -76,9 +76,5 @@ dependencies {
   // image loading
   implementation(libs.landscapist.glide)
 
-  // pager
-  implementation(libs.accompanist.pager)
-  implementation(libs.accompanist.indicator)
-
   implementation(libs.stream.log)
 }

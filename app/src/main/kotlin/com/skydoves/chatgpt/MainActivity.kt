@@ -19,6 +19,8 @@ package com.skydoves.chatgpt
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.CompositionLocalProvider
+import com.skydoves.chatgpt.core.designsystem.composition.LocalOnFinishDispatcher
 import com.skydoves.chatgpt.core.designsystem.theme.ChatGPTComposeTheme
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.ui.ChatGPTMain
@@ -35,7 +37,11 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      ChatGPTComposeTheme { ChatGPTMain(composeNavigator = appComposeNavigator) }
+      CompositionLocalProvider(
+        LocalOnFinishDispatcher provides { finish() }
+      ) {
+        ChatGPTComposeTheme { ChatGPTMain(composeNavigator = appComposeNavigator) }
+      }
     }
   }
 }

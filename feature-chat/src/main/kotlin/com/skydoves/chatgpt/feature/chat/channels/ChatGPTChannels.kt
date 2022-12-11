@@ -37,6 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.skydoves.chatgpt.core.designsystem.component.ChatGPTLoadingIndicator
+import com.skydoves.chatgpt.core.designsystem.composition.LocalOnFinishDispatcher
 import com.skydoves.chatgpt.core.designsystem.theme.PURPLE500
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
@@ -48,7 +49,8 @@ import io.getstream.chat.android.compose.ui.channels.ChannelsScreen
 fun ChatGPTChannels(
   modifier: Modifier,
   composeNavigator: AppComposeNavigator,
-  viewModel: ChatGPTChannelsViewModel = hiltViewModel()
+  viewModel: ChatGPTChannelsViewModel = hiltViewModel(),
+  onFinishDispatcher: (() -> Unit)? = LocalOnFinishDispatcher.current
 ) {
   val uiState by viewModel.channelUiState.collectAsState()
 
@@ -60,7 +62,8 @@ fun ChatGPTChannels(
         isShowingHeader = false,
         onItemClick = { channel ->
           composeNavigator.navigate(ChatGPTScreens.Messages.createRoute(channel.cid))
-        }
+        },
+        onBackPressed = { onFinishDispatcher?.invoke() }
       )
 
       FloatingActionButton(

@@ -41,7 +41,6 @@ internal fun Project.configureKotlinAndroid(
         // Enable experimental coroutines APIs, including Flow
         "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
         // Enable experimental compose APIs
-        "-opt-in=com.google.accompanist.pager.ExperimentalPagerApi",
         "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
         "-opt-in=androidx.lifecycle.compose.ExperimentalLifecycleComposeApi",
       )

@@ -23,11 +23,6 @@ The purpose of this repository is to demonstrate below:
 - Performing background tasks with Kotlin Coroutines.
 - Integrating chat systems with Stream Chat SDK for real-time event handling.
 
-## 📲 Download APK
-Go to the [Releases](https://github.com/skydoves/chatgpt-android/releases) to download the latest APK.
-
->**Note**: This app is using unofficial APIs, so normally it takes 10~15 seconds to get the entire response and the app might not work as your expected anytime.
-
 <a href="https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong&utm_term=DevRelOss">
 <img src="https://user-images.githubusercontent.com/24237865/138428440-b92e5fb7-89f8-41aa-96b1-71a5486c5849.png" align="right" width="12%"/>
 </a>

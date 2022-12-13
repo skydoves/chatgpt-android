@@ -19,11 +19,13 @@ package com.skydoves.chatgpt.feature.chat.messages
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.skydoves.chatgpt.core.data.chat.commonChannelId
 import com.skydoves.chatgpt.core.data.coroutines.WhileSubscribedOrRetained
 import com.skydoves.chatgpt.core.data.repository.GPTMessageRepository
 import com.skydoves.chatgpt.core.model.GPTChatRequest
 import com.skydoves.chatgpt.core.model.GPTContent
 import com.skydoves.chatgpt.core.model.GPTMessage
+import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_channel_id
 import com.skydoves.chatgpt.core.network.BuildConfig.CONVERSATION_ID
 import com.skydoves.chatgpt.core.network.BuildConfig.PARENT_MESSAGE_ID
 import com.skydoves.sandwich.message
@@ -51,7 +53,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
   savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-  private val channelId: String = savedStateHandle.get<String>("channelId") ?: ""
+  private val channelId: String = savedStateHandle.get<String>(argument_channel_id) ?: ""
 
   private val messageItemSet = MutableStateFlow<Set<String>>(setOf())
   val isLoading: StateFlow<Boolean> = messageItemSet.map {
@@ -68,7 +70,9 @@ class ChatGPTMessagesViewModel @Inject constructor(
       .stateIn(viewModelScope, SharingStarted.Lazily, false)
 
   fun sendStreamChatMessage(text: String) {
-    viewModelScope.launch { sendStreamMessage(text) }
+    if ("messaging:$channelId" != commonChannelId) {
+      viewModelScope.launch { sendStreamMessage(text) }
+    }
   }
 
   fun sendMessage(text: String) {

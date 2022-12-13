@@ -20,6 +20,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         add("implementation", project(":core-data"))
 
         add("implementation", libs.findLibrary("kotlinx.coroutines.android").get())
+        add("implementation", libs.findLibrary("stream.log").get())
       }
     }
   }

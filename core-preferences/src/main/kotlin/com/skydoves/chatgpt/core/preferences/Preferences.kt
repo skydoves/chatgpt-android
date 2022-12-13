@@ -17,6 +17,7 @@
 package com.skydoves.chatgpt.core.preferences
 
 import android.content.SharedPreferences
+import com.skydoves.chatgpt.core.preferences.delegate.stringPreferences
 import java.util.UUID
 import javax.inject.Inject
 

@@ -33,10 +33,14 @@ sealed class ChatGPTScreens(
   // message screen
   object Messages : ChatGPTScreens(
     route = "messages",
-    navArguments = listOf(navArgument("channelId") { type = NavType.StringType })
+    navArguments = listOf(navArgument(argument_channel_id) { type = NavType.StringType })
   ) {
     fun createRoute(channelId: String) =
       name.replace("{${navArguments.first().name}}", channelId)
+  }
+
+  companion object {
+    const val argument_channel_id = "channelId"
   }
 }
 

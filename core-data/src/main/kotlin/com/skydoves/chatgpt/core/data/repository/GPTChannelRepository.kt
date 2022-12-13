@@ -17,9 +17,15 @@
 package com.skydoves.chatgpt.core.data.repository
 
 import io.getstream.chat.android.client.models.Channel
+import io.getstream.chat.android.client.models.User
 import io.getstream.chat.android.client.utils.Result
+import kotlinx.coroutines.flow.Flow
 
 interface GPTChannelRepository {
 
   suspend fun createRandomChannel(): Result<Channel>
+
+  suspend fun joinTheCommonChannel(user: User)
+
+  fun streamUserFlow(): Flow<User?>
 }

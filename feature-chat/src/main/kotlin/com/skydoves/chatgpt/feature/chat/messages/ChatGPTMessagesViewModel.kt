@@ -70,7 +70,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
       .stateIn(viewModelScope, SharingStarted.Lazily, false)
 
   fun sendStreamChatMessage(text: String) {
-    if ("messaging:$channelId" != commonChannelId) {
+    if (channelId != commonChannelId) {
       viewModelScope.launch { sendStreamMessage(text) }
     }
   }

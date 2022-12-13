@@ -219,10 +219,13 @@ private fun HandleToastMessages(
   viewModel: ChatGPTMessagesViewModel = hiltViewModel()
 ) {
   val context = LocalContext.current
+  val isMessageEmpty by viewModel.isMessageEmpty.collectAsState()
   val isError by viewModel.isError.collectAsState()
 
-  LaunchedEffect(key1 = Unit) {
-    viewModel.sendStreamChatMessage(context.getString(R.string.toast_hello))
+  LaunchedEffect(key1 = isMessageEmpty) {
+    if (isMessageEmpty) {
+      viewModel.sendStreamChatMessage(context.getString(R.string.toast_hello))
+    }
   }
 
   LaunchedEffect(key1 = isError) {

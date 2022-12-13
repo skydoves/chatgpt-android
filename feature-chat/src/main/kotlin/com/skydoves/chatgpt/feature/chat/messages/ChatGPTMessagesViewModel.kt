@@ -37,6 +37,7 @@ import io.getstream.log.streamLog
 import java.util.UUID
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
@@ -61,6 +62,10 @@ class ChatGPTMessagesViewModel @Inject constructor(
   val isError: StateFlow<Boolean> = mutableIsError.mapLatest {
     it.isNotEmpty()
   }.stateIn(viewModelScope, WhileSubscribedOrRetained, false)
+
+  val isMessageEmpty: StateFlow<Boolean> =
+    GPTMessageRepository.watchIsChannelMessageEmpty(channelId)
+      .stateIn(viewModelScope, SharingStarted.Lazily, false)
 
   fun sendStreamChatMessage(text: String) {
     viewModelScope.launch { sendStreamMessage(text) }

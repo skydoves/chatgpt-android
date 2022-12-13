@@ -77,7 +77,7 @@ GPT_SESSION=..
 CF_CLEARANCE=...
 ```
 
-1.  Build the project.
+8. Build the project.
 
 ## 🏛️ Architecture
 

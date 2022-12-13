@@ -24,6 +24,7 @@ import com.skydoves.chatgpt.core.network.service.ChatGPTService
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.mapSuccess
 import com.squareup.moshi.Moshi
+import io.getstream.chat.android.client.ChatClient
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -54,4 +55,10 @@ internal class GPTMessageRepositoryImpl @Inject constructor(
       }
       emit(mappedResponse)
     }.flowOn(ioDispatcher)
+
+  override fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean> = flow {
+    val channel = ChatClient.instance().channel(cid).watch().await()
+    val messages = channel.data().messages
+    emit(messages.isEmpty())
+  }.flowOn(ioDispatcher)
 }

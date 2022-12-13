@@ -23,4 +23,6 @@ import kotlinx.coroutines.flow.Flow
 interface GPTMessageRepository {
 
   suspend fun sendMessage(gptChatRequest: GPTChatRequest): Flow<ApiResponse<String>>
+
+  fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean>
 }

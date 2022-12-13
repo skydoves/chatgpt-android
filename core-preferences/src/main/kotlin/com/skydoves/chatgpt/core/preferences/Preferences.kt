@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins {
-  id("skydoves.android.library")
-  id("skydoves.android.library.compose")
-  id("skydoves.android.feature")
-  id("skydoves.android.hilt")
-  id("skydoves.spotless")
-}
 
-dependencies {
-  // modules
-  implementation(project(":core-preferences"))
+package com.skydoves.chatgpt.core.preferences
 
-  // Stream chat Compose
-  api(libs.stream.compose)
+import android.content.SharedPreferences
+import java.util.UUID
+import javax.inject.Inject
 
-  implementation(libs.androidx.lifecycle.runtimeCompose)
-  implementation(libs.androidx.lifecycle.viewModelCompose)
-  implementation(libs.androidx.startup)
-  implementation(libs.stream.log)
+class Preferences @Inject constructor(
+  val sharedPreferences: SharedPreferences
+) {
+
+  val userUUID: String by stringPreferences(
+    key = KEY_UUID,
+    defaultValue = UUID.randomUUID().toString()
+  )
+
+  companion object {
+    private const val KEY_UUID: String = "key_uuid"
+  }
 }

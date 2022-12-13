@@ -15,21 +15,9 @@
  */
 plugins {
   id("skydoves.android.library")
-  id("skydoves.android.library.compose")
-  id("skydoves.android.feature")
   id("skydoves.android.hilt")
   id("skydoves.spotless")
 }
 
 dependencies {
-  // modules
-  implementation(project(":core-preferences"))
-
-  // Stream chat Compose
-  api(libs.stream.compose)
-
-  implementation(libs.androidx.lifecycle.runtimeCompose)
-  implementation(libs.androidx.lifecycle.viewModelCompose)
-  implementation(libs.androidx.startup)
-  implementation(libs.stream.log)
 }

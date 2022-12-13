@@ -18,8 +18,10 @@ package com.skydoves.chatgpt.feature.chat.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
+import com.skydoves.chatgpt.core.preferences.Preferences
 import com.skydoves.chatgpt.feature.chat.BuildConfig
 import com.skydoves.chatgpt.feature.chat.R
+import com.skydoves.chatgpt.feature.chat.di.ApplicationEntryPoint
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.logger.ChatLogLevel
 import io.getstream.chat.android.client.models.User
@@ -27,7 +29,7 @@ import io.getstream.chat.android.offline.model.message.attachments.UploadAttachm
 import io.getstream.chat.android.offline.plugin.configuration.Config
 import io.getstream.chat.android.offline.plugin.factory.StreamOfflinePluginFactory
 import io.getstream.log.streamLog
-import java.util.UUID
+import javax.inject.Inject
 import kotlin.random.Random
 
 /**
@@ -35,7 +37,12 @@ import kotlin.random.Random
  */
 class StreamChatInitializer : Initializer<Unit> {
 
+  @set:Inject
+  internal lateinit var preferences: Preferences
+
   override fun create(context: Context) {
+    ApplicationEntryPoint.resolve(context).inject(this)
+
     streamLog { "StreamChatInitializer is initialized" }
 
     /**
@@ -59,7 +66,7 @@ class StreamChatInitializer : Initializer<Unit> {
       .build()
 
     val user = User(
-      id = UUID.randomUUID().toString(),
+      id = preferences.userUUID,
       name = "stream",
       image = "https://picsum.photos/id/${Random.nextInt(1000)}/300/300"
     )

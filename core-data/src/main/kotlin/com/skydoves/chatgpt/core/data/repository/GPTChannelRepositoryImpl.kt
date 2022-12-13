@@ -46,7 +46,7 @@ internal class GPTChannelRepositoryImpl @Inject constructor(
     val members = channelClient.watch().await().data().members
     val isExist = members.firstOrNull { it.user.id == user.id }
     if (isExist == null) {
-      val result = channelClient.addMembers(listOf(user.id)).await()
+      channelClient.addMembers(listOf(user.id)).await()
     }
   }
 

@@ -26,8 +26,6 @@ import com.skydoves.chatgpt.core.model.GPTChatRequest
 import com.skydoves.chatgpt.core.model.GPTContent
 import com.skydoves.chatgpt.core.model.GPTMessage
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_channel_id
-import com.skydoves.chatgpt.core.network.BuildConfig.CONVERSATION_ID
-import com.skydoves.chatgpt.core.network.BuildConfig.PARENT_MESSAGE_ID
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.messageOrNull
 import com.skydoves.sandwich.onFailure
@@ -78,6 +76,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
   fun sendMessage(text: String) {
     messageItemSet.value += text
     viewModelScope.launch {
+      val messageId = UUID.randomUUID().toString()
       val request = GPTChatRequest(
         messages = listOf(
           GPTMessage(
@@ -85,8 +84,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
             content = GPTContent(parts = listOf(text))
           )
         ),
-        conversation_id = CONVERSATION_ID,
-        parent_message_id = PARENT_MESSAGE_ID
+        parent_message_id = messageId
       )
       val result = GPTMessageRepository.sendMessage(request)
       result.collect {

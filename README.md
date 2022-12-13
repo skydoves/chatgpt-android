@@ -59,36 +59,25 @@ If you’re interested in adding powerful In-App Messaging to your app, check ou
 1. Go to the [ChatGPT](https://chat.openai.com/chat) and **login** or **signin** on the website.
 2. Open the **Developer Tools** on your Chrome.
 3. Type anything again, such as "Hi".
-4. Click the **Network** tab on the top menu like the below.
-   
-![gpt](figures/gpt2.png)
-
-5. Click any **conversation** and the **Payload** tap like the below.
-
-![gpt](figures/gpt0.png)
-
-6. You will see the **conversation_id** and **parent_message_id**, and copy them.
-7. Click the **Headers** tap next to the **Payload** tap like the below.
+4. Click any **conversation** and the **Headers** tap like the below.
 
 ![gpt](figures/gpt1.png)
 
-8. Then you will see the **authorization** field and copy them without the "Bearer" string.
-9. Go to the **Application** tab on the top menu and copy the **cf_clearance** cookie value like the below.
+5. Then you will see the **authorization** field and copy them without the "Bearer" string.
+6. Go to the **Application** tab on the top menu and copy the **cf_clearance** cookie value like the below.
 
 ![gpt](figures/gpt4.png)
 
-10. Go to the `local.properties` file and add the properties like the below.
+7. Go to the `local.properties` file and add the properties like the below.
 
 ![gpt](figures/gpt3.png)
 
 ```gradle
 GPT_SESSION=..
-CONVERSATION_ID=..
-PARENT_MESSAGE_ID=..
 CF_CLEARANCE=...
 ```
 
-11. Build the project.
+1.  Build the project.
 
 ## 🏛️ Architecture
 

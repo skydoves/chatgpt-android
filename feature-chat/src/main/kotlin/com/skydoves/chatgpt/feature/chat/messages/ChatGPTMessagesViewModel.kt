@@ -76,13 +76,15 @@ class ChatGPTMessagesViewModel @Inject constructor(
   fun sendMessage(text: String) {
     messageItemSet.value += text
     viewModelScope.launch {
+      val messageId = UUID.randomUUID().toString()
       val request = GPTChatRequest(
         messages = listOf(
           GPTMessage(
             id = UUID.randomUUID().toString(),
             content = GPTContent(parts = listOf(text))
           )
-        )
+        ),
+        parent_message_id = messageId
       )
       val result = GPTMessageRepository.sendMessage(request)
       result.collect {

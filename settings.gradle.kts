@@ -20,6 +20,7 @@ rootProject.name = "chatgpt-android"
 include(":app")
 include(":core-model")
 include(":core-network")
+include(":core-preferences")
 include(":core-data")
 include(":core-designsystem")
 include(":core-navigation")

@@ -20,5 +20,5 @@
   <string name="toast_success_create_channel">A random ChatGPT channel is created!</string>
   <string name="toast_hello">Hi, I\'m OpenAI\'s ChatGPT. Ask me anything!</string>
   <string name="toast_error">Something went wrong</string>
-  <string name="toast_error_session">Something went wrong. Please check out your session and conversation id is valid.</string>
+  <string name="toast_error_session">Something went wrong. Please check out your session and CF_CLEARANCE is valid.</string>
 </resources>

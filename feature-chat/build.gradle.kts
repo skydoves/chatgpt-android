@@ -22,6 +22,9 @@ plugins {
 }
 
 dependencies {
+  // modules
+  implementation(project(":core-preferences"))
+
   // Stream chat Compose
   api(libs.stream.compose)
 

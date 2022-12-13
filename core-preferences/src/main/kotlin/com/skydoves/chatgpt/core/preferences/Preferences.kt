@@ -24,7 +24,7 @@ class Preferences @Inject constructor(
   val sharedPreferences: SharedPreferences
 ) {
 
-  var userUUID: String by stringPreferences(
+  val userUUID: String by stringPreferences(
     key = KEY_UUID,
     defaultValue = UUID.randomUUID().toString()
   )

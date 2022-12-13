@@ -28,7 +28,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class PreferencesModule {
+object PreferencesModule {
 
   @Provides
   @Singleton

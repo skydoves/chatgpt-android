@@ -16,6 +16,7 @@
 
 package com.skydoves.chatgpt.feature.chat.messages
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skydoves.chatgpt.core.data.coroutines.WhileSubscribedOrRetained
@@ -45,8 +46,11 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class ChatGPTMessagesViewModel @Inject constructor(
   private val GPTMessageRepository: GPTMessageRepository,
-  private val chatClient: ChatClient
+  private val chatClient: ChatClient,
+  savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+  private val channelId: String = savedStateHandle.get<String>("channelId") ?: ""
 
   private val messageItemSet = MutableStateFlow<Set<String>>(setOf())
   val isLoading: StateFlow<Boolean> = messageItemSet.map {
@@ -58,13 +62,11 @@ class ChatGPTMessagesViewModel @Inject constructor(
     it.isNotEmpty()
   }.stateIn(viewModelScope, WhileSubscribedOrRetained, false)
 
-  fun sendStreamChatMessage(channelId: String, text: String) {
-    viewModelScope.launch {
-      sendStreamMessage(channelId, text)
-    }
+  fun sendStreamChatMessage(text: String) {
+    viewModelScope.launch { sendStreamMessage(text) }
   }
 
-  fun sendMessage(channelId: String, text: String) {
+  fun sendMessage(text: String) {
     messageItemSet.value += text
     viewModelScope.launch {
       val request = GPTChatRequest(
@@ -82,7 +84,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
         it.suspendOnSuccess {
           streamLog { "onResponse: $data" }
           messageItemSet.value -= text
-          sendStreamMessage(channelId, data)
+          sendStreamMessage(data)
         }.onFailure {
           messageItemSet.value -= messageItemSet.value
           mutableIsError.value = message()
@@ -92,7 +94,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
     }
   }
 
-  private suspend fun sendStreamMessage(channelId: String, text: String) {
+  private suspend fun sendStreamMessage(text: String) {
     val channelClient = chatClient.channel(channelId)
     channelClient.sendMessage(
       message = Message(

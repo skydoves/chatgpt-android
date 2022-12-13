@@ -109,7 +109,7 @@ fun ChatGPTMessages(
 
   BackHandler(enabled = true, onBack = backAction)
 
-  HandleToastMessages(channelId = channelId)
+  HandleToastMessages()
 
   ChatGPTStreamTheme {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -146,7 +146,7 @@ fun ChatGPTMessages(
               .align(Alignment.Center),
             viewModel = composerViewModel,
             onSendMessage = {
-              viewModel.sendMessage(channelId = channelId, text = it.text)
+              viewModel.sendMessage(text = it.text)
               composerViewModel.sendMessage(it)
             },
             onAttachmentsClick = {
@@ -216,19 +216,18 @@ fun ChatGPTMessages(
 
 @Composable
 private fun HandleToastMessages(
-  channelId: String,
   viewModel: ChatGPTMessagesViewModel = hiltViewModel()
 ) {
   val context = LocalContext.current
   val isError by viewModel.isError.collectAsState()
 
   LaunchedEffect(key1 = Unit) {
-    viewModel.sendStreamChatMessage(channelId, context.getString(R.string.toast_hello))
+    viewModel.sendStreamChatMessage(context.getString(R.string.toast_hello))
   }
 
   LaunchedEffect(key1 = isError) {
     if (isError) {
-      viewModel.sendStreamChatMessage(channelId, context.getString(R.string.toast_error_session))
+      viewModel.sendStreamChatMessage(context.getString(R.string.toast_error_session))
     }
   }
 }

@@ -36,6 +36,14 @@ class ChatGPTChannelsViewModel @Inject constructor(
     MutableStateFlow<GPTChannelUiState>(GPTChannelUiState.Nothing)
   val channelUiState: StateFlow<GPTChannelUiState> = channelsMutableUiState
 
+  init {
+    viewModelScope.launch {
+      gptChannelRepository.streamUserFlow().collect { user ->
+        user?.let { gptChannelRepository.joinTheCommonChannel(it) }
+      }
+    }
+  }
+
   fun handleEvents(gptChannelEvent: GPTChannelEvent) {
     when (gptChannelEvent) {
       GPTChannelEvent.CreateChannel -> createRandomChannel()

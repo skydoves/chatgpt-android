@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.skydoves.chatgpt.core.data.chat.chatGPTUser
+import com.skydoves.chatgpt.core.data.chat.commonChannelId
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.feature.chat.R
 import com.skydoves.chatgpt.feature.chat.theme.ChatGPTStreamTheme
@@ -191,7 +192,8 @@ fun ChatGPTMessages(
           }
         ) { state ->
           var messageState = state
-          if (messageState is MessageItemState &&
+          if (channelId != commonChannelId &&
+            messageState is MessageItemState &&
             (messageState.message.extraData["ChatGPT"] as? Boolean) == true
           ) {
             messageState =
@@ -203,7 +205,8 @@ fun ChatGPTMessages(
                     name = chatGPTUser.name,
                     image = chatGPTUser.image
                   )
-                )
+                ),
+                currentUser = chatGPTUser
               )
           }
 

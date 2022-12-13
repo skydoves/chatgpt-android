@@ -17,12 +17,15 @@
 package com.skydoves.chatgpt.core.data.repository
 
 import com.skydoves.chatgpt.core.data.chat.chatGPTUser
+import com.skydoves.chatgpt.core.data.chat.commonChannelId
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.models.Channel
+import io.getstream.chat.android.client.models.User
 import io.getstream.chat.android.client.utils.Result
 import java.util.Random
 import java.util.UUID
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 internal class GPTChannelRepositoryImpl @Inject constructor(
   private val chatClient: ChatClient
@@ -37,4 +40,15 @@ internal class GPTChannelRepositoryImpl @Inject constructor(
       extraData = mapOf("name" to "ChatGPT ${Random().nextInt(99999)}")
     ).await()
   }
+
+  override suspend fun joinTheCommonChannel(user: User) {
+    val channelClient = chatClient.channel(commonChannelId)
+    val members = channelClient.watch().await().data().members
+    val isExist = members.firstOrNull { it.user.id == user.id }
+    if (isExist == null) {
+      val result = channelClient.addMembers(listOf(user.id)).await()
+    }
+  }
+
+  override fun streamUserFlow(): Flow<User?> = chatClient.clientState.user
 }

@@ -24,6 +24,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
+import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_channel_id
 import com.skydoves.chatgpt.feature.chat.channels.ChatGPTChannels
 import com.skydoves.chatgpt.feature.chat.messages.ChatGPTMessages
 import com.skydoves.chatgpt.ui.ChatGPTSmallTopBar
@@ -44,7 +45,7 @@ fun NavGraphBuilder.chatGPTHomeNavigation(
     route = ChatGPTScreens.Messages.name,
     arguments = ChatGPTScreens.Messages.navArguments
   ) {
-    val channelId = it.arguments?.getString("channelId") ?: return@composable
+    val channelId = it.arguments?.getString(argument_channel_id) ?: return@composable
     ChatGPTMessages(
       channelId = channelId,
       composeNavigator = composeNavigator,

@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.skydoves.chatgpt.core.preferences
+package com.skydoves.chatgpt.core.preferences.delegate
 
 import androidx.core.content.edit
+import com.skydoves.chatgpt.core.preferences.Preferences
 import kotlin.reflect.KProperty
 
 fun stringPreferences(key: String, defaultValue: String) =

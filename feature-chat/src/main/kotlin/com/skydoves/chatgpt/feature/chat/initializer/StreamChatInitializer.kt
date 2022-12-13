@@ -67,7 +67,7 @@ class StreamChatInitializer : Initializer<Unit> {
 
     val user = User(
       id = preferences.userUUID,
-      name = "stream",
+      name = "User ${Random.nextInt(10000)}",
       image = "https://picsum.photos/id/${Random.nextInt(1000)}/300/300"
     )
 

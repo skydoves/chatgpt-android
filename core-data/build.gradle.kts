@@ -23,6 +23,7 @@ plugins {
 dependencies {
   api(project(":core-model"))
   api(project(":core-network"))
+  api(project(":core-preferences"))
 
   api(libs.moshi)
   ksp(libs.moshi.codegen)

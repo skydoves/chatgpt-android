@@ -62,5 +62,10 @@ android {
       "PARENT_MESSAGE_ID",
       "\"" + gradleLocalProperties(rootDir).getProperty("PARENT_MESSAGE_ID", "") + "\""
     )
+    buildConfigField(
+      "String",
+      "CF_CLEARANCE",
+      "\"" + gradleLocalProperties(rootDir).getProperty("CF_CLEARANCE", "") + "\""
+    )
   }
 }

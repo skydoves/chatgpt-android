@@ -23,29 +23,29 @@ plugins {
 }
 
 android {
-    namespace = "com.skydoves.chatgpt"
-    compileSdk = Configurations.compileSdk
+  namespace = "com.skydoves.chatgpt"
+  compileSdk = Configurations.compileSdk
 
-    defaultConfig {
-        applicationId = "com.skydoves.chatgpt"
-      minSdk = Configurations.minSdk
-      targetSdk = Configurations.targetSdk
-      versionCode = Configurations.versionCode
-      versionName = Configurations.versionName
-    }
+  defaultConfig {
+    applicationId = "com.skydoves.chatgpt"
+    minSdk = Configurations.minSdk
+    targetSdk = Configurations.targetSdk
+    versionCode = Configurations.versionCode
+    versionName = Configurations.versionName
+  }
 
   packagingOptions {
     resources {
       excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }
   }
-    buildTypes {
-        create("benchmark") {
-            signingConfig = signingConfigs.getByName("debug")
-            matchingFallbacks += listOf("release")
-            isDebuggable = false
-        }
+  buildTypes {
+    create("benchmark") {
+      signingConfig = signingConfigs.getByName("debug")
+      matchingFallbacks += listOf("release")
+      isDebuggable = false
     }
+  }
 }
 
 dependencies {

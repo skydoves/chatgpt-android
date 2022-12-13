@@ -73,7 +73,11 @@ If you’re interested in adding powerful In-App Messaging to your app, check ou
 ![gpt](figures/gpt1.png)
 
 8. Then you will see the **authorization** field and copy them without the "Bearer" string.
-9. Go to the `local.properties` file and add the properties like the below.
+9. Go to the **Application** tab on the top menu and copy the **cf_clearance** cookie value like the below.
+
+![gpt](figures/gpt4.png)
+
+10. Go to the `local.properties` file and add the properties like the below.
 
 ![gpt](figures/gpt3.png)
 
@@ -81,9 +85,10 @@ If you’re interested in adding powerful In-App Messaging to your app, check ou
 GPT_SESSION=..
 CONVERSATION_ID=..
 PARENT_MESSAGE_ID=..
+CF_CLEARANCE=...
 ```
 
-10. Build the project.
+11. Build the project.
 
 ## 🏛️ Architecture
 

@@ -14,21 +14,9 @@
  * limitations under the License.
  */
 
-package com.skydoves.chatgpt.feature.login
+package com.skydoves.chatgpt.core.data.repository
 
-import androidx.lifecycle.ViewModel
-import com.skydoves.chatgpt.core.data.repository.GPTLoginRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import io.getstream.log.streamLog
-import javax.inject.Inject
+interface GPTLoginRepository {
 
-@HiltViewModel
-class ChatGPTLoginViewModel @Inject constructor(
-  private val gptLoginRepository: GPTLoginRepository
-) : ViewModel() {
-
-  fun persistLoginInfo(authorization: String, cookie: String) {
-    streamLog { "authorization: $authorization\ncookie: $cookie" }
-    gptLoginRepository.persistLoginInfo(authorization, cookie)
-  }
+  fun persistLoginInfo(authorization: String, cookie: String)
 }

@@ -32,9 +32,9 @@ class GPTInterceptor @Inject constructor(
     val url = originalUrl.newBuilder().build()
     val requestBuilder = originalRequest.newBuilder().url(url)
     val authorization =
-      preferences.authorization.takeIf { it.isNotEmpty() } ?: "Bearer $GPT_SESSION"
+      preferences.authorization.takeIf { it.isNotEmpty() }?.trim() ?: "Bearer $GPT_SESSION"
     requestBuilder.addHeader("authorization", authorization)
-    val cookie = preferences.cookie.takeIf { it.isNotEmpty() } ?: BuildConfig.CF_CLEARANCE
+    val cookie = preferences.cookie.takeIf { it.isNotEmpty() }?.trim() ?: BuildConfig.CF_CLEARANCE
     requestBuilder.addHeader("cookie", cookie)
     val request = requestBuilder.build()
     return chain.proceed(request)

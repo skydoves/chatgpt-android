@@ -18,6 +18,7 @@ package com.skydoves.chatgpt.core.network.di
 
 import com.skydoves.chatgpt.core.network.GPTInterceptor
 import com.skydoves.chatgpt.core.network.service.ChatGPTService
+import com.skydoves.chatgpt.core.preferences.Preferences
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -35,9 +36,9 @@ object NetworkModule {
 
   @Provides
   @Singleton
-  fun provideOkHttpClient(): OkHttpClient {
+  fun provideOkHttpClient(preferences: Preferences): OkHttpClient {
     return OkHttpClient.Builder()
-      .addInterceptor(GPTInterceptor())
+      .addInterceptor(GPTInterceptor(preferences))
       .connectTimeout(60, TimeUnit.SECONDS)
       .readTimeout(60, TimeUnit.SECONDS)
       .writeTimeout(15, TimeUnit.SECONDS)

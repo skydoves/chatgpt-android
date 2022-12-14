@@ -16,6 +16,7 @@
 
 package com.skydoves.chatgpt.feature.login
 
+import android.webkit.WebChromeClient
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import androidx.activity.compose.BackHandler
@@ -51,6 +52,7 @@ fun ChatGPTLogin(
     modifier = Modifier.fillMaxSize(),
     factory = {
       webView.apply {
+        webChromeClient = WebChromeClient()
         webViewClient = object : RequestInspectorWebViewClient(this@apply) {
           override fun shouldInterceptRequest(
             view: WebView,

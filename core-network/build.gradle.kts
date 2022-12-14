@@ -39,6 +39,7 @@ plugins {
 
 dependencies {
   implementation(project(":core-model"))
+  implementation(project(":core-preferences"))
 
   api(libs.okhttp.logging)
   api(libs.retrofit.core)

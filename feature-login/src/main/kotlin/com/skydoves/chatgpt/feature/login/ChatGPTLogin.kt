@@ -58,9 +58,8 @@ fun ChatGPTLogin(
           ): WebResourceResponse? {
             if (checkIfAuthorized(webViewRequest.headers)) {
               val authorization = webViewRequest.headers["authorization"] ?: return null
-              val cookies = getCookieMap(webViewRequest.headers["cookie"])
-              val cf_clearance = cookies["cf_clearance"] ?: return null
-              viewModel.persistLoginInfo(authorization, cf_clearance)
+              val cookie = webViewRequest.headers["cookie"] ?: return null
+              viewModel.persistLoginInfo(authorization, cookie)
               composeNavigator.navigateAndClearBackStack(ChatGPTScreens.Channels.name)
             }
             return super.shouldInterceptRequest(view, webViewRequest)
@@ -75,11 +74,4 @@ fun ChatGPTLogin(
 
 private fun checkIfAuthorized(header: Map<String, String>): Boolean {
   return header.containsKey("authorization") && header.containsKey("cookie")
-}
-
-private fun getCookieMap(cookies: String?): Map<String, String> {
-  return cookies?.split("; ")?.associate {
-    val (left, right) = it.split("=")
-    left to right
-  } ?: mapOf()
 }

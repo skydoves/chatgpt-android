@@ -23,6 +23,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ChatGPTLoginViewModel @Inject constructor() : ViewModel() {
 
-  fun persistLoginInfo(authorization: String, cf_clearance: String) {
+  fun persistLoginInfo(authorization: String, cookie: String) {
   }
 }

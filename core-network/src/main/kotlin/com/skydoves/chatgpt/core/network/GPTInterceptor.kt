@@ -17,19 +17,25 @@
 package com.skydoves.chatgpt.core.network
 
 import com.skydoves.chatgpt.core.network.BuildConfig.GPT_SESSION
+import com.skydoves.chatgpt.core.preferences.Preferences
+import javax.inject.Inject
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class GPTInterceptor : Interceptor {
-
-  private val sessionToken = GPT_SESSION
+class GPTInterceptor @Inject constructor(
+  private val preferences: Preferences
+) : Interceptor {
 
   override fun intercept(chain: Interceptor.Chain): Response {
     val originalRequest = chain.request()
     val originalUrl = originalRequest.url
     val url = originalUrl.newBuilder().build()
     val requestBuilder = originalRequest.newBuilder().url(url)
-    requestBuilder.addHeader("Authorization", "Bearer $sessionToken")
+    val authorization =
+      preferences.authorization.takeIf { it.isNotEmpty() } ?: "Bearer $GPT_SESSION"
+    requestBuilder.addHeader("authorization", authorization)
+    val cookie = preferences.cookie.takeIf { it.isNotEmpty() } ?: BuildConfig.CF_CLEARANCE
+    requestBuilder.addHeader("cookie", cookie)
     val request = requestBuilder.build()
     return chain.proceed(request)
   }

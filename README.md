@@ -130,7 +130,7 @@ Most of the features are not completed except the chat feature, so anyone can co
 
 ## Find this repository useful? 💙
 Support it by joining __[stargazers](https://github.com/skydoves/chatgpt-android/stargazers)__ for this repository. :star: <br>
-Also, follow __[maintainers](https://github.com/skydoves)__ on GitHub for our next creations! 🤩
+Also, __[follow me](https://github.com/skydoves)__ on GitHub for my next creations! 🤩
 
 # License
 ```xml

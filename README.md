@@ -69,10 +69,7 @@ If you’re interested in adding powerful In-App Messaging to your app, check ou
 
 ![login](figures/login1.png)
 
-
-
-
-5. Build the project.
+5. If you login correctly, you will get the success toast message and move to the channel list screen.
 
 ## 🏛️ Architecture
 

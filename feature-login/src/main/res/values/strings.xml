@@ -15,5 +15,6 @@
      limitations under the License.
 -->
 <resources>
+  <string name="toast_logged_in">Successfully logged-in!</string>
   <string name="top_bar_login">chatgpt-android login</string>
 </resources>

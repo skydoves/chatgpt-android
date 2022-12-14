@@ -16,9 +16,12 @@
 
 package com.skydoves.chatgpt.feature.login
 
+import android.os.Handler
+import android.os.Looper
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -82,6 +85,10 @@ fun ChatGPTLogin(
                   userAgent = userAgent
                 )
                 composeNavigator.navigateAndClearBackStack(ChatGPTScreens.Channels.name)
+
+                Handler(Looper.getMainLooper()).post {
+                  Toast.makeText(context, R.string.toast_logged_in, Toast.LENGTH_SHORT).show()
+                }
               }
               return super.shouldInterceptRequest(view, webViewRequest)
             }

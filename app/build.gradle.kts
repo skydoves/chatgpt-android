@@ -77,5 +77,17 @@ dependencies {
   // image loading
   implementation(libs.landscapist.glide)
 
+  // logger
   implementation(libs.stream.log)
+
+  // firebase
+  implementation(platform(libs.firebase.bom))
+  implementation(platform(libs.firebase.analytics))
+  implementation(platform(libs.firebase.messaging))
+  implementation(platform(libs.firebase.crashlytics))
+}
+
+if (file("google-services.json").exists()) {
+  apply(plugin = libs.plugins.gms.googleServices.get().pluginId)
+  apply(plugin = libs.plugins.firebase.crashlytics.get().pluginId)
 }

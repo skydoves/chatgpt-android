@@ -54,30 +54,25 @@ If you’re interested in adding powerful In-App Messaging to your app, check ou
 - [StreamLog](https://github.com/GetStream/stream-log): A lightweight and extensible logger library for Kotlin and Android.
 - Baseline Profiles: To improve app performance by including a list of classes and methods specifications in your APK that can be used by Android Runtime.
 
-## ⚙️ How to build the project?
+## ⚙️ How to run the application?
 
-1. Go to the [ChatGPT](https://chat.openai.com/chat) and **login** or **signin** on the website.
-2. Open the **Developer Tools** on your Chrome.
-3. Type anything again, such as "Hi".
-4. Click any **conversation** and the **Headers** tap like the below.
+1. Go the [ChatGPT](https://chat.openai.com/chat) website and clieck the **sign up** button.
+2. Create your account **with an Email Address, not your Google or Microsoft account** like the one below:
 
-![gpt](figures/gpt1.png)
+![login](figures/login2.png)
 
-5. Then you will see the **authorization** field and copy them without the "Bearer" string.
-6. Go to the **Application** tab on the top menu and copy the **cf_clearance** cookie value like the below.
+3. After finishing the additional steps, go back to the application screen like the below:
 
-![gpt](figures/gpt4.png)
+![login](figures/login0.png)
 
-7. Go to the `local.properties` file and add the properties like the below.
+4. Then click the **Log in** button and type your account information like the below. You must login with your **Email adrress, not your Google or Microsoft account**.
 
-![gpt](figures/gpt3.png)
+![login](figures/login1.png)
 
-```gradle
-GPT_SESSION=..
-CF_CLEARANCE=...
-```
 
-8. Build the project.
+
+
+5. Build the project.
 
 ## 🏛️ Architecture
 

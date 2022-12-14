@@ -27,11 +27,16 @@ import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_channel_id
 import com.skydoves.chatgpt.feature.chat.channels.ChatGPTChannels
 import com.skydoves.chatgpt.feature.chat.messages.ChatGPTMessages
+import com.skydoves.chatgpt.feature.login.ChatGPTLogin
 import com.skydoves.chatgpt.ui.ChatGPTSmallTopBar
 
 fun NavGraphBuilder.chatGPTHomeNavigation(
   composeNavigator: AppComposeNavigator
 ) {
+  composable(route = ChatGPTScreens.Login.name) {
+    ChatGPTLogin(composeNavigator = composeNavigator)
+  }
+
   composable(route = ChatGPTScreens.Channels.name) {
     Scaffold(topBar = { ChatGPTSmallTopBar() }) { padding ->
       ChatGPTChannels(

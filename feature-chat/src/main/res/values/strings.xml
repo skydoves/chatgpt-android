@@ -18,7 +18,7 @@
   <string name="stream_top_bar">Stream</string>
   <string name="stream_api_key">mgzfqwft2se8</string>
   <string name="toast_success_create_channel">A random ChatGPT channel is created!</string>
-  <string name="toast_hello">Hi, I\'m OpenAI\'s ChatGPT. Ask me anything!</string>
+  <string name="toast_hello">Hi, I\'m OpenAI\'s ChatGPT with Stream SDK. Ask me anything!</string>
   <string name="toast_error">Something went wrong</string>
   <string name="toast_error_session">Something went wrong. Please check out your session and CF_CLEARANCE is valid.</string>
 </resources>

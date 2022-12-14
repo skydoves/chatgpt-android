@@ -56,6 +56,7 @@ dependencies {
 
   // feature modules
   implementation(project(":feature-chat"))
+  implementation(project(":feature-login"))
 
   // material
   implementation(libs.androidx.appcompat)

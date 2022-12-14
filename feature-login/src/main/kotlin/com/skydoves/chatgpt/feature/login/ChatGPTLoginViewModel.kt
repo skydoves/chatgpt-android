@@ -14,25 +14,15 @@
  * limitations under the License.
  */
 
-package com.skydoves.chatgpt.navigation
+package com.skydoves.chatgpt.feature.login
 
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
-import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-@Composable
-fun ChatGPTNavHost(
-  navHostController: NavHostController,
-  composeNavigator: AppComposeNavigator
-) {
-  NavHost(
-    navController = navHostController,
-    startDestination = ChatGPTScreens.Login.route
-  ) {
-    chatGPTHomeNavigation(
-      composeNavigator = composeNavigator
-    )
+@HiltViewModel
+class ChatGPTLoginViewModel @Inject constructor() : ViewModel() {
+
+  fun persistLoginInfo(authorization: String, cf_clearance: String) {
   }
 }

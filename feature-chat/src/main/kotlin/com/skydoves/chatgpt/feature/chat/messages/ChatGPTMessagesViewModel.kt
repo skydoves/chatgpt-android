@@ -26,6 +26,7 @@ import com.skydoves.chatgpt.core.model.GPTChatRequest
 import com.skydoves.chatgpt.core.model.GPTContent
 import com.skydoves.chatgpt.core.model.GPTMessage
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_channel_id
+import com.skydoves.chatgpt.core.preferences.Empty
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.messageOrNull
 import com.skydoves.sandwich.onFailure
@@ -39,8 +40,8 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -58,10 +59,10 @@ class ChatGPTMessagesViewModel @Inject constructor(
     it.isNotEmpty()
   }.stateIn(viewModelScope, WhileSubscribedOrRetained, false)
 
-  private val mutableIsError: MutableStateFlow<String> = MutableStateFlow("")
-  val isError: StateFlow<Boolean> = mutableIsError.mapLatest {
-    it.isNotEmpty()
-  }.stateIn(viewModelScope, WhileSubscribedOrRetained, false)
+  private val mutableError: MutableStateFlow<String> = MutableStateFlow("")
+  val error: StateFlow<String> = mutableError
+    .filter { it.isNotEmpty() }
+    .stateIn(viewModelScope, WhileSubscribedOrRetained, String.Empty)
 
   val isMessageEmpty: StateFlow<Boolean> =
     GPTMessageRepository.watchIsChannelMessageEmpty(channelId)
@@ -94,7 +95,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
           sendStreamMessage(data)
         }.onFailure {
           messageItemSet.value -= messageItemSet.value
-          mutableIsError.value = message()
+          mutableError.value = message()
           streamLog { "Failure: $messageOrNull" }
         }
       }

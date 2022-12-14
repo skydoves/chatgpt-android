@@ -492,7 +492,7 @@ private fun HandleToastMessages(
 ) {
   val context = LocalContext.current
   val isMessageEmpty by viewModel.isMessageEmpty.collectAsState()
-  val isError by viewModel.isError.collectAsState()
+  val error by viewModel.error.collectAsState()
 
   LaunchedEffect(key1 = isMessageEmpty) {
     if (isMessageEmpty) {
@@ -500,9 +500,9 @@ private fun HandleToastMessages(
     }
   }
 
-  LaunchedEffect(key1 = isError) {
-    if (isError) {
-      viewModel.sendStreamChatMessage(context.getString(R.string.toast_error_session))
+  LaunchedEffect(key1 = error) {
+    if (error.isNotEmpty()) {
+      viewModel.sendStreamChatMessage(error)
     }
   }
 }

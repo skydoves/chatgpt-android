@@ -56,7 +56,7 @@ If you’re interested in adding powerful In-App Messaging to your app, check ou
 
 ## ⚙️ How to run the application?
 
-1. Go the [ChatGPT](https://chat.openai.com/chat) website and clieck the **sign up** button.
+1. Go to the [ChatGPT](https://chat.openai.com/chat) website and click the **Sign up** button.
 2. Create your account **with an Email Address, not your Google or Microsoft account** like the one below:
 
 ![login](figures/login2.png)

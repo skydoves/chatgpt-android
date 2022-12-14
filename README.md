@@ -51,7 +51,7 @@ Go to the [Releases](https://github.com/skydoves/chatgpt-android/releases) to do
 
 ![login](figures/login0.png)
 
-4. Then click the **Log in** button and type your account information like the below. You must login with your **Email adrress, not your Google or Microsoft account**.
+4. Then click the **Log in** button and type your account information like the below. You must log in with your **Email address, not your Google or Microsoft account**.
 
 ![login](figures/login1.png)
 

@@ -35,6 +35,28 @@ If you’re interested in adding powerful In-App Messaging to your app, check ou
 - [Android Samples for Stream Chat SDK on GitHub](https://github.com/getStream/android-samples)
 - [Stream Chat Compose UI Componenets Guidelines](https://getstream.io/chat/docs/sdk/android/compose/overview/)
 
+## 📲 Download APK
+Go to the [Releases](https://github.com/skydoves/chatgpt-android/releases) to download the latest APK.
+
+>**Note**: This app is using unofficial APIs, so normally it takes 10~15 seconds to get the entire response and the app might not work as your expected anytime.
+
+## ⚙️ How to run the application?
+
+1. Go to the [ChatGPT](https://chat.openai.com/chat) website and click the **Sign up** button.
+2. Create your account **with an Email Address, not your Google or Microsoft account** like the one below:
+
+![login](figures/login2.png)
+
+3. After finishing the additional steps, go back to the application screen like the below:
+
+![login](figures/login0.png)
+
+4. Then click the **Log in** button and type your account information like the below. You must login with your **Email adrress, not your Google or Microsoft account**.
+
+![login](figures/login1.png)
+
+5. If you login correctly, you will get the success toast message and move to the channel list screen.
+
 ## 🛠 Tech Sacks & Open Source Libraries
 - Minimum SDK level 21.
 - 100% [Jetpack Compose](https://developer.android.com/jetpack/compose) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
@@ -53,23 +75,6 @@ If you’re interested in adding powerful In-App Messaging to your app, check ou
 - [ksp](https://github.com/google/ksp): Kotlin Symbol Processing API.
 - [StreamLog](https://github.com/GetStream/stream-log): A lightweight and extensible logger library for Kotlin and Android.
 - Baseline Profiles: To improve app performance by including a list of classes and methods specifications in your APK that can be used by Android Runtime.
-
-## ⚙️ How to run the application?
-
-1. Go to the [ChatGPT](https://chat.openai.com/chat) website and click the **Sign up** button.
-2. Create your account **with an Email Address, not your Google or Microsoft account** like the one below:
-
-![login](figures/login2.png)
-
-3. After finishing the additional steps, go back to the application screen like the below:
-
-![login](figures/login0.png)
-
-4. Then click the **Log in** button and type your account information like the below. You must login with your **Email adrress, not your Google or Microsoft account**.
-
-![login](figures/login1.png)
-
-5. If you login correctly, you will get the success toast message and move to the channel list screen.
 
 ## 🏛️ Architecture
 

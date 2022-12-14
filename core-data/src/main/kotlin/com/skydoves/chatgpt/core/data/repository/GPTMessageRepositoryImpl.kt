@@ -51,7 +51,7 @@ internal class GPTMessageRepositoryImpl @Inject constructor(
         val chatMessage =
           body.split("\n").maxBy { it.length }.replace("data: ", "")
         val gptChatResponse = mosih.adapter(GPTChatResponse::class.java).fromJson(chatMessage)!!
-        gptChatResponse.message.content.parts[0]
+        gptChatResponse.message.content.parts[0].trim()
       }
       emit(mappedResponse)
     }.flowOn(ioDispatcher)

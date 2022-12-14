@@ -62,6 +62,7 @@ import io.getstream.chat.android.common.state.Flag
 import io.getstream.chat.android.common.state.MessageFooterVisibility
 import io.getstream.chat.android.common.state.MessageMode
 import io.getstream.chat.android.common.state.Reply
+import io.getstream.chat.android.compose.state.imagepreview.ImagePreviewResult
 import io.getstream.chat.android.compose.state.imagepreview.ImagePreviewResultType
 import io.getstream.chat.android.compose.state.messageoptions.MessageOptionItemState
 import io.getstream.chat.android.compose.state.messages.SelectedMessageOptionsState
@@ -202,20 +203,11 @@ fun ChatGPTMessages(
             listViewModel.openMessageThread(message)
           },
           onImagePreviewResult = { result ->
-            when (result?.resultType) {
-              ImagePreviewResultType.QUOTE -> {
-                val message = listViewModel.getMessageWithId(result.messageId)
-
-                if (message != null) {
-                  composerViewModel.performMessageAction(Reply(message))
-                }
-              }
-
-              ImagePreviewResultType.SHOW_IN_CHAT -> {
-                listViewModel.focusMessage(result.messageId)
-              }
-              null -> Unit
-            }
+            imagePreviewResultAction(
+              result,
+              listViewModel,
+              composerViewModel
+            )
           }
         ) { state ->
           var messageState = state
@@ -239,11 +231,18 @@ fun ChatGPTMessages(
 
           MessageContainer(
             messageListItem = messageState,
-            onThreadClick = { listViewModel.openMessageThread(it) },
-            onLongItemClick = { listViewModel.selectMessage(it) },
-            onReactionsClick = { listViewModel.selectReactions(it) },
-            onGiphyActionClick = { listViewModel.performGiphyAction(it) },
-            onQuotedMessageClick = { listViewModel.scrollToSelectedMessage(it) }
+            onLongItemClick = { message -> listViewModel.selectMessage(message) },
+            onReactionsClick = { message -> listViewModel.selectReactions(message) },
+            onThreadClick = { message -> listViewModel.openMessageThread(message) },
+            onGiphyActionClick = { action -> listViewModel.performGiphyAction(action) },
+            onQuotedMessageClick = { message -> listViewModel.scrollToSelectedMessage(message) },
+            onImagePreviewResult = { result ->
+              imagePreviewResultAction(
+                result,
+                listViewModel,
+                composerViewModel
+              )
+            }
           )
         }
       }
@@ -255,6 +254,27 @@ fun ChatGPTMessages(
 
       MessageDialogs(listViewModel = listViewModel)
     }
+  }
+}
+
+private fun imagePreviewResultAction(
+  result: ImagePreviewResult?,
+  listViewModel: MessageListViewModel,
+  composerViewModel: MessageComposerViewModel
+) {
+  when (result?.resultType) {
+    ImagePreviewResultType.QUOTE -> {
+      val message = listViewModel.getMessageWithId(result.messageId)
+
+      if (message != null) {
+        composerViewModel.performMessageAction(Reply(message))
+      }
+    }
+
+    ImagePreviewResultType.SHOW_IN_CHAT -> {
+      listViewModel.focusMessage(result.messageId)
+    }
+    null -> Unit
   }
 }
 

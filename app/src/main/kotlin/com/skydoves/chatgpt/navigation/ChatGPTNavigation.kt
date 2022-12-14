@@ -19,16 +19,18 @@ package com.skydoves.chatgpt.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.skydoves.chatgpt.R
+import com.skydoves.chatgpt.core.designsystem.component.ChatGPTSmallTopBar
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_channel_id
 import com.skydoves.chatgpt.feature.chat.channels.ChatGPTChannels
 import com.skydoves.chatgpt.feature.chat.messages.ChatGPTMessages
 import com.skydoves.chatgpt.feature.login.ChatGPTLogin
-import com.skydoves.chatgpt.ui.ChatGPTSmallTopBar
 
 fun NavGraphBuilder.chatGPTHomeNavigation(
   composeNavigator: AppComposeNavigator
@@ -38,7 +40,11 @@ fun NavGraphBuilder.chatGPTHomeNavigation(
   }
 
   composable(route = ChatGPTScreens.Channels.name) {
-    Scaffold(topBar = { ChatGPTSmallTopBar() }) { padding ->
+    Scaffold(topBar = {
+      ChatGPTSmallTopBar(
+        title = stringResource(id = R.string.app_name)
+      )
+    }) { padding ->
       ChatGPTChannels(
         modifier = Modifier.padding(padding),
         composeNavigator = composeNavigator

@@ -21,14 +21,18 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.acsbendi.requestinspectorwebview.RequestInspectorWebViewClient
 import com.acsbendi.requestinspectorwebview.WebViewRequest
+import com.skydoves.chatgpt.core.designsystem.component.ChatGPTSmallTopBar
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
 import com.skydoves.chatgpt.core.network.AUTHORIZATION
@@ -51,35 +55,43 @@ fun ChatGPTLogin(
     }
   }
 
-  AndroidView(
-    modifier = Modifier.fillMaxSize(),
-    factory = {
-      webView.apply {
-        webChromeClient = WebChromeClient()
-        webViewClient = object : RequestInspectorWebViewClient(this@apply) {
-          override fun shouldInterceptRequest(
-            view: WebView,
-            webViewRequest: WebViewRequest
-          ): WebResourceResponse? {
-            if (checkIfAuthorized(webViewRequest.headers)) {
-              val authorization = webViewRequest.headers[AUTHORIZATION] ?: return null
-              val cookie = webViewRequest.headers[COOKIE] ?: return null
-              val userAgent = webViewRequest.headers[USER_AGENT] ?: return null
-              viewModel.persistLoginInfo(
-                authorization = authorization,
-                cookie = cookie,
-                userAgent = userAgent
-              )
-              composeNavigator.navigateAndClearBackStack(ChatGPTScreens.Channels.name)
+  Scaffold(topBar = {
+    ChatGPTSmallTopBar(
+      title = stringResource(id = R.string.top_bar_login)
+    )
+  }) { padding ->
+    AndroidView(
+      modifier = Modifier
+        .fillMaxSize()
+        .padding(padding),
+      factory = {
+        webView.apply {
+          webChromeClient = WebChromeClient()
+          webViewClient = object : RequestInspectorWebViewClient(this@apply) {
+            override fun shouldInterceptRequest(
+              view: WebView,
+              webViewRequest: WebViewRequest
+            ): WebResourceResponse? {
+              if (checkIfAuthorized(webViewRequest.headers)) {
+                val authorization = webViewRequest.headers[AUTHORIZATION] ?: return null
+                val cookie = webViewRequest.headers[COOKIE] ?: return null
+                val userAgent = webViewRequest.headers[USER_AGENT] ?: return null
+                viewModel.persistLoginInfo(
+                  authorization = authorization,
+                  cookie = cookie,
+                  userAgent = userAgent
+                )
+                composeNavigator.navigateAndClearBackStack(ChatGPTScreens.Channels.name)
+              }
+              return super.shouldInterceptRequest(view, webViewRequest)
             }
-            return super.shouldInterceptRequest(view, webViewRequest)
+          }.apply {
+            loadUrl("https://chat.openai.com/chat")
           }
-        }.apply {
-          loadUrl("https://chat.openai.com/chat")
         }
       }
-    }
-  )
+    )
+  }
 }
 
 private fun checkIfAuthorized(header: Map<String, String>): Boolean {

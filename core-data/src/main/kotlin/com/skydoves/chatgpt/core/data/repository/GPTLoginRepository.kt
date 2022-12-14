@@ -18,5 +18,5 @@ package com.skydoves.chatgpt.core.data.repository
 
 interface GPTLoginRepository {
 
-  fun persistLoginInfo(authorization: String, cookie: String)
+  fun persistLoginInfo(authorization: String, cookie: String, userAgent: String)
 }

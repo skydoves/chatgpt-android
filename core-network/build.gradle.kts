@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 /*
  * Designed and developed by 2022 skydoves (Jaewoong Eum)
@@ -44,19 +43,4 @@ dependencies {
   api(libs.okhttp.logging)
   api(libs.retrofit.core)
   api(libs.sandwich)
-}
-
-android {
-  defaultConfig {
-    buildConfigField(
-      "String",
-      "GPT_SESSION",
-      "\"" + gradleLocalProperties(rootDir).getProperty("GPT_SESSION", "") + "\""
-    )
-    buildConfigField(
-      "String",
-      "CF_CLEARANCE",
-      "\"" + gradleLocalProperties(rootDir).getProperty("CF_CLEARANCE", "") + "\""
-    )
-  }
 }

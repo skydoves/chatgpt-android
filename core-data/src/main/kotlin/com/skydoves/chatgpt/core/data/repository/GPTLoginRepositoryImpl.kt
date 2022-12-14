@@ -23,8 +23,9 @@ internal class GPTLoginRepositoryImpl @Inject constructor(
   private val preferences: Preferences
 ) : GPTLoginRepository {
 
-  override fun persistLoginInfo(authorization: String, cookie: String) {
+  override fun persistLoginInfo(authorization: String, cookie: String, userAgent: String) {
     preferences.authorization = authorization
     preferences.cookie = cookie
+    preferences.userAgent = userAgent
   }
 }

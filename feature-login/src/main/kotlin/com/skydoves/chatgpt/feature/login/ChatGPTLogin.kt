@@ -31,6 +31,9 @@ import com.acsbendi.requestinspectorwebview.RequestInspectorWebViewClient
 import com.acsbendi.requestinspectorwebview.WebViewRequest
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
+import com.skydoves.chatgpt.core.network.AUTHORIZATION
+import com.skydoves.chatgpt.core.network.COOKIE
+import com.skydoves.chatgpt.core.network.USER_AGENT
 
 @Composable
 fun ChatGPTLogin(
@@ -59,9 +62,14 @@ fun ChatGPTLogin(
             webViewRequest: WebViewRequest
           ): WebResourceResponse? {
             if (checkIfAuthorized(webViewRequest.headers)) {
-              val authorization = webViewRequest.headers["authorization"] ?: return null
-              val cookie = webViewRequest.headers["cookie"] ?: return null
-              viewModel.persistLoginInfo(authorization, cookie)
+              val authorization = webViewRequest.headers[AUTHORIZATION] ?: return null
+              val cookie = webViewRequest.headers[COOKIE] ?: return null
+              val userAgent = webViewRequest.headers[USER_AGENT] ?: return null
+              viewModel.persistLoginInfo(
+                authorization = authorization,
+                cookie = cookie,
+                userAgent = userAgent
+              )
               composeNavigator.navigateAndClearBackStack(ChatGPTScreens.Channels.name)
             }
             return super.shouldInterceptRequest(view, webViewRequest)
@@ -75,5 +83,7 @@ fun ChatGPTLogin(
 }
 
 private fun checkIfAuthorized(header: Map<String, String>): Boolean {
-  return header.containsKey("authorization") && header.containsKey("cookie")
+  return header.containsKey(AUTHORIZATION) &&
+    header.containsKey(COOKIE) &&
+    header.containsKey(USER_AGENT)
 }

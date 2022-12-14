@@ -27,8 +27,12 @@ class ChatGPTLoginViewModel @Inject constructor(
   private val gptLoginRepository: GPTLoginRepository
 ) : ViewModel() {
 
-  fun persistLoginInfo(authorization: String, cookie: String) {
-    streamLog { "authorization: $authorization\ncookie: $cookie" }
-    gptLoginRepository.persistLoginInfo(authorization, cookie)
+  fun persistLoginInfo(authorization: String, cookie: String, userAgent: String) {
+    streamLog { "authorization: $authorization\ncookie: $cookie\nuserAgent:$userAgent" }
+    gptLoginRepository.persistLoginInfo(
+      authorization = authorization,
+      cookie = cookie,
+      userAgent = userAgent
+    )
   }
 }

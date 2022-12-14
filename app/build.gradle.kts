@@ -82,9 +82,9 @@ dependencies {
 
   // firebase
   implementation(platform(libs.firebase.bom))
-  implementation(platform(libs.firebase.analytics))
-  implementation(platform(libs.firebase.messaging))
-  implementation(platform(libs.firebase.crashlytics))
+  implementation(libs.firebase.analytics)
+  implementation(libs.firebase.messaging)
+  implementation(libs.firebase.crashlytics)
 }
 
 if (file("google-services.json").exists()) {

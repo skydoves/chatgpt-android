@@ -37,8 +37,6 @@ sandwich = "1.3.2"
 moshi="1.14.0"
 spotless = "6.7.0"
 webviewInspector = "1.0.2"
-googleService = "4.3.10"
-firebaseGradle = "2.8.0"
 firebaseBom = "31.1.1"
 
 [libraries]

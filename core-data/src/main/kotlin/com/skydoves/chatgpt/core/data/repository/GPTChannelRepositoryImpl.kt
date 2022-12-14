@@ -43,10 +43,13 @@ internal class GPTChannelRepositoryImpl @Inject constructor(
 
   override suspend fun joinTheCommonChannel(user: User) {
     val channelClient = chatClient.channel(commonChannelId)
-    val members = channelClient.watch().await().data().members
-    val isExist = members.firstOrNull { it.user.id == user.id }
-    if (isExist == null) {
-      channelClient.addMembers(listOf(user.id)).await()
+    val result = channelClient.watch().await()
+    if (result.isSuccess) {
+      val members = result.data().members
+      val isExist = members.firstOrNull { it.user.id == user.id }
+      if (isExist == null) {
+        channelClient.addMembers(listOf(user.id)).await()
+      }
     }
   }
 

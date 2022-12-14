@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.chatgpt.ui
+package com.skydoves.chatgpt.core.designsystem.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
@@ -23,18 +23,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.skydoves.chatgpt.R
 import com.skydoves.chatgpt.core.designsystem.theme.ChatGPTComposeTheme
 
 @Composable
-fun ChatGPTSmallTopBar() {
+fun ChatGPTSmallTopBar(title: String) {
   SmallTopAppBar(
     modifier = Modifier.fillMaxWidth(),
     title = {
       Text(
-        text = stringResource(id = R.string.app_name),
+        text = title,
         color = MaterialTheme.colorScheme.tertiary,
         style = MaterialTheme.typography.titleLarge
       )
@@ -49,7 +47,7 @@ fun ChatGPTSmallTopBar() {
 @Composable
 private fun ChatGPTSmallTopBarPreview() {
   ChatGPTComposeTheme {
-    ChatGPTSmallTopBar()
+    ChatGPTSmallTopBar("ChatGPT Android")
   }
 }
 
@@ -57,6 +55,6 @@ private fun ChatGPTSmallTopBarPreview() {
 @Composable
 private fun ChatGPTSmallTopBarDarkPreview() {
   ChatGPTComposeTheme(darkTheme = true) {
-    ChatGPTSmallTopBar()
+    ChatGPTSmallTopBar("ChatGPT Android")
   }
 }

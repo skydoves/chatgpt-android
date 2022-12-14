@@ -14,25 +14,18 @@
  * limitations under the License.
  */
 
-package com.skydoves.chatgpt.navigation
+package com.skydoves.chatgpt.core.data.repository
 
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
-import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
+import com.skydoves.chatgpt.core.preferences.Preferences
+import javax.inject.Inject
 
-@Composable
-fun ChatGPTNavHost(
-  navHostController: NavHostController,
-  composeNavigator: AppComposeNavigator
-) {
-  NavHost(
-    navController = navHostController,
-    startDestination = ChatGPTScreens.Login.route
-  ) {
-    chatGPTHomeNavigation(
-      composeNavigator = composeNavigator
-    )
+internal class GPTLoginRepositoryImpl @Inject constructor(
+  private val preferences: Preferences
+) : GPTLoginRepository {
+
+  override fun persistLoginInfo(authorization: String, cookie: String, userAgent: String) {
+    preferences.authorization = authorization
+    preferences.cookie = cookie
+    preferences.userAgent = userAgent
   }
 }

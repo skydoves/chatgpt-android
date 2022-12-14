@@ -16,7 +16,6 @@
 
 package com.skydoves.chatgpt.core.network.service
 
-import com.skydoves.chatgpt.core.network.BuildConfig
 import com.skydoves.sandwich.ApiResponse
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -30,10 +29,7 @@ interface ChatGPTService {
     "accept-encoding: gzip, deflate, br",
     "accept-language: en-GB,en-US;q=0.9,en;q=0.8",
     "content-type: application/json",
-    "referer: https://chat.openai.com/chat",
-    "user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
-      "(KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
-    "Cookie: cf_clearance=${BuildConfig.CF_CLEARANCE}"
+    "referer: https://chat.openai.com/chat"
   )
   @POST("backend-api/conversation")
   suspend fun sendMessage(@Body body: RequestBody): ApiResponse<ResponseBody>

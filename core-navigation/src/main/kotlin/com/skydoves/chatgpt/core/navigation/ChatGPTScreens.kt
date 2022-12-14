@@ -30,6 +30,9 @@ sealed class ChatGPTScreens(
   // channel screen
   object Channels : ChatGPTScreens("channels")
 
+  // login screen
+  object Login : ChatGPTScreens("login")
+
   // message screen
   object Messages : ChatGPTScreens(
     route = "messages",

@@ -30,7 +30,28 @@ class Preferences @Inject constructor(
     defaultValue = UUID.randomUUID().toString()
   )
 
+  var authorization: String by stringPreferences(
+    key = KEY_AUTHORIZATION,
+    defaultValue = String.Empty
+  )
+
+  var cookie: String by stringPreferences(
+    key = KEY_COOKIE,
+    defaultValue = String.Empty
+  )
+
+  var userAgent: String by stringPreferences(
+    key = KEY_USER_AGENT,
+    defaultValue = String.Empty
+  )
+
   companion object {
     private const val KEY_UUID: String = "key_uuid"
+    private const val KEY_AUTHORIZATION: String = "key_authorization"
+    private const val KEY_COOKIE: String = "key_cookie"
+    private const val KEY_USER_AGENT: String = "key_user_agent"
   }
 }
+
+val String.Companion.Empty
+  inline get() = ""

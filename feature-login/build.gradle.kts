@@ -22,10 +22,8 @@ plugins {
 }
 
 dependencies {
-  // Stream chat Compose
-  api(libs.stream.compose)
-
   implementation(libs.androidx.lifecycle.runtimeCompose)
   implementation(libs.androidx.lifecycle.viewModelCompose)
-  implementation(libs.androidx.startup)
+
+  implementation(libs.webview.inspector)
 }

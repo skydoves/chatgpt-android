@@ -40,6 +40,49 @@ Go to the [Releases](https://github.com/skydoves/chatgpt-android/releases) to do
 
 >**Note**: This app is using unofficial APIs, so normally it takes 10~15 seconds to get the entire response and the app might not work as your expected anytime.
 
+## 💻 How to build the project?
+
+<details>
+
+<summary> To build this project properly, you should follow the instructions below: </summary>
+
+1. Go to the __[Stream login page](https://getstream.io/try-for-free?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__.
+2. If you have your GitHub account, click the **SIGN UP WITH GITHUB** button and you can sign up within a couple of seconds. 
+
+![stream](figures/stream0.png)
+
+3. If you don't have a GitHub account, fill in the inputs and click the **STATRT FREE TRIAL** button.
+4. Go to the __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__ and click the **Create App** button like the below.
+
+![stream](figures/stream1.png)
+
+5. Fill in the blanks like the below and click the **Create App** bitton.
+
+![stream](figures/stream2.png)
+
+6. You will see the **Key** like the figure below and then copy it.
+
+![stream](figures/stream3.png)
+
+7. Add the key on your `local.properties` file on the project (Android Studio) like the below.
+
+![stream](figures/stream5.png)
+
+```gradle
+STREAM_CHAT_SDK=..
+```
+
+8. Go to your __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__ again and click your App.
+
+9. In the **Overview** menu, you can find the **Authentication** category by scrolling to the middle of the page.
+10. Switch on the **Disable Auth Checks** option and click the **Submit** button like the figure below.
+
+![stream](figures/stream4.png)
+
+11. Build and run the project.
+
+</details>
+
 ## ⚙️ How to run the application?
 
 1. Go to the [ChatGPT](https://chat.openai.com/chat) website and click the **Sign up** button.

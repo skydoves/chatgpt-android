@@ -25,6 +25,7 @@ import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.mapSuccess
 import com.squareup.moshi.Moshi
 import io.getstream.chat.android.client.ChatClient
+import io.getstream.chat.android.client.utils.onSuccessSuspend
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -57,8 +58,10 @@ internal class GPTMessageRepositoryImpl @Inject constructor(
     }.flowOn(ioDispatcher)
 
   override fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean> = flow {
-    val channel = ChatClient.instance().channel(cid).watch().await()
-    val messages = channel.data().messages
-    emit(messages.isEmpty())
+    val result = ChatClient.instance().channel(cid).watch().await()
+    result.onSuccessSuspend { channel ->
+      val messages = channel.messages
+      emit(messages.isEmpty())
+    }
   }.flowOn(ioDispatcher)
 }

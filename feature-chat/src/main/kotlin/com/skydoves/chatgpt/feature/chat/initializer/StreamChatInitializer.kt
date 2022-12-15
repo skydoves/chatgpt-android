@@ -20,7 +20,6 @@ import android.content.Context
 import androidx.startup.Initializer
 import com.skydoves.chatgpt.core.preferences.Preferences
 import com.skydoves.chatgpt.feature.chat.BuildConfig
-import com.skydoves.chatgpt.feature.chat.R
 import com.skydoves.chatgpt.feature.chat.di.ApplicationEntryPoint
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.logger.ChatLogLevel
@@ -60,7 +59,7 @@ class StreamChatInitializer : Initializer<Unit> {
       ),
       appContext = context
     )
-    val chatClient = ChatClient.Builder(context.getString(R.string.stream_api_key), context)
+    val chatClient = ChatClient.Builder(BuildConfig.STREAM_CHAT_SDK, context)
       .withPlugin(offlinePluginFactory)
       .logLevel(logLevel)
       .build()

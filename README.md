@@ -42,9 +42,7 @@ Go to the [Releases](https://github.com/skydoves/chatgpt-android/releases) to do
 
 ## 💻 How to build the project?
 
-<details>
-
-<summary> To build this project properly, you should follow the instructions below: </summary>
+To build this project properly, you should follow the instructions below: 
 
 1. Go to the __[Stream login page](https://getstream.io/try-for-free?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__.
 2. If you have your GitHub account, click the **SIGN UP WITH GITHUB** button and you can sign up within a couple of seconds. 
@@ -80,8 +78,6 @@ STREAM_CHAT_SDK=..
 ![stream](figures/stream4.png)
 
 11. Build and run the project.
-
-</details>
 
 ## ⚙️ How to run the application?
 

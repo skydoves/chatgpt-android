@@ -22,6 +22,7 @@ import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.models.Channel
 import io.getstream.chat.android.client.models.User
 import io.getstream.chat.android.client.utils.Result
+import io.getstream.chat.android.client.utils.onSuccessSuspend
 import java.util.Random
 import java.util.UUID
 import javax.inject.Inject
@@ -44,8 +45,8 @@ internal class GPTChannelRepositoryImpl @Inject constructor(
   override suspend fun joinTheCommonChannel(user: User) {
     val channelClient = chatClient.channel(commonChannelId)
     val result = channelClient.watch().await()
-    if (result.isSuccess) {
-      val members = result.data().members
+    result.onSuccessSuspend { channel ->
+      val members = channel.members
       val isExist = members.firstOrNull { it.user.id == user.id }
       if (isExist == null) {
         channelClient.addMembers(listOf(user.id)).await()

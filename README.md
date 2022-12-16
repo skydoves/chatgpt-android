@@ -1,16 +1,10 @@
-<h1 align="center">ChatGPT Android</h1></br>
+![cover](https://user-images.githubusercontent.com/24237865/207994894-0cd5307b-f62e-4c38-be89-610a3ed459c0.jpg)
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
   <a href="https://github.com/skydoves/chatgpt-android/actions/workflows/android.yml"><img alt="Build Status" src="https://github.com/skydoves/chatgpt-android/actions/workflows/android.yml/badge.svg"/></a>
   <a href="https://github.com/skydoves"><img alt="Profile" src="https://skydoves.github.io/badges/skydoves.svg"/></a>
-</p>
-
-<p align="center">
-<img src="previews/preview0.png" alt="drawing" width="270px" />
-<img src="previews/preview1.png" alt="drawing" width="270px" />
-<img src="previews/preview2.gif" alt="drawing" width="269px" /></br>
 </p>
 
 **ChatGPT Android** demonstrates [OpenAI's ChatGPT](https://chat.openai.com/chat) on Android with [Stream Chat SDK for Compose](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong&utm_term=DevRelOss).
@@ -22,6 +16,14 @@ The purpose of this repository is to demonstrate below:
 - Implementation of Android architecture components with Jetpack libraries such as Hilt and AppStartup.
 - Performing background tasks with Kotlin Coroutines.
 - Integrating chat systems with Stream Chat SDK for real-time event handling.
+
+## Previews
+
+<p align="center">
+<img src="previews/preview0.png" alt="drawing" width="270px" />
+<img src="previews/preview1.png" alt="drawing" width="270px" />
+<img src="previews/preview2.gif" alt="drawing" width="269px" /></br>
+</p>
 
 <a href="https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong&utm_term=DevRelOss">
 <img src="https://user-images.githubusercontent.com/24237865/138428440-b92e5fb7-89f8-41aa-96b1-71a5486c5849.png" align="right" width="12%"/>

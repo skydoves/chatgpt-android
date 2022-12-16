@@ -52,6 +52,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.skydoves.chatgpt.core.data.chat.chatGPTUser
 import com.skydoves.chatgpt.core.data.chat.commonChannelId
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
+import com.skydoves.chatgpt.core.preferences.Empty
 import com.skydoves.chatgpt.feature.chat.R
 import com.skydoves.chatgpt.feature.chat.theme.ChatGPTStreamTheme
 import io.getstream.chat.android.client.models.Channel
@@ -492,7 +493,7 @@ private fun HandleToastMessages(
 ) {
   val context = LocalContext.current
   val isMessageEmpty by viewModel.isMessageEmpty.collectAsState()
-  val error by viewModel.error.collectAsState()
+  val error by viewModel.errorMessage.collectAsState(initial = String.Empty)
 
   LaunchedEffect(key1 = isMessageEmpty) {
     if (isMessageEmpty) {

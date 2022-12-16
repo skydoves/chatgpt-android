@@ -29,7 +29,7 @@ import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_ch
 import com.skydoves.chatgpt.core.preferences.Empty
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.messageOrNull
-import com.skydoves.sandwich.onFailure
+import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.suspendOnSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.chat.android.client.ChatClient
@@ -52,15 +52,15 @@ class ChatGPTMessagesViewModel @Inject constructor(
   savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-  private val channelId: String = savedStateHandle.get<String>(argument_channel_id) ?: ""
+  private val channelId: String = savedStateHandle.get<String>(argument_channel_id) ?: String.Empty
 
   private val messageItemSet = MutableStateFlow<Set<String>>(setOf())
   val isLoading: StateFlow<Boolean> = messageItemSet.map {
     it.isNotEmpty()
   }.stateIn(viewModelScope, WhileSubscribedOrRetained, false)
 
-  private val mutableError: MutableStateFlow<String> = MutableStateFlow("")
-  val error: StateFlow<String> = mutableError
+  private val mutableError: MutableStateFlow<String> = MutableStateFlow(String.Empty)
+  val errorMessage: StateFlow<String> = mutableError
     .filter { it.isNotEmpty() }
     .stateIn(viewModelScope, WhileSubscribedOrRetained, String.Empty)
 
@@ -93,9 +93,9 @@ class ChatGPTMessagesViewModel @Inject constructor(
           streamLog { "onResponse: $data" }
           messageItemSet.value -= text
           sendStreamMessage(data)
-        }.onFailure {
+        }.onError {
           messageItemSet.value -= messageItemSet.value
-          mutableError.value = message()
+          mutableError.value = statusCode.toString()
           streamLog { "Failure: $messageOrNull" }
         }
       }

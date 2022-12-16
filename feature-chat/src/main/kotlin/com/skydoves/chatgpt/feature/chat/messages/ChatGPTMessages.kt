@@ -503,7 +503,7 @@ private fun HandleToastMessages(
 
   LaunchedEffect(key1 = error) {
     if (error.isNotEmpty()) {
-      viewModel.sendStreamChatMessage(error)
+      viewModel.sendStreamChatMessage("$error: ${context.getString(R.string.toast_hello)}")
     }
   }
 }

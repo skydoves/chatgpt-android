@@ -41,6 +41,7 @@ plugins {
 dependencies {
   // Stream chat Compose
   api(libs.stream.compose)
+  api(libs.stream.firebase)
 
   implementation(libs.androidx.lifecycle.runtimeCompose)
   implementation(libs.androidx.lifecycle.viewModelCompose)

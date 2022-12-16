@@ -17,6 +17,7 @@
 package com.skydoves.chatgpt.feature.chat.initializer
 
 import android.content.Context
+import android.content.Intent
 import androidx.startup.Initializer
 import com.skydoves.chatgpt.core.preferences.Preferences
 import com.skydoves.chatgpt.feature.chat.BuildConfig
@@ -24,9 +25,13 @@ import com.skydoves.chatgpt.feature.chat.di.ApplicationEntryPoint
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.logger.ChatLogLevel
 import io.getstream.chat.android.client.models.User
+import io.getstream.chat.android.client.notifications.handler.NotificationConfig
+import io.getstream.chat.android.client.notifications.handler.NotificationHandler
+import io.getstream.chat.android.client.notifications.handler.NotificationHandlerFactory
 import io.getstream.chat.android.offline.model.message.attachments.UploadAttachmentsNetworkType
 import io.getstream.chat.android.offline.plugin.configuration.Config
 import io.getstream.chat.android.offline.plugin.factory.StreamOfflinePluginFactory
+import io.getstream.chat.android.pushprovider.firebase.FirebasePushDeviceGenerator
 import io.getstream.log.streamLog
 import javax.inject.Inject
 import kotlin.random.Random
@@ -60,6 +65,7 @@ class StreamChatInitializer : Initializer<Unit> {
       appContext = context
     )
     val chatClient = ChatClient.Builder(BuildConfig.STREAM_CHAT_SDK, context)
+      .notifications(createNotificationConfig(), createNotificationHandler(context))
       .withPlugin(offlinePluginFactory)
       .logLevel(logLevel)
       .build()
@@ -72,6 +78,35 @@ class StreamChatInitializer : Initializer<Unit> {
 
     val token = chatClient.devToken(user.id)
     chatClient.connectUser(user, token).enqueue()
+  }
+
+  /**
+   * Creates [NotificationConfig] that configures push notifications.
+   */
+  private fun createNotificationConfig(): NotificationConfig {
+    return NotificationConfig(
+      pushDeviceGenerators = listOf(
+        FirebasePushDeviceGenerator()
+      )
+    )
+  }
+
+  /**
+   * Creates [NotificationHandler] that handles new push notifications and
+   * customizes an intent the user triggers when clicking on a notification.
+   */
+  private fun createNotificationHandler(
+    context: Context
+  ): NotificationHandler {
+    return NotificationHandlerFactory.createNotificationHandler(
+      context = context,
+      newMessageIntent = { _: String, _: String, _: String ->
+        context.packageManager.getLaunchIntentForPackage("com.skydoves.chatgpt.MainActivity")
+          ?.apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+          }!!
+      }
+    )
   }
 
   override fun dependencies(): List<Class<out Initializer<*>>> =

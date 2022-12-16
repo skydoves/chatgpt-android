@@ -21,8 +21,9 @@ import androidx.lifecycle.viewModelScope
 import com.skydoves.chatgpt.core.data.repository.GPTChannelRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.chat.android.client.utils.onError
-import io.getstream.chat.android.client.utils.onSuccess
+import io.getstream.chat.android.client.utils.onSuccessSuspend
 import javax.inject.Inject
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -54,8 +55,10 @@ class ChatGPTChannelsViewModel @Inject constructor(
     viewModelScope.launch {
       channelsMutableUiState.value = GPTChannelUiState.Loading
       val result = gptChannelRepository.createRandomChannel()
-      result.onSuccess {
+      result.onSuccessSuspend {
         channelsMutableUiState.value = GPTChannelUiState.Success(it.id)
+        delay(100L)
+        channelsMutableUiState.value = GPTChannelUiState.Nothing
       }.onError {
         channelsMutableUiState.value = GPTChannelUiState.Error
       }

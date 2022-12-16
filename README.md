@@ -85,7 +85,7 @@ STREAM_CHAT_SDK=..
 
 ![stream](figures/stream6.png)
 
-- User Name: `ChatGPT`
+- User Name: `Chat GPT`
 - User ID: `70ef052a-da88-4451-af92-99f7ed335a71`
 
 13. Build and run the project.

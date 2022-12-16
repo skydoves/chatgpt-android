@@ -17,7 +17,7 @@ The purpose of this repository is to demonstrate below:
 - Performing background tasks with Kotlin Coroutines.
 - Integrating chat systems with Stream Chat SDK for real-time event handling.
 
-## Previews
+## 📷 Previews
 
 <p align="center">
 <img src="previews/preview0.png" alt="drawing" width="270px" />
@@ -79,7 +79,16 @@ STREAM_CHAT_SDK=..
 
 ![stream](figures/stream4.png)
 
-11. Build and run the project.
+11. Click the **Explorer** tab on the left side menu.
+
+12. Click **users** -> **Create New User** button sequentially and add fill in the user like the below:
+
+![stream](figures/stream6.png)
+
+- User Name: `ChatGPT`
+- User ID: `70ef052a-da88-4451-af92-99f7ed335a71`
+
+13. Build and run the project.
 
 ## ⚙️ How to run the application?
 

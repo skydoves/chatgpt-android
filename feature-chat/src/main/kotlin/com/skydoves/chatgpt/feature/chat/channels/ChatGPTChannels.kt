@@ -70,6 +70,7 @@ fun ChatGPTChannels(
         onBackPressed = { onFinishDispatcher?.invoke() }
       )
 
+      val isBalloonChannelDisplayed by viewModel.isBalloonDisplayedState.collectAsState()
       Balloon(
         modifier = Modifier
           .align(Alignment.BottomEnd)
@@ -86,9 +87,16 @@ fun ChatGPTChannels(
             color = Color.White
           )
         }
-      ) {
+      ) { balloonWindow ->
         LaunchedEffect(key1 = Unit) {
-          it.showAlignTop()
+          if (!isBalloonChannelDisplayed) {
+            balloonWindow.showAlignTop()
+          }
+
+          balloonWindow.setOnBalloonClickListener {
+            viewModel.balloonChannelDisplayed()
+            balloonWindow.dismiss()
+          }
         }
 
         FloatingActionButton(

@@ -37,6 +37,10 @@ class ChatGPTChannelsViewModel @Inject constructor(
     MutableStateFlow<GPTChannelUiState>(GPTChannelUiState.Nothing)
   val channelUiState: StateFlow<GPTChannelUiState> = channelsMutableUiState
 
+  private val isBalloonDisplayedMutableState =
+    MutableStateFlow(gptChannelRepository.isBalloonChannelDisplayed())
+  val isBalloonDisplayedState: StateFlow<Boolean> = isBalloonDisplayedMutableState
+
   init {
     viewModelScope.launch {
       gptChannelRepository.streamUserFlow().collect { user ->
@@ -63,6 +67,11 @@ class ChatGPTChannelsViewModel @Inject constructor(
         channelsMutableUiState.value = GPTChannelUiState.Error
       }
     }
+  }
+
+  fun balloonChannelDisplayed() {
+    isBalloonDisplayedMutableState.value = true
+    gptChannelRepository.balloonChannelDisplayed()
   }
 }
 

@@ -18,6 +18,7 @@ package com.skydoves.chatgpt.core.data.repository
 
 import com.skydoves.chatgpt.core.data.chat.chatGPTUser
 import com.skydoves.chatgpt.core.data.chat.commonChannelId
+import com.skydoves.chatgpt.core.preferences.Preferences
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.models.Channel
 import io.getstream.chat.android.client.models.User
@@ -29,7 +30,8 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 
 internal class GPTChannelRepositoryImpl @Inject constructor(
-  private val chatClient: ChatClient
+  private val chatClient: ChatClient,
+  private val preferences: Preferences
 ) : GPTChannelRepository {
 
   override suspend fun createRandomChannel(): Result<Channel> {
@@ -55,4 +57,10 @@ internal class GPTChannelRepositoryImpl @Inject constructor(
   }
 
   override fun streamUserFlow(): Flow<User?> = chatClient.clientState.user
+
+  override fun isBalloonChannelDisplayed(): Boolean = preferences.balloonChannelDisplayed
+
+  override fun balloonChannelDisplayed() {
+    preferences.balloonChannelDisplayed = true
+  }
 }

@@ -28,4 +28,8 @@ interface GPTChannelRepository {
   suspend fun joinTheCommonChannel(user: User)
 
   fun streamUserFlow(): Flow<User?>
+
+  fun isBalloonChannelDisplayed(): Boolean
+
+  fun balloonChannelDisplayed()
 }

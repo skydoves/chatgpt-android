@@ -123,6 +123,7 @@ STREAM_CHAT_SDK=..
 - [Sandwich](https://github.com/skydoves/Sandwich): Construct a lightweight and modern response interface to handle network payload for Android.
 - [Moshi](https://github.com/square/moshi/): A modern JSON library for Kotlin and Java.
 - [ksp](https://github.com/google/ksp): Kotlin Symbol Processing API.
+- [Balloon](https://github.com/skydoves/balloon): Modernized and sophisticated tooltips, fully customizable with an arrow and animations for Android.
 - [StreamLog](https://github.com/GetStream/stream-log): A lightweight and extensible logger library for Kotlin and Android.
 - Baseline Profiles: To improve app performance by including a list of classes and methods specifications in your APK that can be used by Android Runtime.
 

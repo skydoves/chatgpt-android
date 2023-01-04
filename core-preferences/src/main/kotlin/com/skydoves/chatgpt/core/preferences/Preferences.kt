@@ -17,6 +17,7 @@
 package com.skydoves.chatgpt.core.preferences
 
 import android.content.SharedPreferences
+import com.skydoves.chatgpt.core.preferences.delegate.booleanPreferences
 import com.skydoves.chatgpt.core.preferences.delegate.stringPreferences
 import java.util.UUID
 import javax.inject.Inject
@@ -45,11 +46,17 @@ class Preferences @Inject constructor(
     defaultValue = String.Empty
   )
 
+  var balloonChannelDisplayed: Boolean by booleanPreferences(
+    key = KEY_BALLOON_CHANNEL_DISPLAYED,
+    defaultValue = false
+  )
+
   companion object {
     private const val KEY_UUID: String = "key_uuid"
     private const val KEY_AUTHORIZATION: String = "key_authorization"
     private const val KEY_COOKIE: String = "key_cookie"
     private const val KEY_USER_AGENT: String = "key_user_agent"
+    private const val KEY_BALLOON_CHANNEL_DISPLAYED = "key_balloon_channel_displayed"
   }
 }
 

@@ -51,7 +51,7 @@ To build this project properly, you should follow the instructions below:
 
 ![stream](figures/stream0.png)
 
-3. If you don't have a GitHub account, fill in the inputs and click the **STATRT FREE TRIAL** button.
+3. If you don't have a GitHub account, fill in the inputs and click the **START FREE TRIAL** button.
 4. Go to the __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__ and click the **Create App** button like the below.
 
 ![stream](figures/stream1.png)

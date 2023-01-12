@@ -107,7 +107,7 @@ STREAM_CHAT_SDK=..
 
 5. If you login correctly, you will get the success toast message and move to the channel list screen.
 
-## 🛠 Tech Sacks & Open Source Libraries
+## 🛠 Tech Stack & Open Source Libraries
 - Minimum SDK level 21.
 - 100% [Jetpack Compose](https://developer.android.com/jetpack/compose) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
 - [Compose Chat SDK for Messaging](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Github_Repo_Content_Ad&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong&utm_term=DevRelOss): The Jetpack Compose Chat Messaging SDK is built on a low-level chat client and provides modular, customizable Compose UI components that you can easily drop into your app.

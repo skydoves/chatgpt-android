@@ -40,6 +40,9 @@ dependencies {
   implementation(project(":core-model"))
   implementation(project(":core-preferences"))
 
+  implementation(libs.androidx.startup)
+  implementation(libs.stream.log)
+
   api(libs.okhttp.logging)
   api(libs.retrofit.core)
   api(libs.sandwich)

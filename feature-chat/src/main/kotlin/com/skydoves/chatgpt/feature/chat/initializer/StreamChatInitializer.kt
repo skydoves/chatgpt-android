@@ -20,7 +20,7 @@ import android.content.Context
 import androidx.startup.Initializer
 import com.skydoves.chatgpt.core.preferences.Preferences
 import com.skydoves.chatgpt.feature.chat.BuildConfig
-import com.skydoves.chatgpt.feature.chat.di.ApplicationEntryPoint
+import com.skydoves.chatgpt.feature.chat.di.ChatEntryPoint
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.logger.ChatLogLevel
 import io.getstream.chat.android.client.models.User
@@ -40,7 +40,7 @@ class StreamChatInitializer : Initializer<Unit> {
   internal lateinit var preferences: Preferences
 
   override fun create(context: Context) {
-    ApplicationEntryPoint.resolve(context).inject(this)
+    ChatEntryPoint.resolve(context).inject(this)
 
     streamLog { "StreamChatInitializer is initialized" }
 

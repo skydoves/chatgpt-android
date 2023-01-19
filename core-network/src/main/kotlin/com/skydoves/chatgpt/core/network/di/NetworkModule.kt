@@ -16,13 +16,16 @@
 
 package com.skydoves.chatgpt.core.network.di
 
+import android.content.Context
 import com.skydoves.chatgpt.core.network.GPTInterceptor
+import com.skydoves.chatgpt.core.network.operator.ClearCacheGlobalOperator
 import com.skydoves.chatgpt.core.network.service.ChatGPTService
 import com.skydoves.chatgpt.core.preferences.Preferences
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -32,7 +35,7 @@ import retrofit2.create
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+internal object NetworkModule {
 
   @Provides
   @Singleton
@@ -58,4 +61,10 @@ object NetworkModule {
   @Provides
   @Singleton
   fun provideChatGPTService(retrofit: Retrofit): ChatGPTService = retrofit.create()
+
+  @Provides
+  @Singleton
+  fun provideGlobalOperator(@ApplicationContext context: Context): ClearCacheGlobalOperator<Any> {
+    return ClearCacheGlobalOperator(context)
+  }
 }

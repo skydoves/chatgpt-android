@@ -29,7 +29,7 @@ import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_ch
 import com.skydoves.chatgpt.core.preferences.Empty
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.messageOrNull
-import com.skydoves.sandwich.onError
+import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.suspendOnSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.chat.android.client.ChatClient
@@ -93,10 +93,10 @@ class ChatGPTMessagesViewModel @Inject constructor(
           streamLog { "onResponse: $data" }
           messageItemSet.value -= text
           sendStreamMessage(data)
-        }.onError {
+        }.onFailure {
+          streamLog { "onFailure: $messageOrNull" }
           messageItemSet.value -= messageItemSet.value
-          mutableError.value = statusCode.toString()
-          streamLog { "Failure: $messageOrNull" }
+          mutableError.value = message()
         }
       }
     }

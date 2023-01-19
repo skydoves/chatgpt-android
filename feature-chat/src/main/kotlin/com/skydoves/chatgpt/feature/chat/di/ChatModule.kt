@@ -25,7 +25,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ChatModule {
+internal object ChatModule {
 
   @Provides
   @Singleton

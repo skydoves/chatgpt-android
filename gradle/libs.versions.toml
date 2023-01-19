@@ -42,7 +42,6 @@ firebaseBom = "31.1.1"
 [libraries]
 stream-client = { group = "io.getstream", name = "stream-chat-android-client", version.ref = "streamChatSDK" }
 stream-compose = { group = "io.getstream", name = "stream-chat-android-compose", version.ref = "streamChatSDK" }
-stream-firebase = { module = "io.getstream:stream-chat-android-pushprovider-firebase", version.ref = "streamChatSDK" }
 stream-log = { group = "io.getstream", name = "stream-log-android", version.ref = "streamLog" }
 landscapist-glide = { group = "com.github.skydoves", name = "landscapist-glide", version.ref = "landscapist" }
 landscapist-animation = { group = "com.github.skydoves", name = "landscapist-animation", version.ref = "landscapist" }

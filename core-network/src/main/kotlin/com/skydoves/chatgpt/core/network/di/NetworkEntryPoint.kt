@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.skydoves.chatgpt.feature.chat.di
+package com.skydoves.chatgpt.core.network.di
 
 import android.content.Context
-import com.skydoves.chatgpt.feature.chat.initializer.StreamChatInitializer
+import com.skydoves.chatgpt.core.network.initializer.NetworkInitializer
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
@@ -25,19 +25,19 @@ import dagger.hilt.components.SingletonComponent
 
 @EntryPoint
 @InstallIn(SingletonComponent::class)
-internal interface ApplicationEntryPoint {
+internal interface NetworkEntryPoint {
 
-  fun inject(streamChatInitializer: StreamChatInitializer)
+  fun inject(networkInitializer: NetworkInitializer)
 
   companion object {
 
-    fun resolve(context: Context): ApplicationEntryPoint {
+    fun resolve(context: Context): NetworkEntryPoint {
       val appContext = context.applicationContext ?: throw IllegalStateException(
         "applicationContext was not found in NetworkEntryPoint"
       )
       return EntryPointAccessors.fromApplication(
         appContext,
-        ApplicationEntryPoint::class.java
+        NetworkEntryPoint::class.java
       )
     }
   }

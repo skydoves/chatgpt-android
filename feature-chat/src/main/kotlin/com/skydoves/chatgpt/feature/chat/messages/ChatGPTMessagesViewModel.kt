@@ -19,18 +19,21 @@ package com.skydoves.chatgpt.feature.chat.messages
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.Constraints
+import androidx.work.Data
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
 import com.skydoves.chatgpt.core.data.chat.commonChannelId
 import com.skydoves.chatgpt.core.data.coroutines.WhileSubscribedOrRetained
 import com.skydoves.chatgpt.core.data.repository.GPTMessageRepository
-import com.skydoves.chatgpt.core.model.GPTChatRequest
-import com.skydoves.chatgpt.core.model.GPTContent
-import com.skydoves.chatgpt.core.model.GPTMessage
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_channel_id
 import com.skydoves.chatgpt.core.preferences.Empty
-import com.skydoves.sandwich.message
-import com.skydoves.sandwich.messageOrNull
-import com.skydoves.sandwich.onFailure
-import com.skydoves.sandwich.suspendOnSuccess
+import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker
+import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_FAILURE
+import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_SUCCESS
+import com.skydoves.viewmodel.lifecycle.viewModelLifecycleOwner
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.models.Message
@@ -47,8 +50,9 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ChatGPTMessagesViewModel @Inject constructor(
-  private val GPTMessageRepository: GPTMessageRepository,
+  GPTMessageRepository: GPTMessageRepository,
   private val chatClient: ChatClient,
+  private val workManager: WorkManager,
   savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -77,26 +81,20 @@ class ChatGPTMessagesViewModel @Inject constructor(
   fun sendMessage(text: String) {
     messageItemSet.value += text
     viewModelScope.launch {
-      val messageId = UUID.randomUUID().toString()
-      val request = GPTChatRequest(
-        messages = listOf(
-          GPTMessage(
-            id = UUID.randomUUID().toString(),
-            content = GPTContent(parts = listOf(text))
-          )
-        ),
-        parent_message_id = messageId
-      )
-      val result = GPTMessageRepository.sendMessage(request)
-      result.collect {
-        it.suspendOnSuccess {
-          streamLog { "onResponse: $data" }
+      val workRequest = buildGPTMessageWorkerRequest(text)
+      workManager.enqueue(workRequest)
+
+      val workInfo = workManager.getWorkInfoByIdLiveData(workRequest.id)
+      workInfo.observe(viewModelLifecycleOwner) {
+        if (it.state == WorkInfo.State.SUCCEEDED) {
+          val data = it.outputData.getString(DATA_SUCCESS)
+          streamLog { "gpt message worker success: $data" }
           messageItemSet.value -= text
-          sendStreamMessage(data)
-        }.onFailure {
-          streamLog { "onFailure: $messageOrNull" }
+        } else if (it.state == WorkInfo.State.FAILED) {
+          val error = it.outputData.getString(DATA_FAILURE) ?: ""
+          streamLog { "gpt message worker failed: $error" }
           messageItemSet.value -= messageItemSet.value
-          mutableError.value = message()
+          mutableError.value = error
         }
       }
     }
@@ -112,5 +110,21 @@ class ChatGPTMessagesViewModel @Inject constructor(
         extraData = mutableMapOf("ChatGPT" to true)
       )
     ).await()
+  }
+
+  private fun buildGPTMessageWorkerRequest(text: String): OneTimeWorkRequest {
+    val constraints = Constraints.Builder()
+      .setRequiredNetworkType(NetworkType.CONNECTED)
+      .build()
+
+    val data = Data.Builder()
+      .putString(ChatGPTMessageWorker.DATA_TEXT, text)
+      .putString(ChatGPTMessageWorker.DATA_CHANNEL_ID, channelId)
+      .build()
+
+    return OneTimeWorkRequest.Builder(ChatGPTMessageWorker::class.java)
+      .setConstraints(constraints)
+      .setInputData(data)
+      .build()
   }
 }

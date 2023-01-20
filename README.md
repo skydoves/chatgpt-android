@@ -124,6 +124,7 @@ STREAM_CHAT_SDK=..
 - [Moshi](https://github.com/square/moshi/): A modern JSON library for Kotlin and Java.
 - [ksp](https://github.com/google/ksp): Kotlin Symbol Processing API.
 - [Balloon](https://github.com/skydoves/balloon): Modernized and sophisticated tooltips, fully customizable with an arrow and animations for Android.
+- [viewmodel-lifecycle](https://github.com/skydoves/viewmodel-lifecycle): ViewModel Lifecycle allows you to track and observe Jetpack's ViewModel lifecycle changes.
 - [StreamLog](https://github.com/GetStream/stream-log): A lightweight and extensible logger library for Kotlin and Android.
 - Baseline Profiles: To improve app performance by including a list of classes and methods specifications in your APK that can be used by Android Runtime.
 

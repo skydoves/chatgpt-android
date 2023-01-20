@@ -18,6 +18,7 @@ package com.skydoves.chatgpt.feature.chat.di
 
 import android.content.Context
 import com.skydoves.chatgpt.feature.chat.initializer.StreamChatInitializer
+import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
@@ -28,6 +29,8 @@ import dagger.hilt.components.SingletonComponent
 internal interface ChatEntryPoint {
 
   fun inject(streamChatInitializer: StreamChatInitializer)
+
+  fun inject(chatGPTMessageWorker: ChatGPTMessageWorker)
 
   companion object {
 

@@ -39,23 +39,22 @@ internal class GPTMessageRepositoryImpl @Inject constructor(
   private val chatGptService: ChatGPTService
 ) : GPTMessageRepository {
 
-  override suspend fun sendMessage(gptChatRequest: GPTChatRequest): Flow<ApiResponse<String>> =
-    flow {
-      val mosih = Moshi.Builder().build()
-      val json = mosih.adapter(GPTChatRequest::class.java).toJson(gptChatRequest)
-      val responseBody = ("""$json""".trimIndent()).toRequestBody(
-        contentType = "text/plain".toMediaType()
-      )
-      val response = chatGptService.sendMessage(responseBody)
-      val mappedResponse = response.mapSuccess {
-        val body = string()
-        val chatMessage =
-          body.split("\n").maxBy { it.length }.replace("data: ", "")
-        val gptChatResponse = mosih.adapter(GPTChatResponse::class.java).fromJson(chatMessage)!!
-        gptChatResponse.message.content.parts[0].trim()
-      }
-      emit(mappedResponse)
-    }.flowOn(ioDispatcher)
+  override suspend fun sendMessage(gptChatRequest: GPTChatRequest): ApiResponse<String> {
+    val mosih = Moshi.Builder().build()
+    val json = mosih.adapter(GPTChatRequest::class.java).toJson(gptChatRequest)
+    val responseBody = ("""$json""".trimIndent()).toRequestBody(
+      contentType = "text/plain".toMediaType()
+    )
+    val response = chatGptService.sendMessage(responseBody)
+    val mappedResponse = response.mapSuccess {
+      val body = string()
+      val chatMessage =
+        body.split("\n").maxBy { it.length }.replace("data: ", "")
+      val gptChatResponse = mosih.adapter(GPTChatResponse::class.java).fromJson(chatMessage)!!
+      gptChatResponse.message.content.parts[0].trim()
+    }
+    return mappedResponse
+  }
 
   override fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean> = flow {
     val result = ChatClient.instance().channel(cid).watch().await()

@@ -1,3 +1,4 @@
+HPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getSerializedSize()I
 HSPLandroidx/activity/ComponentActivity$$ExternalSyntheticLambda0;-><init>(Landroidx/activity/ComponentActivity;)V
 HSPLandroidx/activity/ComponentActivity$$ExternalSyntheticLambda1;-><init>(Landroidx/activity/ComponentActivity;)V
 HSPLandroidx/activity/ComponentActivity$$ExternalSyntheticLambda1;->saveState()Landroid/os/Bundle;
@@ -25,7 +26,6 @@ HSPLandroidx/activity/ComponentActivity;->lambda$new$0$androidx-activity-Compone
 HSPLandroidx/activity/ComponentActivity;->lambda$new$1$androidx-activity-ComponentActivity(Landroid/content/Context;)V
 HSPLandroidx/activity/ComponentActivity;->onCreate(Landroid/os/Bundle;)V
 HSPLandroidx/activity/ComponentActivity;->onSaveInstanceState(Landroid/os/Bundle;)V
-HSPLandroidx/activity/ComponentActivity;->onTrimMemory(I)V
 HSPLandroidx/activity/ComponentActivity;->setContentView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 HSPLandroidx/activity/OnBackPressedCallback;-><init>(Z)V
 HSPLandroidx/activity/OnBackPressedCallback;->addCancellable(Landroidx/activity/Cancellable;)V
@@ -132,7 +132,6 @@ HSPLandroidx/collection/ArrayMap$KeySet;->isEmpty()Z
 HSPLandroidx/collection/ArrayMap$KeySet;->iterator()Ljava/util/Iterator;
 HSPLandroidx/collection/ArrayMap$ValueCollection;-><init>(Landroidx/collection/ArrayMap;)V
 HSPLandroidx/collection/ArrayMap$ValueCollection;->iterator()Ljava/util/Iterator;
-HSPLandroidx/collection/ArrayMap$ValueCollection;->toArray()[Ljava/lang/Object;
 HSPLandroidx/collection/ArrayMap$ValueIterator;-><init>(Landroidx/collection/ArrayMap;)V
 HSPLandroidx/collection/ArrayMap;-><init>()V
 HSPLandroidx/collection/ArrayMap;-><init>(I)V
@@ -171,7 +170,6 @@ HSPLandroidx/collection/SimpleArrayMap;->isEmpty()Z
 HSPLandroidx/collection/SimpleArrayMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 HSPLandroidx/collection/SimpleArrayMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 HSPLandroidx/collection/SimpleArrayMap;->removeAt(I)Ljava/lang/Object;
-HSPLandroidx/collection/SimpleArrayMap;->valueAt(I)Ljava/lang/Object;
 HSPLandroidx/collection/SparseArrayCompat;-><clinit>()V
 HSPLandroidx/collection/SparseArrayCompat;-><init>()V
 HSPLandroidx/collection/SparseArrayCompat;-><init>(I)V
@@ -1398,7 +1396,6 @@ HSPLandroidx/compose/runtime/ComposerImpl;->skipToGroupEnd()V
 HSPLandroidx/compose/runtime/ComposerImpl;->sourceInformation(Ljava/lang/String;)V
 HSPLandroidx/compose/runtime/ComposerImpl;->sourceInformationMarkerEnd()V
 HSPLandroidx/compose/runtime/ComposerImpl;->sourceInformationMarkerStart(ILjava/lang/String;)V
-HSPLandroidx/compose/runtime/ComposerImpl;->start(ILjava/lang/Object;ZLjava/lang/Object;)V
 HSPLandroidx/compose/runtime/ComposerImpl;->startDefaults()V
 HSPLandroidx/compose/runtime/ComposerImpl;->startGroup(I)V
 HSPLandroidx/compose/runtime/ComposerImpl;->startGroup(ILjava/lang/Object;)V
@@ -4294,7 +4291,6 @@ HSPLandroidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainImageV
 HSPLandroidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainImageVectorCache$1;->invoke(Landroidx/compose/runtime/DisposableEffectScope;)Landroidx/compose/runtime/DisposableEffectResult;
 HSPLandroidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainImageVectorCache$1;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
 HSPLandroidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainImageVectorCache$callbacks$1$1;-><init>(Landroid/content/res/Configuration;Landroidx/compose/ui/res/ImageVectorCache;)V
-HSPLandroidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainImageVectorCache$callbacks$1$1;->onTrimMemory(I)V
 HSPLandroidx/compose/ui/platform/AndroidCompositionLocals_androidKt;-><clinit>()V
 HSPLandroidx/compose/ui/platform/AndroidCompositionLocals_androidKt;->ProvideAndroidCompositionLocals$lambda-1(Landroidx/compose/runtime/MutableState;)Landroid/content/res/Configuration;
 HSPLandroidx/compose/ui/platform/AndroidCompositionLocals_androidKt;->ProvideAndroidCompositionLocals(Landroidx/compose/ui/platform/AndroidComposeView;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;I)V
@@ -4645,7 +4641,6 @@ HSPLandroidx/compose/ui/platform/Wrapper_androidKt;->setContent(Landroidx/compos
 HSPLandroidx/compose/ui/platform/actionmodecallback/TextActionModeCallback;-><init>(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/geometry/Rect;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
 HSPLandroidx/compose/ui/platform/actionmodecallback/TextActionModeCallback;-><init>(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/geometry/Rect;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLandroidx/compose/ui/res/ImageVectorCache;-><init>()V
-HSPLandroidx/compose/ui/res/ImageVectorCache;->clear()V
 HSPLandroidx/compose/ui/res/Resources_androidKt;->resources(Landroidx/compose/runtime/Composer;I)Landroid/content/res/Resources;
 HSPLandroidx/compose/ui/res/StringResources_androidKt;->stringResource(ILandroidx/compose/runtime/Composer;I)Ljava/lang/String;
 HSPLandroidx/compose/ui/semantics/AccessibilityAction;-><clinit>()V
@@ -5865,6 +5860,7 @@ HSPLandroidx/emoji2/text/EmojiMetadata;-><init>(Landroidx/emoji2/text/MetadataRe
 HSPLandroidx/emoji2/text/EmojiMetadata;->getCodepointAt(I)I
 HSPLandroidx/emoji2/text/EmojiMetadata;->getCodepointsLength()I
 HSPLandroidx/emoji2/text/EmojiMetadata;->getId()I
+HSPLandroidx/emoji2/text/EmojiMetadata;->getMetadataItem()Landroidx/emoji2/text/flatbuffer/MetadataItem;
 HSPLandroidx/emoji2/text/EmojiProcessor;-><init>(Landroidx/emoji2/text/MetadataRepo;Landroidx/emoji2/text/EmojiCompat$SpanFactory;Landroidx/emoji2/text/EmojiCompat$GlyphChecker;Z[I)V
 HSPLandroidx/emoji2/text/FontRequestEmojiCompatConfig$FontProviderHelper;-><init>()V
 HSPLandroidx/emoji2/text/FontRequestEmojiCompatConfig$FontProviderHelper;->buildTypeface(Landroid/content/Context;Landroidx/core/provider/FontsContractCompat$FontInfo;)Landroid/graphics/Typeface;
@@ -5903,6 +5899,7 @@ HSPLandroidx/emoji2/text/MetadataRepo;->create(Landroid/graphics/Typeface;Ljava/
 HSPLandroidx/emoji2/text/MetadataRepo;->getMetadataList()Landroidx/emoji2/text/flatbuffer/MetadataList;
 HSPLandroidx/emoji2/text/MetadataRepo;->put(Landroidx/emoji2/text/EmojiMetadata;)V
 HSPLandroidx/emoji2/text/flatbuffer/MetadataItem;-><init>()V
+HSPLandroidx/emoji2/text/flatbuffer/MetadataItem;->__assign(ILjava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 HSPLandroidx/emoji2/text/flatbuffer/MetadataItem;->codepoints(I)I
 HSPLandroidx/emoji2/text/flatbuffer/MetadataItem;->codepointsLength()I
 HSPLandroidx/emoji2/text/flatbuffer/MetadataItem;->id()I
@@ -5911,6 +5908,7 @@ HSPLandroidx/emoji2/text/flatbuffer/MetadataList;->__assign(ILjava/nio/ByteBuffe
 HSPLandroidx/emoji2/text/flatbuffer/MetadataList;->__init(ILjava/nio/ByteBuffer;)V
 HSPLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;)Landroidx/emoji2/text/flatbuffer/MetadataList;
 HSPLandroidx/emoji2/text/flatbuffer/MetadataList;->getRootAsMetadataList(Ljava/nio/ByteBuffer;Landroidx/emoji2/text/flatbuffer/MetadataList;)Landroidx/emoji2/text/flatbuffer/MetadataList;
+HSPLandroidx/emoji2/text/flatbuffer/MetadataList;->list(Landroidx/emoji2/text/flatbuffer/MetadataItem;I)Landroidx/emoji2/text/flatbuffer/MetadataItem;
 HSPLandroidx/emoji2/text/flatbuffer/MetadataList;->listLength()I
 HSPLandroidx/emoji2/text/flatbuffer/Table;-><init>()V
 HSPLandroidx/emoji2/text/flatbuffer/Table;->__indirect(I)I
@@ -6205,7 +6203,6 @@ HSPLandroidx/navigation/NavBackStackEntryState$Companion;-><init>()V
 HSPLandroidx/navigation/NavBackStackEntryState$Companion;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 HSPLandroidx/navigation/NavBackStackEntryState;-><clinit>()V
 HSPLandroidx/navigation/NavBackStackEntryState;-><init>(Landroidx/navigation/NavBackStackEntry;)V
-HSPLandroidx/navigation/NavBackStackEntryState;->writeToParcel(Landroid/os/Parcel;I)V
 HSPLandroidx/navigation/NavController$$ExternalSyntheticLambda0;-><init>(Landroidx/navigation/NavController;)V
 HSPLandroidx/navigation/NavController$$ExternalSyntheticLambda0;->onStateChanged(Landroidx/lifecycle/LifecycleOwner;Landroidx/lifecycle/Lifecycle$Event;)V
 HSPLandroidx/navigation/NavController$Companion;-><init>()V
@@ -7309,8 +7306,6 @@ HSPLcom/google/android/gms/common/api/internal/BackgroundDetector;->onActivityRe
 HSPLcom/google/android/gms/common/api/internal/BackgroundDetector;->onActivitySaveInstanceState(Landroid/app/Activity;Landroid/os/Bundle;)V
 HSPLcom/google/android/gms/common/api/internal/BackgroundDetector;->onActivityStarted(Landroid/app/Activity;)V
 HSPLcom/google/android/gms/common/api/internal/BackgroundDetector;->onActivityStopped(Landroid/app/Activity;)V
-HSPLcom/google/android/gms/common/api/internal/BackgroundDetector;->onTrimMemory(I)V
-HSPLcom/google/android/gms/common/api/internal/BackgroundDetector;->zza(Z)V
 HSPLcom/google/android/gms/common/internal/BaseGmsClient$LegacyClientCallbackAdapter;-><init>(Lcom/google/android/gms/common/internal/BaseGmsClient;)V
 HSPLcom/google/android/gms/common/internal/BaseGmsClient$LegacyClientCallbackAdapter;->onReportServiceBinding(Lcom/google/android/gms/common/ConnectionResult;)V
 HSPLcom/google/android/gms/common/internal/BaseGmsClient;-><clinit>()V
@@ -8673,14 +8668,11 @@ HSPLcom/google/firebase/FirebaseApp$GlobalBackgroundStateListener;-><clinit>()V
 HSPLcom/google/firebase/FirebaseApp$GlobalBackgroundStateListener;-><init>()V
 HSPLcom/google/firebase/FirebaseApp$GlobalBackgroundStateListener;->access$100(Landroid/content/Context;)V
 HSPLcom/google/firebase/FirebaseApp$GlobalBackgroundStateListener;->ensureBackgroundStateListenerRegistered(Landroid/content/Context;)V
-HSPLcom/google/firebase/FirebaseApp$GlobalBackgroundStateListener;->onBackgroundStateChanged(Z)V
 HSPLcom/google/firebase/FirebaseApp$UiExecutor;-><clinit>()V
 HSPLcom/google/firebase/FirebaseApp$UiExecutor;-><init>()V
 HSPLcom/google/firebase/FirebaseApp$UiExecutor;-><init>(Lcom/google/firebase/FirebaseApp$1;)V
 HSPLcom/google/firebase/FirebaseApp;-><clinit>()V
 HSPLcom/google/firebase/FirebaseApp;-><init>(Landroid/content/Context;Ljava/lang/String;Lcom/google/firebase/FirebaseOptions;)V
-HSPLcom/google/firebase/FirebaseApp;->access$300()Ljava/lang/Object;
-HSPLcom/google/firebase/FirebaseApp;->access$500(Lcom/google/firebase/FirebaseApp;)Ljava/util/concurrent/atomic/AtomicBoolean;
 HSPLcom/google/firebase/FirebaseApp;->addBackgroundStateChangeListener(Lcom/google/firebase/FirebaseApp$BackgroundStateChangeListener;)V
 HSPLcom/google/firebase/FirebaseApp;->checkNotDeleted()V
 HSPLcom/google/firebase/FirebaseApp;->get(Ljava/lang/Class;)Ljava/lang/Object;
@@ -9983,7 +9975,7 @@ HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCIm
 HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;-><init>(Ldagger/hilt/android/internal/modules/ApplicationContextModule;Lcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$1;)V
 HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;->access$1300(Lcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;)Ljavax/inject/Provider;
 HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;->access$1500(Lcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;)Lcom/skydoves/chatgpt/core/data/repository/GPTLoginRepositoryImpl;
-HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;->access$2200(Lcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;)Ldagger/hilt/android/internal/modules/ApplicationContextModule;
+HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;->access$2300(Lcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;)Ldagger/hilt/android/internal/modules/ApplicationContextModule;
 HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;->gPTLoginRepositoryImpl()Lcom/skydoves/chatgpt/core/data/repository/GPTLoginRepositoryImpl;
 HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;->initialize(Ldagger/hilt/android/internal/modules/ApplicationContextModule;)V
 HSPLcom/skydoves/chatgpt/DaggerChatGPTApp_HiltComponents_SingletonC$SingletonCImpl;->inject(Lcom/skydoves/chatgpt/core/network/initializer/NetworkInitializer;)V
@@ -12068,7 +12060,6 @@ HSPLio/getstream/chat/android/offline/sync/internal/SyncManager$onEvent$2;-><ini
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager$onEvent$2;->create(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Lkotlin/coroutines/Continuation;
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager$onEvent$2;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager$performSync$1;-><init>(Lio/getstream/chat/android/offline/sync/internal/SyncManager;Lkotlin/coroutines/Continuation;)V
-HSPLio/getstream/chat/android/offline/sync/internal/SyncManager$performSync$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager$restoreActiveChannels$1;-><init>(Lio/getstream/chat/android/offline/sync/internal/SyncManager;Lkotlin/coroutines/Continuation;)V
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager$retryChannels$1;-><init>(Lio/getstream/chat/android/offline/sync/internal/SyncManager;Lkotlin/coroutines/Continuation;)V
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager$retryChannels$1;->invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
@@ -12097,7 +12088,6 @@ HSPLio/getstream/chat/android/offline/sync/internal/SyncManager;-><init>(Ljava/l
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager;->access$getCurrentUserId$p(Lio/getstream/chat/android/offline/sync/internal/SyncManager;)Ljava/lang/String;
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager;->access$getLogger$p(Lio/getstream/chat/android/offline/sync/internal/SyncManager;)Lio/getstream/logging/TaggedLogger;
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager;->access$onConnectionEstablished(Lio/getstream/chat/android/offline/sync/internal/SyncManager;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-HSPLio/getstream/chat/android/offline/sync/internal/SyncManager;->access$performSync(Lio/getstream/chat/android/offline/sync/internal/SyncManager;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager;->access$retryChannels(Lio/getstream/chat/android/offline/sync/internal/SyncManager;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager;->access$retryFailedEntities(Lio/getstream/chat/android/offline/sync/internal/SyncManager;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 HSPLio/getstream/chat/android/offline/sync/internal/SyncManager;->access$retryMessages(Lio/getstream/chat/android/offline/sync/internal/SyncManager;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -14400,7 +14390,6 @@ HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getName()I
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getReceiverType()Lkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Type;
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getReturnType()Lkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Type;
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getReturnTypeId()I
-HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getSerializedSize()I
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getTypeParameter(I)Lkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$TypeParameter;
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getTypeParameterCount()I
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->getTypeParameterList()Ljava/util/List;
@@ -14417,7 +14406,6 @@ HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->hasReturnType(
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->hasReturnTypeId()Z
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->hasTypeTable()Z
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->initFields()V
-HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$Function;->writeTo(Lkotlin/reflect/jvm/internal/impl/protobuf/CodedOutputStream;)V
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$MemberKind$1;-><init>()V
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$MemberKind;-><clinit>()V
 HSPLkotlin/reflect/jvm/internal/impl/metadata/ProtoBuf$MemberKind;-><init>(Ljava/lang/String;III)V
@@ -14898,7 +14886,6 @@ HSPLkotlin/reflect/jvm/internal/impl/metadata/jvm/deserialization/JvmNameResolve
 HSPLkotlin/reflect/jvm/internal/impl/metadata/jvm/deserialization/JvmNameResolverBase;-><clinit>()V
 HSPLkotlin/reflect/jvm/internal/impl/metadata/jvm/deserialization/JvmNameResolverBase;-><init>([Ljava/lang/String;Ljava/util/Set;Ljava/util/List;)V
 HSPLkotlin/reflect/jvm/internal/impl/metadata/jvm/deserialization/JvmNameResolverBase;->getQualifiedClassName(I)Ljava/lang/String;
-HSPLkotlin/reflect/jvm/internal/impl/metadata/jvm/deserialization/JvmNameResolverBase;->getString(I)Ljava/lang/String;
 HSPLkotlin/reflect/jvm/internal/impl/metadata/jvm/deserialization/JvmNameResolverBase;->isLocalClassName(I)Z
 HSPLkotlin/reflect/jvm/internal/impl/metadata/jvm/deserialization/JvmNameResolverKt;->toExpandedRecordsList(Ljava/util/List;)Ljava/util/List;
 HSPLkotlin/reflect/jvm/internal/impl/metadata/jvm/deserialization/JvmProtoBufUtil;-><clinit>()V
@@ -24939,7 +24926,9 @@ PLandroidx/profileinstaller/ProfileInstallerInitializer$$ExternalSyntheticLambda
 PLandroidx/profileinstaller/ProfileInstallerInitializer;->lambda$installAfterDelay$1(Landroid/content/Context;)V
 PLandroidx/profileinstaller/ProfileInstallerInitializer;->lambda$writeInBackground$2(Landroid/content/Context;)V
 PLandroidx/profileinstaller/ProfileInstallerInitializer;->writeInBackground(Landroid/content/Context;)V
+PLcom/acsbendi/requestinspectorwebview/RequestInspectorJavaScriptInterface;->getUrlEncodedFormBody(Lorg/json/JSONArray;)Ljava/lang/String;
 PLcom/acsbendi/requestinspectorwebview/RequestInspectorJavaScriptInterface;->recordFetch(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+PLcom/acsbendi/requestinspectorwebview/RequestInspectorJavaScriptInterface;->recordFormSubmission(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 PLcom/google/android/gms/common/internal/BaseGmsClient;->disconnect()V
 PLcom/google/android/gms/common/internal/GmsClientSupervisor;->zzb(Ljava/lang/String;Ljava/lang/String;ILandroid/content/ServiceConnection;Ljava/lang/String;Z)V
 PLcom/google/android/gms/common/internal/zzn;->equals(Ljava/lang/Object;)Z

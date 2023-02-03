@@ -8,7 +8,7 @@ run-name: ${{ github.actor }} requested a workflow
 # Change this event to what suits your project best.
 # Read more at https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 on:
-  # every Sunday at 00:00
+  # every Monday at 00:00
   # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
   schedule:
     - cron: '0 0 * * 1'

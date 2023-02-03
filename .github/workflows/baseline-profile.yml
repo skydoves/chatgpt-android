@@ -47,6 +47,13 @@ jobs:
           distribution: temurin
           java-version: 11
 
+      # Retry if this workflow fails
+      - uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: npm run some-typically-slow-script
+
       # Sets gradle up
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
@@ -67,9 +74,6 @@ jobs:
       # Generates Baseline Profile
       - name: Generate Baseline Profile
         run: ./gradlew :benchmark:pixel2Api31BenchmarkAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Dorg.gradle.workers.max=4
-        with:
-          max_attempts: 3
-          retry_on: error
 
       # Sets the Baseline Profile on its proper place so it gets correctly bundled into Play Store
       - name: Move & Rename Baseline Profiles

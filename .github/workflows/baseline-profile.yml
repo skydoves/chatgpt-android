@@ -55,12 +55,6 @@ jobs:
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
 
-      # Create google-services.json file
-      - name: Create google-services.json file
-        env:
-          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: echo $GOOGLE_SERVICES_JSON | base64 --decode > app/google-services.json
-
       # This allows us to build most of what we need without the emulator running
       # and using resources
       - name: Build app and benchmark

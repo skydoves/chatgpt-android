@@ -47,13 +47,6 @@ jobs:
           distribution: temurin
           java-version: 11
 
-      # Retry if this workflow fails
-      - uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 20
-          max_attempts: 3
-          command: npm run some-typically-slow-script
-
       # Sets gradle up
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2

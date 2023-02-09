@@ -56,7 +56,7 @@ To build this project properly, you should follow the instructions below:
 
 ![stream](figures/stream1.png)
 
-5. Fill in the blanks like the below and click the **Create App** bitton.
+5. Fill in the blanks like the below and click the **Create App** button.
 
 ![stream](figures/stream2.png)
 

@@ -37,10 +37,10 @@ gradlePlugin {
             id = "skydoves.android.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
-      register("androidHilt") {
-        id = "skydoves.android.hilt"
-        implementationClass = "AndroidHiltConventionPlugin"
-      }
+        register("androidHilt") {
+            id = "skydoves.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
         register("spotless") {
             id = "skydoves.spotless"
             implementationClass = "SpotlessConventionPlugin"

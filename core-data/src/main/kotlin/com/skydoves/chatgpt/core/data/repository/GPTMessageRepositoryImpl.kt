@@ -42,10 +42,10 @@ internal class GPTMessageRepositoryImpl @Inject constructor(
   override suspend fun sendMessage(gptChatRequest: GPTChatRequest): ApiResponse<String> {
     val mosih = Moshi.Builder().build()
     val json = mosih.adapter(GPTChatRequest::class.java).toJson(gptChatRequest)
-    val responseBody = ("""$json""".trimIndent()).toRequestBody(
+    val requestBody = ("""$json""".trimIndent()).toRequestBody(
       contentType = "text/plain".toMediaType()
     )
-    val response = chatGptService.sendMessage(responseBody)
+    val response = chatGptService.sendMessage(requestBody)
     val mappedResponse = response.mapSuccess {
       val body = string()
       val chatMessage =

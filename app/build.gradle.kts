@@ -75,6 +75,7 @@ android {
       signingConfig = signingConfigs["release"]
       isShrinkResources = true
       isMinifyEnabled = true
+      proguardFiles("proguard-rules.pro")
     }
 
     create("benchmark") {

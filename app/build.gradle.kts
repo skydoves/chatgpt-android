@@ -39,6 +39,8 @@ plugins {
   id("dagger.hilt.android.plugin")
 }
 
+val useReleaseKeystore = rootProject.file("release/release-key.jks").exists()
+
 android {
   namespace = "com.skydoves.chatgpt"
   compileSdk = Configurations.compileSdk
@@ -56,12 +58,30 @@ android {
       excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }
   }
+
+  signingConfigs {
+    create("release") {
+      if (useReleaseKeystore) {
+        storeFile = rootProject.file("release/release-key.jks")
+        storePassword = propOrDef("RELEASE_KEYSTORE_PWD", "")
+        keyAlias = "getstream"
+        keyPassword = propOrDef("RELEASE_KEY_PWD", "")
+      }
+    }
+  }
+
   buildTypes {
+    release {
+      signingConfig = signingConfigs["release"]
+      isShrinkResources = true
+      isMinifyEnabled = true
+    }
+
     create("benchmark") {
       signingConfig = signingConfigs.getByName("debug")
       matchingFallbacks += listOf("release")
       isDebuggable = false
-      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "benchmark-rules.pro")
+      proguardFiles("benchmark-rules.pro")
     }
   }
 }
@@ -108,4 +128,10 @@ dependencies {
 if (file("google-services.json").exists()) {
   apply(plugin = libs.plugins.gms.googleServices.get().pluginId)
   apply(plugin = libs.plugins.firebase.crashlytics.get().pluginId)
+}
+
+fun <T : Any> propOrDef(propertyName: String, defaultValue: T): T {
+  @Suppress("UNCHECKED_CAST")
+  val propertyValue = project.properties[propertyName] as T?
+  return propertyValue ?: defaultValue
 }

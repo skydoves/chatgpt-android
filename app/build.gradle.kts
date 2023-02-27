@@ -15,6 +15,10 @@
  */
 @file:Suppress("UnstableApiUsage")
 
+import java.io.File
+import java.io.FileInputStream
+import java.util.*
+
 /*
 * Designed and developed by 2022 skydoves (Jaewoong Eum)
 *
@@ -39,7 +43,12 @@ plugins {
   id("dagger.hilt.android.plugin")
 }
 
-val useReleaseKeystore = rootProject.file("release/release-key.jks").exists()
+val keystoreProperties = Properties().apply {
+  val file = File(rootProject.rootDir, "keystore.properties")
+  if (file.exists()) {
+    load(FileInputStream(file))
+  }
+}
 
 android {
   namespace = "com.skydoves.chatgpt"
@@ -60,13 +69,11 @@ android {
   }
 
   signingConfigs {
-    create("release") {
-      if (useReleaseKeystore) {
-        storeFile = rootProject.file("release/release-key.jks")
-        storePassword = propOrDef("RELEASE_KEYSTORE_PWD", "")
-        keyAlias = "getstream"
-        keyPassword = propOrDef("RELEASE_KEY_PWD", "")
-      }
+      create("release") {
+        keyAlias = keystoreProperties["releaseKeyAlias"] as String?
+        keyPassword = keystoreProperties["releaseKeyPassword"] as String?
+        storeFile = file(keystoreProperties["releaseStoreFile"] ?: "")
+        storePassword = keystoreProperties["releaseStorePassword"] as String?
     }
   }
 
@@ -75,7 +82,6 @@ android {
       signingConfig = signingConfigs["release"]
       isShrinkResources = true
       isMinifyEnabled = true
-      proguardFiles("proguard-rules.pro")
     }
 
     create("benchmark") {
@@ -129,10 +135,4 @@ dependencies {
 if (file("google-services.json").exists()) {
   apply(plugin = libs.plugins.gms.googleServices.get().pluginId)
   apply(plugin = libs.plugins.firebase.crashlytics.get().pluginId)
-}
-
-fun <T : Any> propOrDef(propertyName: String, defaultValue: T): T {
-  @Suppress("UNCHECKED_CAST")
-  val propertyValue = project.properties[propertyName] as T?
-  return propertyValue ?: defaultValue
 }

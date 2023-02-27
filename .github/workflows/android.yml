@@ -7,18 +7,33 @@ on:
     branches: [ main ]
 
 jobs:
+  lint:
+    name: Spotless check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3.1.0
+      - name: Set up JDK
+        uses: actions/setup-java@v3.5.1
+        with:
+          distribution: adopt
+          java-version: 11
+      - name: spotless
+        run: ./gradlew spotlessCheck
+
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.1.0
 
-      - name: Set up JDK
-        uses: actions/setup-java@v1
+      - name: set up JDK
+        uses: actions/setup-java@v3.5.1
         with:
+          distribution: adopt
           java-version: 11
 
       - name: Cache Gradle and wrapper
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.gradle/caches
@@ -26,6 +41,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
       - name: Make Gradle executable
         run: chmod +x ./gradlew
 

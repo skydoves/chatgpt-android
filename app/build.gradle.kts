@@ -43,11 +43,10 @@ plugins {
   id("dagger.hilt.android.plugin")
 }
 
-val keystoreProperties = Properties().apply {
-  val file = File(rootProject.rootDir, "keystore.properties")
-  if (file.exists()) {
-    load(FileInputStream(file))
-  }
+val keystoreProperties = Properties()
+val keystorePropertiesFile = File(rootProject.rootDir, "keystore.properties")
+if (keystorePropertiesFile.exists()) {
+  keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
 android {
@@ -69,17 +68,19 @@ android {
   }
 
   signingConfigs {
-      create("release") {
-        keyAlias = keystoreProperties["releaseKeyAlias"] as String?
-        keyPassword = keystoreProperties["releaseKeyPassword"] as String?
-        storeFile = file(keystoreProperties["releaseStoreFile"] ?: "release/release-key.jks")
-        storePassword = keystoreProperties["releaseStorePassword"] as String?
+    create("release") {
+      keyAlias = keystoreProperties["releaseKeyAlias"] as String?
+      keyPassword = keystoreProperties["releaseKeyPassword"] as String?
+      storeFile = file(keystoreProperties["releaseStoreFile"] ?: "release/release-key.jks")
+      storePassword = keystoreProperties["releaseStorePassword"] as String?
     }
   }
 
   buildTypes {
     release {
-      signingConfig = signingConfigs["release"]
+      if (keystorePropertiesFile.exists()) {
+        signingConfig = signingConfigs["release"]
+      }
       isShrinkResources = true
       isMinifyEnabled = true
     }

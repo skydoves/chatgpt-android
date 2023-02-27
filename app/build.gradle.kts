@@ -72,7 +72,7 @@ android {
       create("release") {
         keyAlias = keystoreProperties["releaseKeyAlias"] as String?
         keyPassword = keystoreProperties["releaseKeyPassword"] as String?
-        storeFile = file(keystoreProperties["releaseStoreFile"] ?: "")
+        storeFile = file(keystoreProperties["releaseStoreFile"] ?: "release/release-key.jks")
         storePassword = keystoreProperties["releaseStorePassword"] as String?
     }
   }

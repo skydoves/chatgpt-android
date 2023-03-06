@@ -28,7 +28,7 @@ import com.skydoves.balloon.compose.setTextColor
 import com.skydoves.chatgpt.core.designsystem.theme.PURPLE500
 
 @Composable
-fun rememberFloatingBalloon() = rememberBalloonBuilder {
+internal fun rememberFloatingBalloon() = rememberBalloonBuilder {
   setWidthRatio(1.0f)
   setHeight(BalloonSizeSpec.WRAP)
   setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)

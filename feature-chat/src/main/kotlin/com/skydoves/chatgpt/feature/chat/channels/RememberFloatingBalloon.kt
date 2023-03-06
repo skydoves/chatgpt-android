@@ -25,7 +25,7 @@ import com.skydoves.balloon.BalloonSizeSpec
 import com.skydoves.balloon.compose.rememberBalloonBuilder
 import com.skydoves.balloon.compose.setBackgroundColor
 import com.skydoves.balloon.compose.setTextColor
-import com.skydoves.chatgpt.core.designsystem.theme.PURPLE500
+import com.skydoves.chatgpt.core.designsystem.theme.STREAM_PRIMARY
 
 @Composable
 internal fun rememberFloatingBalloon() = rememberBalloonBuilder {
@@ -40,6 +40,6 @@ internal fun rememberFloatingBalloon() = rememberBalloonBuilder {
   setTextSize(15f)
   setCornerRadius(8f)
   setTextColor(Color.White)
-  setBackgroundColor(PURPLE500)
+  setBackgroundColor(STREAM_PRIMARY)
   setBalloonAnimation(BalloonAnimation.ELASTIC)
 }

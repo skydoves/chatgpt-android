@@ -42,7 +42,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.skydoves.balloon.compose.Balloon
 import com.skydoves.chatgpt.core.designsystem.component.ChatGPTLoadingIndicator
 import com.skydoves.chatgpt.core.designsystem.composition.LocalOnFinishDispatcher
-import com.skydoves.chatgpt.core.designsystem.theme.PURPLE600
+import com.skydoves.chatgpt.core.designsystem.theme.STREAM_PRIMARY
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.core.navigation.ChatGPTScreens
 import com.skydoves.chatgpt.feature.chat.R
@@ -101,7 +101,7 @@ fun ChatGPTChannels(
 
         FloatingActionButton(
           modifier = Modifier.matchParentSize(),
-          containerColor = PURPLE600,
+          containerColor = STREAM_PRIMARY,
           shape = CircleShape,
           onClick = { viewModel.handleEvents(GPTChannelEvent.CreateChannel) }
         ) {

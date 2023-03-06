@@ -49,6 +49,7 @@ fun ChatGPTLogin(
 ) {
   val context = LocalContext.current
   val webView = remember { WebView(context) }
+  val streamUserAgent = stringResource(id = R.string.webview_agent)
 
   BackHandler {
     if (webView.canGoBack()) {
@@ -69,6 +70,7 @@ fun ChatGPTLogin(
         .padding(padding),
       factory = {
         webView.apply {
+          settings.userAgentString = streamUserAgent
           webChromeClient = WebChromeClient()
           webViewClient = object : RequestInspectorWebViewClient(this@apply) {
             override fun shouldInterceptRequest(

@@ -93,7 +93,7 @@ STREAM_CHAT_SDK=..
 ## ⚙️ How to run the application?
 
 1. Go to the [ChatGPT](https://chat.openai.com/chat) website and click the **Sign up** button.
-2. Create your account **with an Email Address, not your Google or Microsoft account** like the one below:
+2. Create your account with your Google/Microsoft account or a manual email address like the one below:
 
 ![login](figures/login2.png)
 

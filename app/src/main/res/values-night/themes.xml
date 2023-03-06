@@ -17,6 +17,6 @@
 <resources>
 
   <style name="Theme.ChatGPTAndroid" parent="Theme.AppCompat.DayNight.NoActionBar">
-    <item name="android:statusBarColor">@color/green_dark_theme</item>
+    <item name="android:statusBarColor">@color/stream_primary</item>
   </style>
 </resources>

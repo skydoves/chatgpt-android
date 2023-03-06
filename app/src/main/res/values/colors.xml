@@ -16,26 +16,19 @@
 -->
 <resources>
   <!-- Colors to apply in layouts -->
-  <color name="colorPrimary">@color/green_darker</color>
-  <color name="colorPrimaryDark">@color/green_darkest</color>
+  <color name="colorPrimary">@color/stream_primary</color>
+  <color name="colorPrimaryDark">@color/stream_primary</color>
   <color name="tab_active">@color/white</color>
-  <color name="tab_inactive">@color/green_light</color>
-  <color name="floating_message_create">@color/green</color>
+  <color name="tab_inactive">@color/stream_primary</color>
+  <color name="floating_message_create">@color/stream_primary</color>
   <color name="channel_background">@color/off_white</color>
-  <color name="toolbar_background">@color/green_darker</color>
-  <color name="message_yours">@color/green_lightest</color>
+  <color name="toolbar_background">@color/stream_primary</color>
+  <color name="message_yours">@color/stream_primary</color>
   <color name="message_theirs">@color/white</color>
   <color name="message_input_button_inactive">@color/gray</color>
-  <color name="floating_message_send">@color/green_dark</color>
+  <color name="floating_message_send">@color/stream_primary</color>
 
-  <!-- Palette Greens -->
-  <color name="green_lightest">#FFE2C7FF</color>
-  <color name="green_light">#FFA97EB0</color>
-  <color name="green">#FFA430B8</color>
-  <color name="green_dark">#FFAE38C3</color>
-  <color name="green_darker">#FFAE38C3</color>
-  <color name="green_darkest">#FF981E9F</color>
-  <color name="green_dark_theme">#FF4D0057</color>
+  <color name="stream_primary">#FF005FFF</color>
 
   <!-- White & Gray -->
   <color name="white">#FFF</color>

@@ -93,7 +93,7 @@ fun ChatGPTChannels(
             balloonWindow.showAlignTop()
           }
 
-          balloonWindow.setOnBalloonClickListener {
+          balloonWindow.setOnBalloonDismissListener {
             viewModel.balloonChannelDisplayed()
             balloonWindow.dismiss()
           }

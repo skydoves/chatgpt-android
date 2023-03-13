@@ -107,6 +107,8 @@ STREAM_CHAT_SDK=..
 
 5. If you login correctly, you will get the success toast message and move to the channel list screen.
 
+>**Note**: Before running the application, you must make sure you're in the [supported countries](https://platform.openai.com/docs/supported-countries).
+
 ## 🛠 Tech Stack & Open Source Libraries
 - Minimum SDK level 21.
 - 100% [Jetpack Compose](https://developer.android.com/jetpack/compose) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.

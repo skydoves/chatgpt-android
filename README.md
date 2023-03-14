@@ -17,6 +17,9 @@ The purpose of this repository is to demonstrate below:
 - Performing background tasks with Kotlin Coroutines.
 - Integrating chat systems with Stream Chat SDK for real-time event handling.
 
+![Screenshot 2023-03-14 at 8 11 41 PM](https://user-images.githubusercontent.com/24237865/224983937-287075d3-474a-4aeb-9c6c-9d0605a6eecb.png)
+
+
 ## 📷 Previews
 
 <p align="center">

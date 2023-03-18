@@ -18,6 +18,7 @@ package com.skydoves.chatgpt.feature.login
 
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
@@ -27,7 +28,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -49,6 +53,9 @@ fun ChatGPTLogin(
 ) {
   val context = LocalContext.current
   val webView = remember { WebView(context) }
+  val streamUserAgent = stringResource(id = R.string.webview_agent)
+  var initialUserAgent: String? by remember { mutableStateOf(null) }
+  var lastUpdateTime: Long by remember { mutableStateOf(SystemClock.elapsedRealtime()) }
 
   BackHandler {
     if (webView.canGoBack()) {
@@ -75,18 +82,40 @@ fun ChatGPTLogin(
               view: WebView,
               webViewRequest: WebViewRequest
             ): WebResourceResponse? {
+              val userAgent = webViewRequest.headers[USER_AGENT]
+              if (initialUserAgent == null && userAgent != null) {
+                initialUserAgent = userAgent
+              }
+
+              runOnUiThread {
+                val currentTime = SystemClock.elapsedRealtime()
+                val threadHold = 1000L
+                if (currentTime - lastUpdateTime >= threadHold) {
+                  lastUpdateTime = currentTime
+                  val url = webViewRequest.url
+                  if (url.contains("auth0") || url.contains("accounts.google") &&
+                    settings.userAgentString != streamUserAgent
+                  ) {
+                    settings.userAgentString = streamUserAgent
+                  } else if (initialUserAgent != null &&
+                    settings.userAgentString != initialUserAgent
+                  ) {
+                    settings.userAgentString = initialUserAgent
+                  }
+                }
+              }
+
               if (checkIfAuthorized(webViewRequest.headers)) {
                 val authorization = webViewRequest.headers[AUTHORIZATION] ?: return null
                 val cookie = webViewRequest.headers[COOKIE] ?: return null
-                val userAgent = webViewRequest.headers[USER_AGENT] ?: return null
                 viewModel.persistLoginInfo(
                   authorization = authorization,
                   cookie = cookie,
-                  userAgent = userAgent
+                  userAgent = userAgent ?: return null
                 )
                 composeNavigator.navigateAndClearBackStack(ChatGPTScreens.Channels.name)
 
-                Handler(Looper.getMainLooper()).post {
+                runOnUiThread {
                   Toast.makeText(context, R.string.toast_logged_in, Toast.LENGTH_SHORT).show()
                 }
               }
@@ -98,6 +127,12 @@ fun ChatGPTLogin(
         }
       }
     )
+  }
+}
+
+private inline fun runOnUiThread(crossinline block: () -> Unit) {
+  Handler(Looper.getMainLooper()).post {
+    block.invoke()
   }
 }
 

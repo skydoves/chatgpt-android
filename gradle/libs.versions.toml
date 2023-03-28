@@ -1,6 +1,6 @@
 [versions]
 streamChatSDK = "5.15.0"
-streamLog = "1.1.3"
+streamLog = "1.1.4"
 balloon = "1.5.2"
 landscapist = "2.1.9"
 androidDesugarJdkLibs = "1.1.5"

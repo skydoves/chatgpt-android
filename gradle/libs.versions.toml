@@ -1,5 +1,5 @@
 [versions]
-streamChatSDK = "5.17.1"
+streamChatSDK = "5.17.2"
 streamLog = "1.1.4"
 balloon = "1.5.3"
 landscapist = "2.1.9"

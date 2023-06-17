@@ -41,6 +41,7 @@ plugins {
   id("skydoves.spotless")
   id("kotlin-parcelize")
   id("dagger.hilt.android.plugin")
+  id(libs.plugins.baseline.profile.get().pluginId)
 }
 
 val keystoreProperties = Properties()

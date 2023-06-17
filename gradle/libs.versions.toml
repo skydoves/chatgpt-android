@@ -110,3 +110,4 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 gms-googleServices = "com.google.gms.google-services:4.3.14"
 firebase-crashlytics = "com.google.firebase.crashlytics:2.9.2"
+baseline-profile = { id = "androidx.baselineprofile", version.ref = "androidxMacroBenchmark" }

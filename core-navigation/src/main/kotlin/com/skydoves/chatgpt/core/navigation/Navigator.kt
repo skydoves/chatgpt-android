@@ -54,11 +54,13 @@ abstract class AppComposeNavigator : Navigator() {
       is ComposeNavigationCommand.NavigateToRoute -> {
         navigate(navigationCommand.route, navigationCommand.options)
       }
+
       NavigationCommand.NavigateUp -> navigateUp()
       is ComposeNavigationCommand.PopUpToRoute -> popBackStack(
         navigationCommand.route,
         navigationCommand.inclusive
       )
+
       is ComposeNavigationCommand.NavigateUpWithResult<*> -> {
         navUpWithResult(navigationCommand)
       }
@@ -82,6 +84,4 @@ abstract class AppComposeNavigator : Navigator() {
       navigateUp()
     }
   }
-
-  fun canNavUp(navController: NavController): Boolean = navController.backQueue.isNotEmpty()
 }

@@ -19,5 +19,9 @@ plugins {
   id("skydoves.spotless")
 }
 
+android {
+  namespace = "com.skydoves.chatgpt.core.preferences"
+}
+
 dependencies {
 }

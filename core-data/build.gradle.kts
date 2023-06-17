@@ -20,6 +20,10 @@ plugins {
   id("com.google.devtools.ksp")
 }
 
+android {
+  namespace = "com.skydoves.chatgpt.core.data"
+}
+
 dependencies {
   api(project(":core-model"))
   api(project(":core-network"))

@@ -20,6 +20,10 @@ plugins {
   id("com.google.devtools.ksp")
 }
 
+android {
+  namespace = "com.skydoves.chatgpt.core.model"
+}
+
 dependencies {
   api(libs.stream.client)
   api(libs.moshi)

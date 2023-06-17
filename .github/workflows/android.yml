@@ -46,4 +46,6 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: |
+          ./gradlew --scan --stacktrace \
+              assemble -x :benchmark:pixel6api31Setup -x :benchmark:pixel6api31NonMinifiedReleaseAndroidTest -x :benchmark:collectNonMinifiedReleaseBaselineProfile

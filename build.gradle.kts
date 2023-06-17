@@ -13,4 +13,5 @@ plugins {
   alias(libs.plugins.spotless) apply false
   alias(libs.plugins.gms.googleServices) apply false
   alias(libs.plugins.firebase.crashlytics) apply false
+  alias(libs.plugins.baseline.profile) apply false
 }

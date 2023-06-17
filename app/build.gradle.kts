@@ -41,6 +41,7 @@ plugins {
   id("skydoves.spotless")
   id("kotlin-parcelize")
   id("dagger.hilt.android.plugin")
+  id(libs.plugins.baseline.profile.get().pluginId)
 }
 
 val keystoreProperties = Properties()
@@ -131,6 +132,9 @@ dependencies {
   implementation(libs.firebase.analytics)
   implementation(libs.firebase.messaging)
   implementation(libs.firebase.crashlytics)
+
+  // baseline profile
+  baselineProfile(project(":benchmark"))
 }
 
 if (file("google-services.json").exists()) {

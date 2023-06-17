@@ -4,14 +4,10 @@ name: baseline-profiles
 # Workflow title
 run-name: ${{ github.actor }} requested a workflow
 
-# Event trigger so this actions gets executed every time a push is made on the main branch
+# This should be a manual trigger so this actions gets executed every time make a new pull request.
 # Change this event to what suits your project best.
 # Read more at https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 on:
-  # every Monday at 00:00
-  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-  schedule:
-    - cron: '0 0 * * 1'
   workflow_dispatch:
 
 # Environment variables (Optional)
@@ -55,16 +51,10 @@ jobs:
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
 
-      # Create google-services.json file
-      - name: Create google-services.json file
-        env:
-          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-        run: echo $GOOGLE_SERVICES_JSON | base64 --decode > app/google-services.json
-
       # This allows us to build most of what we need without the emulator running
       # and using resources
       - name: Build app and benchmark
-        run: ./gradlew :benchmark:assembleBenchmark :app:assembleBenchmark
+        run: ./gradlew :app:assembleBenchmark
 
       # Cleans managed device if previously settle and space currently is not available
       - name: Clean Managed Devices
@@ -72,16 +62,11 @@ jobs:
 
       # Generates Baseline Profile
       - name: Generate Baseline Profile
-        run: ./gradlew :benchmark:pixel2Api31BenchmarkAndroidTest -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Dorg.gradle.workers.max=4
-
-      # Sets the Baseline Profile on its proper place so it gets correctly bundled into Play Store
-      - name: Move & Rename Baseline Profiles
-        run: |
-          mv -f benchmark/build/outputs/managed_device_android_test_additional_output/pixel2Api31/BaselineProfileGenerator_startup-baseline-prof.txt app/src/main/baseline-prof.txt
+        run: ./gradlew generateBaselineProfile -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" -Pandroid.testInstrumentationRunnerArguments.androidx.benchmark.enabledRules=BaselineProfile -Pandroid.experimental.testOptions.managedDevices.setupTimeoutMinutes=20 -Dorg.gradle.workers.max=4
 
       # Create Pull Request
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "Generate baseline profiles"
           title: "Generate baseline profiles"

@@ -20,6 +20,10 @@ plugins {
   id("skydoves.spotless")
 }
 
+android {
+  namespace = "com.skydoves.chatgpt.core.navigation"
+}
+
 dependencies {
   implementation(project(":core-model"))
 

@@ -19,6 +19,10 @@ plugins {
   id("skydoves.spotless")
 }
 
+android {
+  namespace = "com.skydoves.chatgpt.core.designsystem"
+}
+
 dependencies {
   // image loading
   api(libs.landscapist.glide)

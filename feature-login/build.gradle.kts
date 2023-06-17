@@ -21,6 +21,10 @@ plugins {
   id("skydoves.spotless")
 }
 
+android {
+  namespace = "com.skydoves.chatgpt.feature.login"
+}
+
 dependencies {
   implementation(libs.androidx.lifecycle.runtimeCompose)
   implementation(libs.androidx.lifecycle.viewModelCompose)

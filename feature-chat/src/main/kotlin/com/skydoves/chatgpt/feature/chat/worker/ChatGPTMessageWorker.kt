@@ -54,35 +54,53 @@ internal class ChatGPTMessageWorker @AssistedInject constructor(
 
     val text = workerParams.inputData.getString(DATA_TEXT) ?: return Result.failure()
     val channelId = workerParams.inputData.getString(DATA_CHANNEL_ID) ?: return Result.failure()
-    val messageId = UUID.randomUUID().toString()
+    val conversationId = workerParams.inputData.getString(DATA_CONVERSATION_ID)
+    val parentId = workerParams.inputData.getString(DATA_PARENT_ID) ?: UUID.randomUUID().toString()
     val request = GPTChatRequest(
+      conversation_id = conversationId,
       messages = listOf(
         GPTMessage(
           id = UUID.randomUUID().toString(),
           content = GPTContent(parts = listOf(text))
         )
       ),
-      parent_message_id = messageId
+      parent_message_id = parentId
     )
     val response = repository.sendMessage(request)
     return if (response.isSuccess) {
-      sendStreamMessage(response.getOrThrow(), channelId)
+      val responseObj = response.getOrThrow()
+      val messageText = responseObj.message.content.parts.joinToString(separator = "\n")
+      val messageId = responseObj.message.id
+      sendStreamMessage(messageText, messageId, channelId, responseObj.conversation_id)
       streamLog { "worker success!" }
-      Result.success(Data.Builder().putString(DATA_SUCCESS, response.getOrThrow()).build())
+      Result.success(
+        Data.Builder()
+          .putString(DATA_SUCCESS, messageText)
+          .putString(DATA_MESSAGE_ID, messageId)
+          .build()
+      )
     } else {
       streamLog { "worker failure!" }
       Result.failure(Data.Builder().putString(DATA_FAILURE, response.messageOrNull ?: "").build())
     }
   }
 
-  private suspend fun sendStreamMessage(text: String, channelId: String) {
+  private suspend fun sendStreamMessage(
+    text: String,
+    messageId: String,
+    channelId: String,
+    conversationId: String
+  ) {
     val channelClient = chatClient.channel(channelId)
     channelClient.sendMessage(
       message = Message(
-        id = UUID.randomUUID().toString(),
+        id = messageId,
         cid = channelClient.cid,
         text = text,
-        extraData = mutableMapOf("ChatGPT" to true)
+        extraData = mutableMapOf(
+          MESSAGE_EXTRA_CHAT_GPT to true,
+          MESSAGE_EXTRA_CONVERSATION_ID to conversationId
+        )
       )
     ).await()
   }
@@ -92,5 +110,12 @@ internal class ChatGPTMessageWorker @AssistedInject constructor(
     const val DATA_CHANNEL_ID = "DATA_CHANNEL_ID"
     const val DATA_SUCCESS = "DATA_SUCCESS"
     const val DATA_FAILURE = "DATA_FAILURE"
+
+    const val DATA_CONVERSATION_ID = "DATA_CONVERSATION_ID"
+    const val DATA_MESSAGE_ID = "DATA_PARENT_ID"
+    const val DATA_PARENT_ID = "DATA_PARENT_ID"
+
+    const val MESSAGE_EXTRA_CHAT_GPT = "ChatGPT"
+    const val MESSAGE_EXTRA_CONVERSATION_ID = "conversation_id"
   }
 }

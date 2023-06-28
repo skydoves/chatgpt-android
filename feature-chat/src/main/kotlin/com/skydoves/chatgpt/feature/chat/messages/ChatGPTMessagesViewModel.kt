@@ -32,11 +32,16 @@ import com.skydoves.chatgpt.core.navigation.ChatGPTScreens.Companion.argument_ch
 import com.skydoves.chatgpt.core.preferences.Empty
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_FAILURE
+import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_MESSAGE_ID
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_SUCCESS
+import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.MESSAGE_EXTRA_CHAT_GPT
+import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.MESSAGE_EXTRA_CONVERSATION_ID
 import com.skydoves.viewmodel.lifecycle.viewModelLifecycleOwner
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.models.Message
+import io.getstream.chat.android.compose.state.messages.list.MessageItemState
+import io.getstream.chat.android.compose.state.messages.list.MessageListItemState
 import io.getstream.log.streamLog
 import java.util.UUID
 import javax.inject.Inject
@@ -78,17 +83,25 @@ class ChatGPTMessagesViewModel @Inject constructor(
     }
   }
 
-  fun sendMessage(text: String) {
+  fun sendMessage(text: String, messagesItems: List<MessageListItemState>) {
     messageItemSet.value += text
     viewModelScope.launch {
-      val workRequest = buildGPTMessageWorkerRequest(text)
+      val lastGptMessage = messagesItems
+        .filterIsInstance<MessageItemState>()
+        .filter { it.message.extraData[MESSAGE_EXTRA_CHAT_GPT] == true }
+        .maxByOrNull { it.message.createdAt?.time ?: 0 }
+        ?.message
+      val parentId = lastGptMessage?.id ?: UUID.randomUUID().toString()
+      val conversationId = lastGptMessage?.extraData?.get(MESSAGE_EXTRA_CONVERSATION_ID) as? String
+      val workRequest = buildGPTMessageWorkerRequest(text, parentId, conversationId)
       workManager.enqueue(workRequest)
 
       val workInfo = workManager.getWorkInfoByIdLiveData(workRequest.id)
       workInfo.observe(viewModelLifecycleOwner) {
         if (it.state == WorkInfo.State.SUCCEEDED) {
-          val data = it.outputData.getString(DATA_SUCCESS)
-          streamLog { "gpt message worker success: $data" }
+          val gptMessageText = it.outputData.getString(DATA_SUCCESS)
+          val gptMessageId = it.outputData.getString(DATA_MESSAGE_ID)
+          streamLog { "gpt message worker success: $gptMessageId $gptMessageText" }
           messageItemSet.value -= text
         } else if (it.state == WorkInfo.State.FAILED) {
           val error = it.outputData.getString(DATA_FAILURE) ?: ""
@@ -112,7 +125,11 @@ class ChatGPTMessagesViewModel @Inject constructor(
     ).await()
   }
 
-  private fun buildGPTMessageWorkerRequest(text: String): OneTimeWorkRequest {
+  private fun buildGPTMessageWorkerRequest(
+    text: String,
+    parentId: String,
+    conversationId: String?
+  ): OneTimeWorkRequest {
     val constraints = Constraints.Builder()
       .setRequiredNetworkType(NetworkType.CONNECTED)
       .build()
@@ -120,6 +137,8 @@ class ChatGPTMessagesViewModel @Inject constructor(
     val data = Data.Builder()
       .putString(ChatGPTMessageWorker.DATA_TEXT, text)
       .putString(ChatGPTMessageWorker.DATA_CHANNEL_ID, channelId)
+      .putString(ChatGPTMessageWorker.DATA_PARENT_ID, parentId)
+      .putString(ChatGPTMessageWorker.DATA_CONVERSATION_ID, conversationId)
       .build()
 
     return OneTimeWorkRequest.Builder(ChatGPTMessageWorker::class.java)

@@ -175,7 +175,10 @@ fun ChatGPTMessages(
               .align(Alignment.Center),
             viewModel = composerViewModel,
             onSendMessage = {
-              viewModel.sendMessage(text = it.text)
+              viewModel.sendMessage(
+                text = it.text,
+                messagesItems = listViewModel.currentMessagesState.messageItems
+              )
               composerViewModel.sendMessage(it)
             },
             onAttachmentsClick = {

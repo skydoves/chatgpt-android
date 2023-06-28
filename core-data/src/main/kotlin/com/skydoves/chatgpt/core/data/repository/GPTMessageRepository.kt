@@ -17,12 +17,13 @@
 package com.skydoves.chatgpt.core.data.repository
 
 import com.skydoves.chatgpt.core.model.GPTChatRequest
+import com.skydoves.chatgpt.core.model.GPTChatResponse
 import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.flow.Flow
 
 interface GPTMessageRepository {
 
-  suspend fun sendMessage(gptChatRequest: GPTChatRequest): ApiResponse<String>
+  suspend fun sendMessage(gptChatRequest: GPTChatRequest): ApiResponse<GPTChatResponse>
 
   fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean>
 }

@@ -36,6 +36,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 internal class GPTMessageRepositoryImpl @Inject constructor(
   @Dispatcher(ChatGPTDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
+  private val chatClient: ChatClient,
   private val chatGptService: ChatGPTService
 ) : GPTMessageRepository {
 
@@ -57,7 +58,7 @@ internal class GPTMessageRepositoryImpl @Inject constructor(
   }
 
   override fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean> = flow {
-    val result = ChatClient.instance().channel(cid).watch().await()
+    val result = chatClient.channel(cid).watch().await()
     result.onSuccessSuspend { channel ->
       val messages = channel.messages
       emit(messages.isEmpty())

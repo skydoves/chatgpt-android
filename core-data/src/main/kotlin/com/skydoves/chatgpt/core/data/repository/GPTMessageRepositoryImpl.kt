@@ -40,21 +40,19 @@ internal class GPTMessageRepositoryImpl @Inject constructor(
   private val chatGptService: ChatGPTService
 ) : GPTMessageRepository {
 
-  override suspend fun sendMessage(gptChatRequest: GPTChatRequest): ApiResponse<String> {
+  override suspend fun sendMessage(gptChatRequest: GPTChatRequest): ApiResponse<GPTChatResponse> {
     val mosih = Moshi.Builder().build()
     val json = mosih.adapter(GPTChatRequest::class.java).toJson(gptChatRequest)
     val requestBody = (json.trimIndent()).toRequestBody(
       contentType = "text/plain".toMediaType()
     )
     val response = chatGptService.sendMessage(requestBody)
-    val mappedResponse = response.mapSuccess {
+    return response.mapSuccess {
       val body = string()
       val chatMessage =
         body.split("\n").maxBy { it.length }.replace("data: ", "")
-      val gptChatResponse = mosih.adapter(GPTChatResponse::class.java).fromJson(chatMessage)!!
-      gptChatResponse.message.content.parts[0].trim()
+      mosih.adapter(GPTChatResponse::class.java).fromJson(chatMessage)!!
     }
-    return mappedResponse
   }
 
   override fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean> = flow {

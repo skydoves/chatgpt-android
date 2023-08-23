@@ -112,6 +112,9 @@ dependencies {
   // logger
   implementation(libs.stream.log)
 
+  // crash tracer & restorer
+  implementation(libs.snitcher)
+
   // firebase
   implementation(platform(libs.firebase.bom))
   implementation(libs.firebase.analytics)

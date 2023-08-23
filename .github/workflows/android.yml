@@ -24,28 +24,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.1.0
-
+      - uses: actions/checkout@v3
       - name: set up JDK
-        uses: actions/setup-java@v3.5.1
+        uses: actions/setup-java@v3
         with:
-          distribution: adopt
+          distribution: zulu
           java-version: 17
 
-      - name: Cache Gradle and wrapper
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
+      - uses: gradle/gradle-build-action@v2.7.1
       - name: Make Gradle executable
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
         run: |
           ./gradlew --scan --stacktrace \
-              assemble -x :benchmark:pixel6api31Setup -x :benchmark:pixel6api31NonMinifiedReleaseAndroidTest -x :benchmark:collectNonMinifiedReleaseBaselineProfile -x :app:minifyBenchmarkBenchmarkWithR8 -x :app:l8DexDesugarLibBenchmarkBenchmark
+              assemble -x :benchmark:pixel6api31Setup -x :benchmark:pixel6api31NonMinifiedReleaseAndroidTest -x :benchmark:collectNonMinifiedReleaseBaselineProfile

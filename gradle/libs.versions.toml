@@ -38,6 +38,7 @@ retrofit = "2.9.0"
 sandwich = "1.3.8"
 moshi="1.15.0"
 spotless = "6.7.0"
+snitcher = "1.0.1"
 webviewInspector = "1.0.2"
 firebaseBom = "32.1.1"
 
@@ -86,6 +87,7 @@ kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 sandwich = { group = "com.github.skydoves", name = "sandwich", version.ref = "sandwich" }
+snitcher = { group = "com.github.skydoves", name = "snitcher", version.ref = "snitcher" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }

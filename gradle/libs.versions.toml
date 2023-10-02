@@ -2,7 +2,7 @@
 streamChatSDK = "5.17.10"
 streamLog = "1.1.4"
 balloon = "1.6.0"
-landscapist = "2.2.8"
+landscapist = "2.2.10"
 androidDesugarJdkLibs = "2.0.3"
 androidGradlePlugin = "8.1.1"
 androidxActivity = "1.7.2"

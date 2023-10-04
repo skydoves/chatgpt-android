@@ -18,7 +18,6 @@ plugins {
   id("skydoves.android.library")
   id("skydoves.android.hilt")
   id("skydoves.spotless")
-  id("com.google.devtools.ksp")
 }
 
 android {

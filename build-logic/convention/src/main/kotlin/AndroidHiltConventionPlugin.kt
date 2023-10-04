@@ -8,7 +8,7 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) {
     with(target) {
       with(pluginManager) {
-        apply("org.jetbrains.kotlin.kapt")
+        apply("com.google.devtools.ksp")
       }
 
       val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
@@ -16,7 +16,7 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
       dependencies {
         add("implementation", libs.findLibrary("hilt.android").get())
         add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
-        add("kapt", libs.findLibrary("hilt.compiler").get())
+        add("ksp", libs.findLibrary("hilt.compiler").get())
       }
     }
   }

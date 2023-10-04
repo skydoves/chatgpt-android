@@ -26,6 +26,7 @@ plugins {
   id("skydoves.spotless")
   id("kotlin-parcelize")
   id("dagger.hilt.android.plugin")
+  id("com.google.devtools.ksp")
   id(libs.plugins.baseline.profile.get().pluginId)
 }
 
@@ -47,7 +48,7 @@ android {
     versionName = Configurations.versionName
   }
 
-  packagingOptions {
+  packaging {
     resources {
       excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }
@@ -105,7 +106,7 @@ dependencies {
   implementation(libs.androidx.startup)
   implementation(libs.hilt.android)
   implementation(libs.androidx.hilt.navigation.compose)
-  kapt(libs.hilt.compiler)
+  ksp(libs.hilt.compiler)
 
   // image loading
   implementation(libs.landscapist.glide)

@@ -43,10 +43,10 @@ internal class ChatGPTMessageWorker @AssistedInject constructor(
   @Assisted private val workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
 
-  @set:Inject
+  @Inject
   internal lateinit var repository: GPTMessageRepository
 
-  @set:Inject
+  @Inject
   internal lateinit var chatClient: ChatClient
 
   override suspend fun doWork(): Result {

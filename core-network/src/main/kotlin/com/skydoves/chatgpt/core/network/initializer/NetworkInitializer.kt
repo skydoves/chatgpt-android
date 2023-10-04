@@ -25,7 +25,7 @@ import javax.inject.Inject
 
 class NetworkInitializer : Initializer<Unit> {
 
-  @set:Inject
+  @Inject
   internal lateinit var globalOperator: ClearCacheGlobalOperator<Any>
 
   override fun create(context: Context) {

@@ -39,7 +39,7 @@ import kotlin.random.Random
  */
 class StreamChatInitializer : Initializer<Unit> {
 
-  @set:Inject
+  @Inject
   internal lateinit var preferences: Preferences
 
   override fun create(context: Context) {

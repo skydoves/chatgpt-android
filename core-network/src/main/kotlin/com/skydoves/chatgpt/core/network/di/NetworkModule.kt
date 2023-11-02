@@ -21,7 +21,7 @@ import com.skydoves.chatgpt.core.network.GPTInterceptor
 import com.skydoves.chatgpt.core.network.operator.ClearCacheGlobalOperator
 import com.skydoves.chatgpt.core.network.service.ChatGPTService
 import com.skydoves.chatgpt.core.preferences.Preferences
-import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
+import com.skydoves.sandwich.retrofit.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

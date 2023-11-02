@@ -26,6 +26,7 @@ import com.skydoves.chatgpt.core.network.R
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.StatusCode
 import com.skydoves.sandwich.operators.ApiResponseSuspendOperator
+import com.skydoves.sandwich.retrofit.statusCode
 import io.getstream.log.streamLog
 import javax.inject.Inject
 
@@ -35,7 +36,7 @@ internal class ClearCacheGlobalOperator<T> @Inject constructor(
 
   override suspend fun onSuccess(apiResponse: ApiResponse.Success<T>) = Unit
 
-  override suspend fun onException(apiResponse: ApiResponse.Failure.Exception<T>) {
+  override suspend fun onException(apiResponse: ApiResponse.Failure.Exception) {
     CookieManager.getInstance().removeAllCookies(null)
     CookieManager.getInstance().flush()
 
@@ -47,7 +48,7 @@ internal class ClearCacheGlobalOperator<T> @Inject constructor(
     }
   }
 
-  override suspend fun onError(apiResponse: ApiResponse.Failure.Error<T>) {
+  override suspend fun onError(apiResponse: ApiResponse.Failure.Error) {
     when (apiResponse.statusCode) {
       StatusCode.Unauthorized, StatusCode.Forbidden -> {
         streamLog { "clear cache & histories for Unauthorized and Forbidden" }
@@ -68,6 +69,7 @@ internal class ClearCacheGlobalOperator<T> @Inject constructor(
           ).show()
         }
       }
+
       else -> Unit
     }
   }

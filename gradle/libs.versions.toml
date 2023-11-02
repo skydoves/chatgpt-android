@@ -86,7 +86,7 @@ viewmodel-lifecycle = { group = "com.github.skydoves", name = "viewmodel-lifecyc
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
-sandwich = { group = "com.github.skydoves", name = "sandwich", version.ref = "sandwich" }
+sandwich = { group = "com.github.skydoves", name = "sandwich-retrofit", version.ref = "sandwich" }
 snitcher = { group = "com.github.skydoves", name = "snitcher", version.ref = "snitcher" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }

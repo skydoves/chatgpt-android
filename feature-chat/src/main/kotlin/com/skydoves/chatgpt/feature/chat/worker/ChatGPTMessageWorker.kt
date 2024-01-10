@@ -32,7 +32,7 @@ import com.skydoves.sandwich.messageOrNull
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import io.getstream.chat.android.client.ChatClient
-import io.getstream.chat.android.client.models.Message
+import io.getstream.chat.android.models.Message
 import io.getstream.log.streamLog
 import java.util.UUID
 import javax.inject.Inject

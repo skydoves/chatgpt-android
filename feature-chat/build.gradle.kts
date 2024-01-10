@@ -30,6 +30,7 @@ android {
 dependencies {
   // Stream chat Compose
   api(libs.stream.compose)
+  api(libs.stream.offline)
 
   implementation(libs.androidx.lifecycle.runtimeCompose)
   implementation(libs.androidx.lifecycle.viewModelCompose)

@@ -54,22 +54,9 @@ import com.skydoves.chatgpt.core.data.chat.commonChannelId
 import com.skydoves.chatgpt.core.navigation.AppComposeNavigator
 import com.skydoves.chatgpt.feature.chat.R
 import com.skydoves.chatgpt.feature.chat.theme.ChatGPTStreamTheme
-import io.getstream.chat.android.client.models.Channel
-import io.getstream.chat.android.client.models.Message
-import io.getstream.chat.android.common.state.Delete
-import io.getstream.chat.android.common.state.DeletedMessageVisibility
-import io.getstream.chat.android.common.state.Flag
-import io.getstream.chat.android.common.state.MessageFooterVisibility
-import io.getstream.chat.android.common.state.MessageMode
-import io.getstream.chat.android.common.state.Reply
-import io.getstream.chat.android.compose.state.imagepreview.ImagePreviewResult
-import io.getstream.chat.android.compose.state.imagepreview.ImagePreviewResultType
+import io.getstream.chat.android.compose.state.mediagallerypreview.MediaGalleryPreviewResult
+import io.getstream.chat.android.compose.state.mediagallerypreview.MediaGalleryPreviewResultType
 import io.getstream.chat.android.compose.state.messageoptions.MessageOptionItemState
-import io.getstream.chat.android.compose.state.messages.SelectedMessageOptionsState
-import io.getstream.chat.android.compose.state.messages.SelectedMessageReactionsPickerState
-import io.getstream.chat.android.compose.state.messages.SelectedMessageReactionsState
-import io.getstream.chat.android.compose.state.messages.SelectedMessageState
-import io.getstream.chat.android.compose.state.messages.list.MessageItemState
 import io.getstream.chat.android.compose.ui.components.SimpleDialog
 import io.getstream.chat.android.compose.ui.components.messageoptions.defaultMessageOptionsState
 import io.getstream.chat.android.compose.ui.components.reactionpicker.ReactionsPicker
@@ -85,9 +72,20 @@ import io.getstream.chat.android.compose.viewmodel.messages.AttachmentsPickerVie
 import io.getstream.chat.android.compose.viewmodel.messages.MessageComposerViewModel
 import io.getstream.chat.android.compose.viewmodel.messages.MessageListViewModel
 import io.getstream.chat.android.compose.viewmodel.messages.MessagesViewModelFactory
-import io.getstream.chat.android.core.internal.InternalStreamChatApi
+import io.getstream.chat.android.models.Channel
+import io.getstream.chat.android.models.Message
+import io.getstream.chat.android.ui.common.state.messages.Delete
+import io.getstream.chat.android.ui.common.state.messages.Flag
+import io.getstream.chat.android.ui.common.state.messages.MessageMode
+import io.getstream.chat.android.ui.common.state.messages.Reply
+import io.getstream.chat.android.ui.common.state.messages.list.DeletedMessageVisibility
+import io.getstream.chat.android.ui.common.state.messages.list.MessageFooterVisibility
+import io.getstream.chat.android.ui.common.state.messages.list.MessageItemState
+import io.getstream.chat.android.ui.common.state.messages.list.SelectedMessageOptionsState
+import io.getstream.chat.android.ui.common.state.messages.list.SelectedMessageReactionsPickerState
+import io.getstream.chat.android.ui.common.state.messages.list.SelectedMessageReactionsState
+import io.getstream.chat.android.ui.common.state.messages.list.SelectedMessageState
 
-@OptIn(InternalStreamChatApi::class)
 @Composable
 fun ChatGPTMessages(
   channelId: String,
@@ -96,7 +94,6 @@ fun ChatGPTMessages(
   messageLimit: Int = 30,
   showHeader: Boolean = true,
   enforceUniqueReactions: Boolean = true,
-  showDateSeparators: Boolean = true,
   showSystemMessages: Boolean = true,
   deletedMessageVisibility: DeletedMessageVisibility = DeletedMessageVisibility.ALWAYS_VISIBLE,
   messageFooterVisibility: MessageFooterVisibility = MessageFooterVisibility.WithTimeDifference(),
@@ -109,7 +106,6 @@ fun ChatGPTMessages(
     enforceUniqueReactions = enforceUniqueReactions,
     messageLimit = messageLimit,
     showSystemMessages = showSystemMessages,
-    showDateSeparators = showDateSeparators,
     deletedMessageVisibility = deletedMessageVisibility,
     messageFooterVisibility = messageFooterVisibility
   )
@@ -127,11 +123,13 @@ fun ChatGPTMessages(
       attachmentsPickerViewModel.isShowingAttachments ->
         attachmentsPickerViewModel
           .changeAttachmentState(false)
+
       isShowingOverlay -> listViewModel.selectMessage(null)
       isInThread -> {
         listViewModel.leaveThread()
         composerViewModel.leaveThread()
       }
+
       else -> onBackPressed()
     }
   }
@@ -163,7 +161,7 @@ fun ChatGPTMessages(
               connectionState = connectionState,
               messageMode = messageMode,
               onBackPressed = backAction,
-              onHeaderActionClick = onHeaderActionClick
+              onHeaderTitleClick = onHeaderActionClick
             )
           }
         },
@@ -200,12 +198,14 @@ fun ChatGPTMessages(
             .background(ChatTheme.colors.appBackground)
             .padding(it),
           viewModel = listViewModel,
-          lazyListState = rememberMessageListState(parentMessageId = currentState.parentMessageId),
+          messagesLazyListState = rememberMessageListState(
+            parentMessageId = currentState.parentMessageId
+          ),
           onThreadClick = { message ->
             composerViewModel.setMessageMode(MessageMode.MessageThread(message))
             listViewModel.openMessageThread(message)
           },
-          onImagePreviewResult = { result ->
+          onMediaGalleryPreviewResult = { result ->
             imagePreviewResultAction(
               result,
               listViewModel,
@@ -233,13 +233,13 @@ fun ChatGPTMessages(
           }
 
           MessageContainer(
-            messageListItem = messageState,
+            messageListItemState = messageState,
             onLongItemClick = { message -> listViewModel.selectMessage(message) },
             onReactionsClick = { message -> listViewModel.selectReactions(message) },
             onThreadClick = { message -> listViewModel.openMessageThread(message) },
             onGiphyActionClick = { action -> listViewModel.performGiphyAction(action) },
-            onQuotedMessageClick = { message -> listViewModel.scrollToSelectedMessage(message) },
-            onImagePreviewResult = { result ->
+            onQuotedMessageClick = { message -> listViewModel.scrollToMessage(message.id, null) },
+            onMediaGalleryPreviewResult = { result ->
               imagePreviewResultAction(
                 result,
                 listViewModel,
@@ -261,22 +261,28 @@ fun ChatGPTMessages(
 }
 
 private fun imagePreviewResultAction(
-  result: ImagePreviewResult?,
+  result: MediaGalleryPreviewResult?,
   listViewModel: MessageListViewModel,
   composerViewModel: MessageComposerViewModel
 ) {
   when (result?.resultType) {
-    ImagePreviewResultType.QUOTE -> {
-      val message = listViewModel.getMessageWithId(result.messageId)
+    MediaGalleryPreviewResultType.QUOTE -> {
+      val message = listViewModel.getMessageById(result.messageId)
 
       if (message != null) {
-        composerViewModel.performMessageAction(Reply(message))
+        composerViewModel.performMessageAction(
+          Reply(message)
+        )
       }
     }
 
-    ImagePreviewResultType.SHOW_IN_CHAT -> {
-      listViewModel.focusMessage(result.messageId)
+    MediaGalleryPreviewResultType.SHOW_IN_CHAT -> {
+      listViewModel.scrollToMessage(
+        messageId = result.messageId,
+        parentMessageId = result.parentMessageId
+      )
     }
+
     null -> Unit
   }
 }

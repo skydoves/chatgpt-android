@@ -39,9 +39,9 @@ import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.M
 import com.skydoves.viewmodel.lifecycle.viewModelLifecycleOwner
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.chat.android.client.ChatClient
-import io.getstream.chat.android.client.models.Message
-import io.getstream.chat.android.compose.state.messages.list.MessageItemState
-import io.getstream.chat.android.compose.state.messages.list.MessageListItemState
+import io.getstream.chat.android.models.Message
+import io.getstream.chat.android.ui.common.state.messages.list.MessageItemState
+import io.getstream.chat.android.ui.common.state.messages.list.MessageListItemState
 import io.getstream.log.streamLog
 import java.util.UUID
 import javax.inject.Inject

@@ -20,9 +20,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.skydoves.chatgpt.core.data.repository.GPTChannelRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.getstream.chat.android.client.utils.onError
-import io.getstream.chat.android.client.utils.onSuccessSuspend
 import io.getstream.log.streamLog
+import io.getstream.result.onSuccessSuspend
 import javax.inject.Inject
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

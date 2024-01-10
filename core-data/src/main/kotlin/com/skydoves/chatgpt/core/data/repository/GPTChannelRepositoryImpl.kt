@@ -20,10 +20,10 @@ import com.skydoves.chatgpt.core.data.chat.chatGPTUser
 import com.skydoves.chatgpt.core.data.chat.commonChannelId
 import com.skydoves.chatgpt.core.preferences.Preferences
 import io.getstream.chat.android.client.ChatClient
-import io.getstream.chat.android.client.models.Channel
-import io.getstream.chat.android.client.models.User
-import io.getstream.chat.android.client.utils.Result
-import io.getstream.chat.android.client.utils.onSuccessSuspend
+import io.getstream.chat.android.models.Channel
+import io.getstream.chat.android.models.User
+import io.getstream.result.Result
+import io.getstream.result.onSuccessSuspend
 import java.util.Random
 import java.util.UUID
 import javax.inject.Inject

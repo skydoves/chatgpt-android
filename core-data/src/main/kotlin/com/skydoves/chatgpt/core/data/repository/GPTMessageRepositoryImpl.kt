@@ -25,7 +25,7 @@ import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.mapSuccess
 import com.squareup.moshi.Moshi
 import io.getstream.chat.android.client.ChatClient
-import io.getstream.chat.android.client.utils.onSuccessSuspend
+import io.getstream.result.onSuccessSuspend
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

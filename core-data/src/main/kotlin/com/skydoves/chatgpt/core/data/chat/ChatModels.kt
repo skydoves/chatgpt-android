@@ -16,7 +16,7 @@
 
 package com.skydoves.chatgpt.core.data.chat
 
-import io.getstream.chat.android.client.models.User
+import io.getstream.chat.android.models.User
 
 val chatGPTUser = User(
   id = "70ef052a-da88-4451-af92-99f7ed335a71",

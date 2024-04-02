@@ -39,7 +39,7 @@ sandwich = "2.0.5"
 moshi="1.15.0"
 spotless = "6.7.0"
 snitcher = "1.0.3"
-webviewInspector = "1.0.2"
+webviewInspector = "1.0.6"
 firebaseBom = "32.1.1"
 
 [libraries]

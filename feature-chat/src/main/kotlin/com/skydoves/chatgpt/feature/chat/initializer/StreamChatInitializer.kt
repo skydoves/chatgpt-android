@@ -62,7 +62,7 @@ class StreamChatInitializer : Initializer<Unit> {
       ),
       appContext = context
     )
-    val chatClient = ChatClient.Builder(BuildConfig.STREAM_CHAT_SDK, context)
+    val chatClient = ChatClient.Builder(BuildConfig.STREAM_API_KEY, context)
       .withPlugins(offlinePluginFactory, statePluginFactory)
       .logLevel(logLevel)
       .build()

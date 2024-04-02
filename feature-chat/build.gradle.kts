@@ -21,10 +21,15 @@ plugins {
   id("skydoves.android.feature")
   id("skydoves.android.hilt")
   id("skydoves.spotless")
+  id(libs.plugins.google.secrets.get().pluginId)
 }
 
 android {
   namespace = "com.skydoves.chatgpt.feature.chat"
+
+  buildFeatures {
+    buildConfig = true
+  }
 }
 
 dependencies {
@@ -43,12 +48,7 @@ dependencies {
   implementation(libs.balloon.compose)
 }
 
-android {
-  defaultConfig {
-    buildConfigField(
-      "String",
-      "STREAM_CHAT_SDK",
-      "\"" + gradleLocalProperties(rootDir).getProperty("STREAM_CHAT_SDK", "") + "\""
-    )
-  }
+secrets {
+  propertiesFileName = "secrets.properties"
+  defaultPropertiesFileName = "secrets.defaults.properties"
 }

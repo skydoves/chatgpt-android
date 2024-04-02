@@ -27,6 +27,7 @@ plugins {
   id("kotlin-parcelize")
   id("dagger.hilt.android.plugin")
   id("com.google.devtools.ksp")
+  id(libs.plugins.google.secrets.get().pluginId)
   id(libs.plugins.baseline.profile.get().pluginId)
 }
 
@@ -80,6 +81,11 @@ android {
       proguardFiles("benchmark-rules.pro")
     }
   }
+}
+
+secrets {
+  propertiesFileName = "secrets.properties"
+  defaultPropertiesFileName = "secrets.defaults.properties"
 }
 
 dependencies {

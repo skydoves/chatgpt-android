@@ -18,7 +18,6 @@ package com.skydoves.chatgpt.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
-import com.skydoves.chatgpt.core.network.initializer.NetworkInitializer
 import com.skydoves.chatgpt.feature.chat.initializer.StreamChatInitializer
 
 class AppInitializer : Initializer<Unit> {
@@ -26,7 +25,6 @@ class AppInitializer : Initializer<Unit> {
   override fun create(context: Context) = Unit
 
   override fun dependencies(): List<Class<out Initializer<*>>> = listOf(
-    StreamChatInitializer::class.java,
-    NetworkInitializer::class.java
+    StreamChatInitializer::class.java
   )
 }

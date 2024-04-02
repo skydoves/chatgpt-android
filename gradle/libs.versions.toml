@@ -40,7 +40,6 @@ sandwich = "2.0.6"
 moshi="1.15.1"
 spotless = "6.7.0"
 snitcher = "1.0.3"
-webviewInspector = "1.0.2"
 firebaseBom = "32.1.1"
 
 [libraries]
@@ -94,7 +93,6 @@ retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.r
 retrofit-moshi-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
-webview-inspector = { module = "com.github.acsbendi:Android-Request-Inspector-WebView", version.ref = "webviewInspector" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging" }

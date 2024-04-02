@@ -18,8 +18,6 @@ package com.skydoves.chatgpt.core.data.di
 
 import com.skydoves.chatgpt.core.data.repository.GPTChannelRepository
 import com.skydoves.chatgpt.core.data.repository.GPTChannelRepositoryImpl
-import com.skydoves.chatgpt.core.data.repository.GPTLoginRepository
-import com.skydoves.chatgpt.core.data.repository.GPTLoginRepositoryImpl
 import com.skydoves.chatgpt.core.data.repository.GPTMessageRepository
 import com.skydoves.chatgpt.core.data.repository.GPTMessageRepositoryImpl
 import dagger.Binds
@@ -40,9 +38,4 @@ internal interface DataModule {
   fun bindsChatGPTMessagesRepository(
     gptMessageRepository: GPTMessageRepositoryImpl
   ): GPTMessageRepository
-
-  @Binds
-  fun bindChatGPTLoginRepository(
-    gptLoginRepository: GPTLoginRepositoryImpl
-  ): GPTLoginRepository
 }

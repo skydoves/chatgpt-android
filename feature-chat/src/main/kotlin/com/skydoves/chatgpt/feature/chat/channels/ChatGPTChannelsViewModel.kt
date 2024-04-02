@@ -87,8 +87,11 @@ sealed interface GPTChannelEvent {
 }
 
 sealed interface GPTChannelUiState {
-  object Nothing : GPTChannelUiState
-  object Loading : GPTChannelUiState
+  data object Nothing : GPTChannelUiState
+
+  data object Loading : GPTChannelUiState
+
   data class Success(val channelId: String) : GPTChannelUiState
-  object Error : GPTChannelUiState
+
+  data object Error : GPTChannelUiState
 }

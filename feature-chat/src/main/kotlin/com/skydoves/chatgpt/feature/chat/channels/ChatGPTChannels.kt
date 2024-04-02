@@ -30,7 +30,6 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,6 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.skydoves.balloon.compose.Balloon
 import com.skydoves.chatgpt.core.designsystem.component.ChatGPTLoadingIndicator
 import com.skydoves.chatgpt.core.designsystem.composition.LocalOnFinishDispatcher
@@ -56,7 +56,7 @@ fun ChatGPTChannels(
   viewModel: ChatGPTChannelsViewModel = hiltViewModel(),
   onFinishDispatcher: (() -> Unit)? = LocalOnFinishDispatcher.current
 ) {
-  val uiState by viewModel.channelUiState.collectAsState()
+  val uiState by viewModel.channelUiState.collectAsStateWithLifecycle()
 
   HandleGPTChannelsUiState(uiState = uiState)
 
@@ -70,7 +70,8 @@ fun ChatGPTChannels(
         onBackPressed = { onFinishDispatcher?.invoke() }
       )
 
-      val isBalloonChannelDisplayed by viewModel.isBalloonDisplayedState.collectAsState()
+      val isBalloonDisplayed by viewModel.isBalloonDisplayedState.collectAsStateWithLifecycle()
+
       Balloon(
         modifier = Modifier
           .align(Alignment.BottomEnd)
@@ -88,8 +89,9 @@ fun ChatGPTChannels(
           )
         }
       ) { balloonWindow ->
+
         LaunchedEffect(key1 = Unit) {
-          if (!isBalloonChannelDisplayed) {
+          if (!isBalloonDisplayed) {
             balloonWindow.showAlignTop()
           }
 
@@ -132,11 +134,13 @@ private fun HandleGPTChannelsUiState(
         R.string.toast_success_create_channel,
         Toast.LENGTH_SHORT
       ).show()
+
       is GPTChannelUiState.Error -> Toast.makeText(
         context,
         R.string.toast_error,
         Toast.LENGTH_SHORT
       ).show()
+
       else -> Unit
     }
   }

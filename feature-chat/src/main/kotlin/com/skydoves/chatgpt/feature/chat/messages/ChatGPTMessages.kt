@@ -37,7 +37,6 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,6 +47,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.skydoves.chatgpt.core.data.chat.chatGPTUser
 import com.skydoves.chatgpt.core.data.chat.commonChannelId
@@ -145,9 +145,9 @@ fun ChatGPTMessages(
         topBar = {
           if (showHeader) {
             val messageMode = listViewModel.messageMode
-            val connectionState by listViewModel.connectionState.collectAsState()
-            val user by listViewModel.user.collectAsState()
-            val isLoading by viewModel.isLoading.collectAsState()
+            val connectionState by listViewModel.connectionState.collectAsStateWithLifecycle()
+            val user by listViewModel.user.collectAsStateWithLifecycle()
+            val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
 
             MessageListHeader(
               modifier = Modifier.height(62.dp),
@@ -399,7 +399,7 @@ private fun BoxScope.MessagesScreenMenus(
   selectedMessageState: SelectedMessageState?,
   selectedMessage: Message
 ) {
-  val user by listViewModel.user.collectAsState()
+  val user by listViewModel.user.collectAsStateWithLifecycle()
 
   val ownCapabilities = selectedMessageState?.ownCapabilities ?: setOf()
 
@@ -500,8 +500,8 @@ private fun HandleToastMessages(
   viewModel: ChatGPTMessagesViewModel = hiltViewModel()
 ) {
   val context = LocalContext.current
-  val isMessageEmpty by viewModel.isMessageEmpty.collectAsState()
-  val error by viewModel.errorMessage.collectAsState()
+  val isMessageEmpty by viewModel.isMessageEmpty.collectAsStateWithLifecycle()
+  val error by viewModel.errorMessage.collectAsStateWithLifecycle()
 
   LaunchedEffect(key1 = isMessageEmpty) {
     if (isMessageEmpty) {

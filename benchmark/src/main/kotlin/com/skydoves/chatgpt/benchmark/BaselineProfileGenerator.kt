@@ -33,7 +33,7 @@ class BaselineProfileGenerator {
   @Test
   fun startup() =
     baselineProfileRule.collect(
-      packageName = "com.skydoves.chatgpt",
+      packageName = CHATGPT_ANDROID_PACKAGE_NAME,
       includeInStartupProfile = true
     ) {
       pressHome()

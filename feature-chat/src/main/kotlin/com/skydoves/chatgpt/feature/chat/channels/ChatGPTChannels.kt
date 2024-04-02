@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:OptIn(ExperimentalComposeUiApi::class)
+
 package com.skydoves.chatgpt.feature.chat.channels
 
 import android.widget.Toast
@@ -32,9 +34,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -61,7 +66,11 @@ fun ChatGPTChannels(
   HandleGPTChannelsUiState(uiState = uiState)
 
   ChatGPTStreamTheme {
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(
+      modifier = modifier
+        .fillMaxSize()
+        .semantics { testTagsAsResourceId = true }
+    ) {
       ChannelsScreen(
         isShowingHeader = false,
         onItemClick = { channel ->

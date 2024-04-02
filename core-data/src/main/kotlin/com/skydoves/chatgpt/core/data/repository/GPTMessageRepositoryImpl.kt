@@ -16,14 +16,12 @@
 
 package com.skydoves.chatgpt.core.data.repository
 
-import com.skydoves.chatgpt.core.model.GPTChatRequest
-import com.skydoves.chatgpt.core.model.GPTChatResponse
+import com.skydoves.chatgpt.core.model.network.GPTChatRequest
+import com.skydoves.chatgpt.core.model.network.GPTChatResponse
 import com.skydoves.chatgpt.core.network.ChatGPTDispatchers
 import com.skydoves.chatgpt.core.network.Dispatcher
 import com.skydoves.chatgpt.core.network.service.ChatGPTService
 import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.mapSuccess
-import com.squareup.moshi.Moshi
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.result.onSuccessSuspend
 import javax.inject.Inject
@@ -31,8 +29,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.toRequestBody
 
 internal class GPTMessageRepositoryImpl @Inject constructor(
   @Dispatcher(ChatGPTDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
@@ -41,18 +37,7 @@ internal class GPTMessageRepositoryImpl @Inject constructor(
 ) : GPTMessageRepository {
 
   override suspend fun sendMessage(gptChatRequest: GPTChatRequest): ApiResponse<GPTChatResponse> {
-    val mosih = Moshi.Builder().build()
-    val json = mosih.adapter(GPTChatRequest::class.java).toJson(gptChatRequest)
-    val requestBody = (json.trimIndent()).toRequestBody(
-      contentType = "text/plain".toMediaType()
-    )
-    val response = chatGptService.sendMessage(requestBody)
-    return response.mapSuccess {
-      val body = string()
-      val chatMessage =
-        body.split("\n").maxBy { it.length }.replace("data: ", "")
-      mosih.adapter(GPTChatResponse::class.java).fromJson(chatMessage)!!
-    }
+    return chatGptService.sendMessage(gptChatRequest)
   }
 
   override fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean> = flow {

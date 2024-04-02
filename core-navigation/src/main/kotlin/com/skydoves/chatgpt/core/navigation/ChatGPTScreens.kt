@@ -22,19 +22,18 @@ import androidx.navigation.navArgument
 
 sealed class ChatGPTScreens(
   val route: String,
-  val index: Int? = null,
   val navArguments: List<NamedNavArgument> = emptyList()
 ) {
   val name: String = route.appendArguments(navArguments)
 
-  // channel screen
-  object Channels : ChatGPTScreens("channels")
-
   // login screen
-  object Login : ChatGPTScreens("login")
+  data object Login : ChatGPTScreens("login")
+
+  // channel screen
+  data object Channels : ChatGPTScreens("channels")
 
   // message screen
-  object Messages : ChatGPTScreens(
+  data object Messages : ChatGPTScreens(
     route = "messages",
     navArguments = listOf(navArgument(argument_channel_id) { type = NavType.StringType })
   ) {

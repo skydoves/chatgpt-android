@@ -20,7 +20,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class GPTContent(
-  @field:Json(name = "content_type") val content_type: String = "text",
-  @field:Json(name = "parts") val parts: List<String> = listOf()
+data class GPTChoice(
+  @field:Json(name = "index") val index: Int,
+  @field:Json(name = "message") val message: GPTMessage,
+  @field:Json(name = "logprobs") val logProbs: String?,
+  @field:Json(name = "finish_reason") val finishReason: String?
 )

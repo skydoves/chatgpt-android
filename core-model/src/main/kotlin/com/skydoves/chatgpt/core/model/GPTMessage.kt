@@ -21,7 +21,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class GPTMessage(
-  @field:Json(name = "id") val id: String,
-  @field:Json(name = "role") val role: String = "user",
-  @field:Json(name = "content") val content: GPTContent = GPTContent()
+  @field:Json(name = "role") val role: String,
+  @field:Json(name = "content") val content: String
 )

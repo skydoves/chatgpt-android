@@ -17,10 +17,10 @@
 package com.skydoves.chatgpt.core.network.di
 
 import android.content.Context
+import com.skydoves.chatgpt.core.network.BuildConfig
 import com.skydoves.chatgpt.core.network.GPTInterceptor
 import com.skydoves.chatgpt.core.network.operator.ClearCacheGlobalOperator
 import com.skydoves.chatgpt.core.network.service.ChatGPTService
-import com.skydoves.chatgpt.core.preferences.Preferences
 import com.skydoves.sandwich.retrofit.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -30,7 +30,9 @@ import dagger.hilt.components.SingletonComponent
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 
 @Module
@@ -39,12 +41,21 @@ internal object NetworkModule {
 
   @Provides
   @Singleton
-  fun provideOkHttpClient(preferences: Preferences): OkHttpClient {
+  fun provideOkHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
-      .addInterceptor(GPTInterceptor(preferences))
+      .addInterceptor(GPTInterceptor())
       .connectTimeout(60, TimeUnit.SECONDS)
       .readTimeout(60, TimeUnit.SECONDS)
       .writeTimeout(15, TimeUnit.SECONDS)
+      .apply {
+        if (BuildConfig.DEBUG) {
+          this.addNetworkInterceptor(
+            HttpLoggingInterceptor().apply {
+              level = HttpLoggingInterceptor.Level.BODY
+            }
+          )
+        }
+      }
       .build()
   }
 
@@ -53,7 +64,8 @@ internal object NetworkModule {
   fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
       .client(okHttpClient)
-      .baseUrl("https://chat.openai.com/")
+      .baseUrl("https://api.openai.com/")
+      .addConverterFactory(MoshiConverterFactory.create())
       .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
       .build()
   }

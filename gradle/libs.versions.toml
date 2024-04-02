@@ -91,6 +91,7 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 sandwich = { group = "com.github.skydoves", name = "sandwich-retrofit", version.ref = "sandwich" }
 snitcher = { group = "com.github.skydoves", name = "snitcher", version.ref = "snitcher" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-moshi-converter = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 webview-inspector = { module = "com.github.acsbendi:Android-Request-Inspector-WebView", version.ref = "webviewInspector" }

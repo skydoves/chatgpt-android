@@ -18,10 +18,15 @@ plugins {
   id("skydoves.android.library")
   id("skydoves.android.hilt")
   id("skydoves.spotless")
+  id(libs.plugins.google.secrets.get().pluginId)
 }
 
 android {
   namespace = "com.skydoves.chatgpt.core.network"
+
+  buildFeatures {
+    buildConfig = true
+  }
 }
 
 dependencies {
@@ -33,5 +38,11 @@ dependencies {
 
   api(libs.okhttp.logging)
   api(libs.retrofit.core)
+  api(libs.retrofit.moshi.converter)
   api(libs.sandwich)
+}
+
+secrets {
+  propertiesFileName = "secrets.properties"
+  defaultPropertiesFileName = "secrets.defaults.properties"
 }

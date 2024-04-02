@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package com.skydoves.chatgpt.core.data.repository
+package com.skydoves.chatgpt.core.model.network
 
-import com.skydoves.chatgpt.core.model.network.GPTChatRequest
-import com.skydoves.chatgpt.core.model.network.GPTChatResponse
-import com.skydoves.sandwich.ApiResponse
-import kotlinx.coroutines.flow.Flow
+import com.skydoves.chatgpt.core.model.GPTMessage
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-interface GPTMessageRepository {
-
-  suspend fun sendMessage(gptChatRequest: GPTChatRequest): ApiResponse<GPTChatResponse>
-
-  fun watchIsChannelMessageEmpty(cid: String): Flow<Boolean>
-}
+@JsonClass(generateAdapter = true)
+data class GPTChatRequest(
+  @field:Json(name = "model") val model: String,
+  @field:Json(name = "messages") val messages: List<GPTMessage>
+)

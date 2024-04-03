@@ -12,6 +12,7 @@ plugins {
   alias(libs.plugins.hilt) apply false
   alias(libs.plugins.spotless) apply false
   alias(libs.plugins.gms.googleServices) apply false
+  alias(libs.plugins.google.secrets) apply false
   alias(libs.plugins.firebase.crashlytics) apply false
   alias(libs.plugins.baseline.profile) apply false
 }

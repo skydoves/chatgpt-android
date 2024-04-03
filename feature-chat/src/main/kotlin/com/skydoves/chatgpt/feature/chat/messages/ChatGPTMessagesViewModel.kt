@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.D
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_MESSAGE_ID
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_SUCCESS
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.MESSAGE_EXTRA_CHAT_GPT
-import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.MESSAGE_EXTRA_CONVERSATION_ID
 import com.skydoves.viewmodel.lifecycle.viewModelLifecycleOwner
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.chat.android.client.ChatClient
@@ -55,7 +54,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ChatGPTMessagesViewModel @Inject constructor(
-  GPTMessageRepository: GPTMessageRepository,
+  messageRepository: GPTMessageRepository,
   private val chatClient: ChatClient,
   private val workManager: WorkManager,
   savedStateHandle: SavedStateHandle
@@ -74,7 +73,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
     .stateIn(viewModelScope, WhileSubscribedOrRetained, String.Empty)
 
   val isMessageEmpty: StateFlow<Boolean> =
-    GPTMessageRepository.watchIsChannelMessageEmpty(channelId)
+    messageRepository.watchIsChannelMessageEmpty(channelId)
       .stateIn(viewModelScope, SharingStarted.Lazily, false)
 
   fun sendStreamChatMessage(text: String) {
@@ -91,9 +90,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
         .filter { it.message.extraData[MESSAGE_EXTRA_CHAT_GPT] == true }
         .maxByOrNull { it.message.createdAt?.time ?: 0 }
         ?.message
-      val parentId = lastGptMessage?.id ?: UUID.randomUUID().toString()
-      val conversationId = lastGptMessage?.extraData?.get(MESSAGE_EXTRA_CONVERSATION_ID) as? String
-      val workRequest = buildGPTMessageWorkerRequest(text, parentId, conversationId)
+      val workRequest = buildGPTMessageWorkerRequest(text, lastGptMessage)
       workManager.enqueue(workRequest)
 
       val workInfo = workManager.getWorkInfoByIdLiveData(workRequest.id)
@@ -127,8 +124,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
 
   private fun buildGPTMessageWorkerRequest(
     text: String,
-    parentId: String,
-    conversationId: String?
+    lastMessage: Message?
   ): OneTimeWorkRequest {
     val constraints = Constraints.Builder()
       .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -137,8 +133,7 @@ class ChatGPTMessagesViewModel @Inject constructor(
     val data = Data.Builder()
       .putString(ChatGPTMessageWorker.DATA_TEXT, text)
       .putString(ChatGPTMessageWorker.DATA_CHANNEL_ID, channelId)
-      .putString(ChatGPTMessageWorker.DATA_PARENT_ID, parentId)
-      .putString(ChatGPTMessageWorker.DATA_CONVERSATION_ID, conversationId)
+      .putString(ChatGPTMessageWorker.DATA_LAST_MESSAGE, lastMessage?.text.orEmpty())
       .build()
 
     return OneTimeWorkRequest.Builder(ChatGPTMessageWorker::class.java)

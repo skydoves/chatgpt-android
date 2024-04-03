@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ plugins {
   id("kotlin-parcelize")
   id("dagger.hilt.android.plugin")
   id("com.google.devtools.ksp")
+  id(libs.plugins.google.secrets.get().pluginId)
   id(libs.plugins.baseline.profile.get().pluginId)
 }
 
@@ -80,6 +81,11 @@ android {
       proguardFiles("benchmark-rules.pro")
     }
   }
+}
+
+secrets {
+  propertiesFileName = "secrets.properties"
+  defaultPropertiesFileName = "secrets.defaults.properties"
 }
 
 dependencies {

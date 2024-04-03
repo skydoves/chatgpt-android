@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
 import com.skydoves.chatgpt.core.data.repository.GPTMessageRepository
-import com.skydoves.chatgpt.core.model.GPTChatRequest
-import com.skydoves.chatgpt.core.model.GPTContent
 import com.skydoves.chatgpt.core.model.GPTMessage
+import com.skydoves.chatgpt.core.model.network.GPTChatRequest
 import com.skydoves.chatgpt.feature.chat.di.ChatEntryPoint
 import com.skydoves.sandwich.getOrThrow
 import com.skydoves.sandwich.isSuccess
@@ -34,7 +33,6 @@ import dagger.assisted.AssistedInject
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.models.Message
 import io.getstream.log.streamLog
-import java.util.UUID
 import javax.inject.Inject
 
 @HiltWorker
@@ -54,24 +52,34 @@ internal class ChatGPTMessageWorker @AssistedInject constructor(
 
     val text = workerParams.inputData.getString(DATA_TEXT) ?: return Result.failure()
     val channelId = workerParams.inputData.getString(DATA_CHANNEL_ID) ?: return Result.failure()
-    val conversationId = workerParams.inputData.getString(DATA_CONVERSATION_ID)
-    val parentId = workerParams.inputData.getString(DATA_PARENT_ID) ?: UUID.randomUUID().toString()
-    val request = GPTChatRequest(
-      conversation_id = conversationId,
-      messages = listOf(
+    val lastMessage = workerParams.inputData.getString(DATA_LAST_MESSAGE)
+
+    val messages: MutableList<GPTMessage> = mutableListOf()
+    if (lastMessage != null) {
+      messages.add(
         GPTMessage(
-          id = UUID.randomUUID().toString(),
-          content = GPTContent(parts = listOf(text))
+          role = "system",
+          content = lastMessage
         )
-      ),
-      parent_message_id = parentId
+      )
+    }
+    messages.add(
+      GPTMessage(
+        role = "user",
+        content = text
+      )
+    )
+
+    val request = GPTChatRequest(
+      model = "gpt-3.5-turbo-0125",
+      messages = messages
     )
     val response = repository.sendMessage(request)
     return if (response.isSuccess) {
-      val responseObj = response.getOrThrow()
-      val messageText = responseObj.message.content.parts.joinToString(separator = "\n")
-      val messageId = responseObj.message.id
-      sendStreamMessage(messageText, messageId, channelId, responseObj.conversation_id)
+      val data = response.getOrThrow()
+      val messageText = data.choices.firstOrNull()?.message?.content.orEmpty()
+      val messageId = data.id
+      sendStreamMessage(messageText, messageId, channelId)
       streamLog { "worker success!" }
       Result.success(
         Data.Builder()
@@ -88,8 +96,7 @@ internal class ChatGPTMessageWorker @AssistedInject constructor(
   private suspend fun sendStreamMessage(
     text: String,
     messageId: String,
-    channelId: String,
-    conversationId: String
+    channelId: String
   ) {
     val channelClient = chatClient.channel(channelId)
     channelClient.sendMessage(
@@ -98,8 +105,7 @@ internal class ChatGPTMessageWorker @AssistedInject constructor(
         cid = channelClient.cid,
         text = text,
         extraData = mutableMapOf(
-          MESSAGE_EXTRA_CHAT_GPT to true,
-          MESSAGE_EXTRA_CONVERSATION_ID to conversationId
+          MESSAGE_EXTRA_CHAT_GPT to true
         )
       )
     ).await()
@@ -108,14 +114,11 @@ internal class ChatGPTMessageWorker @AssistedInject constructor(
   companion object {
     const val DATA_TEXT = "DATA_TEXT"
     const val DATA_CHANNEL_ID = "DATA_CHANNEL_ID"
+    const val DATA_MESSAGE_ID = "DATA_PARENT_ID"
+    const val DATA_LAST_MESSAGE = "DATA_LAST_MESSAGE"
     const val DATA_SUCCESS = "DATA_SUCCESS"
     const val DATA_FAILURE = "DATA_FAILURE"
 
-    const val DATA_CONVERSATION_ID = "DATA_CONVERSATION_ID"
-    const val DATA_MESSAGE_ID = "DATA_PARENT_ID"
-    const val DATA_PARENT_ID = "DATA_PARENT_ID"
-
     const val MESSAGE_EXTRA_CHAT_GPT = "ChatGPT"
-    const val MESSAGE_EXTRA_CONVERSATION_ID = "conversation_id"
   }
 }

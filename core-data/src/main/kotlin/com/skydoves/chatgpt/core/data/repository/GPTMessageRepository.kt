@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,8 @@
 
 package com.skydoves.chatgpt.core.data.repository
 
-import com.skydoves.chatgpt.core.model.GPTChatRequest
-import com.skydoves.chatgpt.core.model.GPTChatResponse
+import com.skydoves.chatgpt.core.model.network.GPTChatRequest
+import com.skydoves.chatgpt.core.model.network.GPTChatResponse
 import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.flow.Flow
 

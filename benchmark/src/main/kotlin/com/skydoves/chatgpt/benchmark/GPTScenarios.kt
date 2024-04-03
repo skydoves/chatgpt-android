@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,23 @@
  * limitations under the License.
  */
 
-package com.skydoves.chatgpt.core.data.repository
+package com.skydoves.chatgpt.benchmark
 
-import com.skydoves.chatgpt.core.preferences.Preferences
-import javax.inject.Inject
+import androidx.benchmark.macro.MacrobenchmarkScope
 
-internal class GPTLoginRepositoryImpl @Inject constructor(
-  private val preferences: Preferences
-) : GPTLoginRepository {
+fun MacrobenchmarkScope.chatGPTScenarios() {
+  pressHome()
+  startActivityAndWait()
+  device.waitForIdle()
 
-  override fun persistLoginInfo(authorization: String, cookie: String, userAgent: String) {
-    preferences.authorization = authorization
-    preferences.cookie = cookie
-    preferences.userAgent = userAgent
-  }
+  // -------------
+  // Channels
+  // -------------
+  channelsExplore()
+  navigateFromChannelsToMessages()
+
+  // -------------
+  // Messages
+  // -------------
+  messagesExplore()
 }

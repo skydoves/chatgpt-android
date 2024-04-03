@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class GPTMessage(
-  @field:Json(name = "id") val id: String,
-  @field:Json(name = "role") val role: String = "user",
-  @field:Json(name = "content") val content: GPTContent = GPTContent()
+  @field:Json(name = "role") val role: String,
+  @field:Json(name = "content") val content: String
 )

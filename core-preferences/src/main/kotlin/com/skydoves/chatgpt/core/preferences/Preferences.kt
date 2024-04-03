@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,21 +31,6 @@ class Preferences @Inject constructor(
     defaultValue = UUID.randomUUID().toString()
   )
 
-  var authorization: String by stringPreferences(
-    key = KEY_AUTHORIZATION,
-    defaultValue = String.Empty
-  )
-
-  var cookie: String by stringPreferences(
-    key = KEY_COOKIE,
-    defaultValue = String.Empty
-  )
-
-  var userAgent: String by stringPreferences(
-    key = KEY_USER_AGENT,
-    defaultValue = String.Empty
-  )
-
   var balloonChannelDisplayed: Boolean by booleanPreferences(
     key = KEY_BALLOON_CHANNEL_DISPLAYED,
     defaultValue = false
@@ -53,9 +38,6 @@ class Preferences @Inject constructor(
 
   companion object {
     private const val KEY_UUID: String = "key_uuid"
-    private const val KEY_AUTHORIZATION: String = "key_authorization"
-    private const val KEY_COOKIE: String = "key_cookie"
-    private const val KEY_USER_AGENT: String = "key_user_agent"
     private const val KEY_BALLOON_CHANNEL_DISPLAYED = "key_balloon_channel_displayed"
   }
 }

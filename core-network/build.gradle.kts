@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,15 @@ plugins {
   id("skydoves.android.library")
   id("skydoves.android.hilt")
   id("skydoves.spotless")
+  id(libs.plugins.google.secrets.get().pluginId)
 }
 
 android {
   namespace = "com.skydoves.chatgpt.core.network"
+
+  buildFeatures {
+    buildConfig = true
+  }
 }
 
 dependencies {
@@ -33,5 +38,11 @@ dependencies {
 
   api(libs.okhttp.logging)
   api(libs.retrofit.core)
+  api(libs.retrofit.moshi.converter)
   api(libs.sandwich)
+}
+
+secrets {
+  propertiesFileName = "secrets.properties"
+  defaultPropertiesFileName = "secrets.defaults.properties"
 }

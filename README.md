@@ -7,18 +7,15 @@
   <a href="https://github.com/skydoves"><img alt="Profile" src="https://skydoves.github.io/badges/skydoves.svg"/></a>
 </p>
 
-**ChatGPT Android** demonstrates [OpenAI's ChatGPT](https://chat.openai.com/chat) on Android with [Stream Chat SDK for Compose](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss).
+**ChatGPT Android** demonstrates [OpenAI's ChatGPT](https://chat.openai.com/chat) on Android with [Stream Chat SDK for Compose](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss).
 
-The purpose of this repository is to demonstrate below:
+The primary objective of this repository is to showcase the following:
 
-- Demonstrates [ChatGPT](https://chat.openai.com/chat)'s unofficial APIs.
-- Implementing entire UI elements with Jetpack Compose.
-- Implementation of Android architecture components with Jetpack libraries such as Hilt and AppStartup.
-- Performing background tasks with Kotlin Coroutines.
-- Integrating chat systems with Stream Chat SDK for real-time event handling.
-
-![Screenshot 2023-03-14 at 8 11 41 PM](https://user-images.githubusercontent.com/24237865/224983937-287075d3-474a-4aeb-9c6c-9d0605a6eecb.png)
-
+- Demonstrating [OpenAI's chat APIs](https://platform.openai.com/docs/api-reference/chat).
+- Creating comprehensive UI elements utilizing Jetpack Compose.
+- Incorporating Android architecture components using Jetpack libraries such as Hilt and AppStartup.
+- Executing background tasks efficiently through Kotlin Coroutines and WorkManager.
+- Seamlessly integrating chat systems via the [Stream Chat SDK for Compose](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss) to facilitate real-time event handling.
 
 ## 📷 Previews
 
@@ -28,54 +25,55 @@ The purpose of this repository is to demonstrate below:
 <img src="previews/preview2.gif" alt="drawing" width="269px" /></br>
 </p>
 
-<a href="https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss">
+<a href="https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss">
 <img src="https://user-images.githubusercontent.com/24237865/138428440-b92e5fb7-89f8-41aa-96b1-71a5486c5849.png" align="right" width="12%"/>
 </a>
 
-## 🛥 Stream Chat SDK
-**ChatGPT Android** is built with __[Stream Chat SDK for Compose](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__ to implement messaging systems.
-If you’re interested in adding powerful In-App Messaging to your app, check out the __[Android Chat Messaging Tutorial](https://getstream.io/tutorials/android-chat?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__!
+## 🛥 Stream Chat & Video SDKs
+**ChatGPT Android** is built with __[Stream Chat SDK for Compose](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ to implement messaging systems. If you’re interested in adding powerful In-App Messaging or real-time Video Chat to your app, check out the __[Android Chat Messaging Tutorial](https://getstream.io/tutorials/android-chat?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ or __[Android Video Call Tutorial](https://getstream.io/video/docs/android/tutorials/video-calling?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ !
 
 - [Stream Chat SDK for Android on GitHub](https://github.com/getStream/stream-chat-android)
 - [Android Samples for Stream Chat SDK on GitHub](https://github.com/getStream/android-samples)
 - [Stream Chat Compose UI Componenets Guidelines](https://getstream.io/chat/docs/sdk/android/compose/overview/)
 
-## 📲 Download APK
-Go to the [Releases](https://github.com/skydoves/chatgpt-android/releases) to download the latest APK.
+If you're interested in building a real-time meeting room with video/audio calling, audio room, or livestreaming, check out the references below:
 
->**Note**: This app is using unofficial APIs, so normally it takes 10~15 seconds to get the entire response and the app might not work as your expected anytime.
+- [Stream Video SDK for Android on GitHub](https://github.com/getstream/stream-video-android)
+- [Video Call Tutorial](https://getstream.io/video/docs/android/tutorials/video-calling?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)
+- [Audio Room Tutorial](https://getstream.io/video/docs/android/tutorials/audio-room?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)
+- [Livestream Tutorial](https://getstream.io/video/docs/android/tutorials/livestream?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)
 
 ## 💻 How to build the project?
 
-To build this project properly, you should follow the instructions below: 
+For proper project setup, it's essential to follow the instructions below. In most cases, you can complete all configuration steps within 10 to 20 minutes:
 
-1. Go to the __[Stream login page](https://getstream.io/try-for-free?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__.
-2. If you have your GitHub account, click the **SIGN UP WITH GITHUB** button and you can sign up within a couple of seconds. 
+1. Go to the __[Stream login page](https://getstream.io/try-for-free?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__.
+
+2. If you have your GitHub or Google account, click the **Continue with GitHub** or **Continue with Google** button and you can sign up within a couple of seconds. 
 
 ![stream](figures/stream0.png)
 
-3. If you don't have a GitHub account, fill in the inputs and click the **START FREE TRIAL** button.
-4. Go to the __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__ and click the **Create App** button like the below.
+3. Go to the __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ and click the **Create App** button like the below.
 
 ![stream](figures/stream1.png)
 
-5. Fill in the blanks like the below and click the **Create App** button.
+4. Fill in the blanks like the below and click the **Create App** button.
 
 ![stream](figures/stream2.png)
 
-6. You will see the **Key** like the figure below and then copy it.
+5. You will see the **Key** like the figure below and then copy it.
 
 ![stream](figures/stream3.png)
 
-7. Add the key on your `local.properties` file on the project (Android Studio) like the below.
+6. Create a new file named **secrets.properties** on the root directory of this Android project, and add the key to the `secrets.properties` file like the below:
 
 ![stream](figures/stream5.png)
 
 ```gradle
-STREAM_CHAT_SDK=..
+STREAM_API_KEY=..
 ```
 
-8. Go to your __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss)__ again and click your App.
+7. Go to your __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ again and click your App.
 
 9. In the **Overview** menu, you can find the **Authentication** category by scrolling to the middle of the page.
 10. Switch on the **Disable Auth Checks** option and click the **Submit** button like the figure below.
@@ -91,31 +89,61 @@ STREAM_CHAT_SDK=..
 - User Name: `Chat GPT`
 - User ID: `70ef052a-da88-4451-af92-99f7ed335a71`
 
-13. Build and run the project.
+13. Now, it's time to set up the OpenAI API key. Go to __[OpenAI API Dashboard](https://platform.openai.com/api-keys)__, login with your Google account and click **Start verification** to verify your phone number to create an API key.
 
-## ⚙️ How to run the application?
+![stream](figures/stream7.png)
 
-1. Go to the [ChatGPT](https://chat.openai.com/chat) website and click the **Sign up** button.
-2. Create your account with your Google/Microsoft account or a manual email address like the one below:
+14. After verifying your phone number, click the **Create new secret key** on the page like the image below and create your API key:
 
-![login](figures/login2.png)
+![stream](figures/stream8.png)
 
-3. After finishing the additional steps, go back to the application screen like the below:
+15. Copy and paste your API key to the `secrets.properties` file as named `GPT_API_KEY` under the `STREAM_API_KEY` field:
 
-![login](figures/login0.png)
+![stream](figures/stream9.png)
 
-4. Then click the **Log in** button and type your account information like the below. You must log in with your **Email address, not your Google or Microsoft account**.
+```gradle
+GPT_API_KEY=..
+```
 
-![login](figures/login1.png)
+16. Unlock Rate limits for OpenAI APIs
 
-5. If you login correctly, you will get the success toast message and move to the channel list screen.
+As per the guidelines outlined in their [Rate limits](https://platform.openai.com/account/limits) documentation, access to the free tier of the API is __granted after a minimum expenditure of $5 since the creation of your account__. That means, you should register your payment method to the OpenAI and purchase initial credits. 
 
->**Note**: Before running the application, you must make sure you're in the [supported countries](https://platform.openai.com/docs/supported-countries).
+![stream](figures/stream10.png)
+
+So you should go to the [OpenAI Billings](https://platform.openai.com/account/billing/overview) and click the **Add payment details** button like the image below:
+
+![stream](figures/stream11.png)
+
+17. Once you've added your payment deatils, you'll able to see the **Add to creadit balance** button like the image below:
+
+![stream](figures/stream12.png)
+
+Next, click the **Add to credit balance** button to purchase the initial credit. As you've discovered in the previous step, the minimum credit starts from $5. Therefore, if you only intend to utilize the API limits for testing or building a side project, you can opt for the minimum pricing. Also, not that it's advisable to disable the automatic recharge option to avoid unexpected charges.
+
+![stream](figures/stream13.png)
+
+18. Once you've completed all those steps above, now build, run and enjoy your the project!
+
+## ⚙️ Troubleshooting
+
+You can typically find the reasons behind your error code by referring to the [OpenAI Error code documentation](https://platform.openai.com/docs/guides/error-codes).
+
+### 401 Error
+
+If you encounter 401 errors while chatting with ChatGPT app, as shown in the image below, it's crucial to verify the correctness of your OpenAI API key. Ensure that there are no typos in your API key and that it has been correctly copied and pasted into the `secrets.properties` file, as outlined in the guidelines above.
+
+![stream](figures/stream14.png)
+
+### 429 Error
+
+If you encounter this error from the outset, it's likely that your rate limits do not meet the requirements. Please revisit step 16 in the guidelines above for further instructions.
 
 ## 🛠 Tech Stack & Open Source Libraries
 - Minimum SDK level 21.
-- 100% [Jetpack Compose](https://developer.android.com/jetpack/compose) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- [Compose Chat SDK for Messaging](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_Dec2022_Jaewoong_ChatGPT&utm_term=DevRelOss): The Jetpack Compose Chat Messaging SDK is built on a low-level chat client and provides modular, customizable Compose UI components that you can easily drop into your app.
+- 100% [Jetpack Compose](https://developer.android.com/jetpack/compose) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous and cold streams.
+- [Compose Chat SDK for Messaging](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss): The Jetpack Compose Chat Messaging SDK is built on a low-level chat client and provides modular, customizable Compose UI components that you can easily drop into your app.
+- [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat): Given a list of messages comprising a conversation, the model will return a response.
 - Jetpack
   - Compose: Android’s modern toolkit for building native UI.
   - ViewModel: UI related data holder and lifecycle aware.
@@ -123,6 +151,7 @@ STREAM_CHAT_SDK=..
   - Navigation: For navigating screens and [Hilt Navigation Compose](https://developer.android.com/jetpack/compose/libraries#hilt) for injecting dependencies.
   - Room: Constructs Database by providing an abstraction layer over SQLite to allow fluent database access.
   - [Hilt](https://dagger.dev/hilt/): Dependency Injection.
+  - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager): To achieve background processing with scheduling.
 - [Landscapist Glide](https://github.com/skydoves/landscapist#glide), [animation](https://github.com/skydoves/landscapist#animation), [placeholder](https://github.com/skydoves/landscapist#placeholder): Jetpack Compose image loading library that fetches and displays network images with Glide, Coil, and Fresco.
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): Construct the REST APIs and paging network data.
 - [Sandwich](https://github.com/skydoves/Sandwich): Construct a lightweight and modern response interface to handle network payload for Android.
@@ -131,7 +160,7 @@ STREAM_CHAT_SDK=..
 - [Balloon](https://github.com/skydoves/balloon): Modernized and sophisticated tooltips, fully customizable with an arrow and animations for Android.
 - [viewmodel-lifecycle](https://github.com/skydoves/viewmodel-lifecycle): ViewModel Lifecycle allows you to track and observe Jetpack's ViewModel lifecycle changes.
 - [StreamLog](https://github.com/GetStream/stream-log): A lightweight and extensible logger library for Kotlin and Android.
-- Baseline Profiles: To improve app performance by including a list of classes and methods specifications in your APK that can be used by Android Runtime.
+- [Baseline Profiles](https://medium.com/proandroiddev/improve-your-android-app-performance-with-baseline-profiles-297f388082e6): To improve app performance by including a list of classes and methods specifications in your APK that can be used by Android Runtime.
 
 ## 🏛️ Architecture
 

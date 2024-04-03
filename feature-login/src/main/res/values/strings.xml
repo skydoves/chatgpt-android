@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Designed and developed by 2022 skydoves (Jaewoong Eum)
+     Designed and developed by 2024 skydoves (Jaewoong Eum)
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,7 +15,5 @@
      limitations under the License.
 -->
 <resources>
-  <string name="toast_logged_in">Successfully logged-in!</string>
-  <string name="top_bar_login">chatgpt-android login</string>
-  <string name="webview_agent">getstream-chatgpt-user-agent</string>
+  <string name="error_chat_sdk_initialization">Oops, failed to load Stream Chat SDK.\nPlease check out the guidelines on the GitHub repository.</string>
 </resources>

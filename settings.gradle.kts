@@ -6,7 +6,6 @@ pluginManagement {
     google()
     mavenCentral()
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
-    maven(url = "https://jitpack.io")
   }
 }
 dependencyResolutionManagement {
@@ -15,7 +14,6 @@ dependencyResolutionManagement {
     google()
     mavenCentral()
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
-    maven(url = "https://jitpack.io")
   }
 }
 rootProject.name = "chatgpt-android"

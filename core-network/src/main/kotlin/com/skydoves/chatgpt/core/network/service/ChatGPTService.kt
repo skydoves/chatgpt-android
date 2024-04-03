@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2022 skydoves (Jaewoong Eum)
+ * Designed and developed by 2024 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,21 +16,14 @@
 
 package com.skydoves.chatgpt.core.network.service
 
+import com.skydoves.chatgpt.core.model.network.GPTChatRequest
+import com.skydoves.chatgpt.core.model.network.GPTChatResponse
 import com.skydoves.sandwich.ApiResponse
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.http.Body
-import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ChatGPTService {
-  @Headers(
-    "accept: text/event-stream",
-    "accept-encoding: gzip, deflate, br",
-    "accept-language: en-GB,en-US;q=0.9,en;q=0.8",
-    "content-type: application/json",
-    "referer: https://chat.openai.com/chat"
-  )
-  @POST("backend-api/conversation")
-  suspend fun sendMessage(@Body body: RequestBody): ApiResponse<ResponseBody>
+
+  @POST("v1/chat/completions")
+  suspend fun sendMessage(@Body request: GPTChatRequest): ApiResponse<GPTChatResponse>
 }

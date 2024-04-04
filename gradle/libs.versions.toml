@@ -6,7 +6,7 @@ landscapist = "2.3.2"
 androidGradlePlugin = "8.3.1"
 androidxActivity = "1.8.2"
 androidxAppCompat = "1.6.1"
-androidxCompose = "1.6.4"
+androidxCompose = "1.6.5"
 androidxComposeCompiler = "1.5.11"
 androidxComposeMaterial3 = "1.2.1"
 androidxComposeConstraintLayout = "1.0.1"
@@ -110,6 +110,6 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 gms-googleServices = "com.google.gms.google-services:4.3.14"
-firebase-crashlytics = "com.google.firebase.crashlytics:2.9.2"
+firebase-crashlytics = "com.google.firebase.crashlytics:2.9.9"
 google-secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "googleSecretPlugin" }
 baseline-profile = { id = "androidx.baselineprofile", version.ref = "androidxMacroBenchmark" }

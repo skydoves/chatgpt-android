@@ -1,9 +1,8 @@
 [versions]
-streamChatSDK = "6.1.1"
+streamChatSDK = "6.2.3"
 streamLog = "1.1.4"
 balloon = "1.6.4"
 landscapist = "2.3.2"
-androidDesugarJdkLibs = "2.0.3"
 androidGradlePlugin = "8.3.1"
 androidxActivity = "1.8.2"
 androidxAppCompat = "1.6.1"
@@ -51,7 +50,6 @@ landscapist-glide = { group = "com.github.skydoves", name = "landscapist-glide",
 landscapist-animation = { group = "com.github.skydoves", name = "landscapist-animation", version.ref = "landscapist" }
 landscapist-placeholder = { group = "com.github.skydoves", name = "landscapist-placeholder", version.ref = "landscapist" }
 balloon-compose = { group = "com.github.skydoves", name = "balloon-compose", version.ref = "balloon" }
-android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-benchmark-macro = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "androidxMacroBenchmark" }

@@ -25,11 +25,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddComment
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -73,7 +73,7 @@ fun ChatGPTChannels(
     ) {
       ChannelsScreen(
         isShowingHeader = false,
-        onItemClick = { channel ->
+        onChannelClick = { channel ->
           composeNavigator.navigate(ChatGPTScreens.Messages.createRoute(channel.cid))
         },
         onBackPressed = { onFinishDispatcher?.invoke() }

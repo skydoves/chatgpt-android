@@ -65,7 +65,7 @@ For proper project setup, it's essential to follow the instructions below. In mo
 
 6. Create a new file named **secrets.properties** on the root directory of this Android project, and add the key to the `secrets.properties` file like the below:
 
-![stream](figures/stream5.png)
+![stream](https://github.com/skydoves/gemini-android/blob/main/figures/stream5.png)
 
 ```gradle
 STREAM_API_KEY=..

@@ -110,6 +110,6 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 gms-googleServices = "com.google.gms.google-services:4.3.14"
-firebase-crashlytics = "com.google.firebase.crashlytics:2.9.9"
+firebase-crashlytics = "com.google.firebase.crashlytics:3.0.0"
 google-secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "googleSecretPlugin" }
 baseline-profile = { id = "androidx.baselineprofile", version.ref = "androidxMacroBenchmark" }

@@ -254,7 +254,8 @@ fun ChatGPTMessages(
                 listViewModel,
                 composerViewModel
               )
-            }
+            },
+            reactionSorting = { _, _ -> 0 }
           )
         }
       }
@@ -327,7 +328,13 @@ private fun MessageDialogs(listViewModel: MessageListViewModel) {
       message = stringResource(
         id = io.getstream.chat.android.compose.R.string.stream_compose_flag_message_text
       ),
-      onPositiveAction = { listViewModel.flagMessage(flagAction.message) },
+      onPositiveAction = {
+        listViewModel.flagMessage(
+          flagAction.message,
+          customData = mapOf(),
+          reason = null
+        )
+      },
       onDismiss = { listViewModel.dismissMessageAction(flagAction) }
     )
   }

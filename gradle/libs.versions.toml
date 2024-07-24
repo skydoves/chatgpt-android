@@ -7,7 +7,6 @@ androidGradlePlugin = "8.4.2"
 androidxActivity = "1.9.0"
 androidxAppCompat = "1.7.0"
 androidxCompose = "1.6.8"
-androidxComposeCompiler = "1.5.11"
 androidxComposeMaterial3 = "1.2.1"
 androidxComposeConstraintLayout = "1.0.1"
 androidxComposeNavigation = "2.7.7"
@@ -28,9 +27,9 @@ viewModelLifecycle = "1.1.0"
 hilt = "2.51.1"
 hiltWorker = "1.2.0"
 junit4 = "4.13.2"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 kotlinxCoroutines = "1.8.1"
-ksp = "1.9.23-1.0.20"
+ksp = "2.0.0-1.0.22"
 ktlint = "0.43.0"
 okhttp = "4.12.0"
 googleSecretPlugin = "2.0.1"
@@ -99,12 +98,14 @@ firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-compiler-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 spotless-gradlePlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

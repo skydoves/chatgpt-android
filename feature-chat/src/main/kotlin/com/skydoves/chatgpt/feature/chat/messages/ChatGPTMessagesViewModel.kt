@@ -35,7 +35,6 @@ import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.D
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_MESSAGE_ID
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.DATA_SUCCESS
 import com.skydoves.chatgpt.feature.chat.worker.ChatGPTMessageWorker.Companion.MESSAGE_EXTRA_CHAT_GPT
-import com.skydoves.viewmodel.lifecycle.viewModelLifecycleOwner
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.models.Message
@@ -47,6 +46,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -93,20 +93,20 @@ class ChatGPTMessagesViewModel @Inject constructor(
       val workRequest = buildGPTMessageWorkerRequest(text, lastGptMessage)
       workManager.enqueue(workRequest)
 
-      val workInfo = workManager.getWorkInfoByIdLiveData(workRequest.id)
-      workInfo.observe(viewModelLifecycleOwner) {
-        if (it.state == WorkInfo.State.SUCCEEDED) {
-          val gptMessageText = it.outputData.getString(DATA_SUCCESS)
-          val gptMessageId = it.outputData.getString(DATA_MESSAGE_ID)
-          streamLog { "gpt message worker success: $gptMessageId $gptMessageText" }
-          messageItemSet.value -= text
-        } else if (it.state == WorkInfo.State.FAILED) {
-          val error = it.outputData.getString(DATA_FAILURE) ?: ""
-          streamLog { "gpt message worker failed: $error" }
-          messageItemSet.value -= messageItemSet.value
-          mutableError.value = error
+      workManager.getWorkInfoByIdFlow(workRequest.id)
+        .collectLatest {
+          if (it.state == WorkInfo.State.SUCCEEDED) {
+            val gptMessageText = it.outputData.getString(DATA_SUCCESS)
+            val gptMessageId = it.outputData.getString(DATA_MESSAGE_ID)
+            streamLog { "gpt message worker success: $gptMessageId $gptMessageText" }
+            messageItemSet.value -= text
+          } else if (it.state == WorkInfo.State.FAILED) {
+            val error = it.outputData.getString(DATA_FAILURE) ?: ""
+            streamLog { "gpt message worker failed: $error" }
+            messageItemSet.value -= messageItemSet.value
+            mutableError.value = error
+          }
         }
-      }
     }
   }
 

@@ -38,7 +38,7 @@ sandwich = "2.0.8"
 moshi="1.15.1"
 spotless = "6.7.0"
 snitcher = "1.0.3"
-firebaseBom = "33.1.2"
+firebaseBom = "33.2.0"
 
 [libraries]
 stream-client = { group = "io.getstream", name = "stream-chat-android-client", version.ref = "streamChatSDK" }

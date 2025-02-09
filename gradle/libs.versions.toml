@@ -36,7 +36,7 @@ googleSecretPlugin = "2.0.1"
 retrofit = "2.11.0"
 sandwich = "2.1.0"
 moshi="1.15.2"
-spotless = "6.7.0"
+spotless = "7.0.2"
 snitcher = "1.0.3"
 firebaseBom = "33.4.0"
 

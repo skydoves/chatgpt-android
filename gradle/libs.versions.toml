@@ -1,6 +1,6 @@
 [versions]
 streamChatSDK = "6.5.1"
-streamLog = "1.1.4"
+streamLog = "1.3.3"
 balloon = "1.6.11"
 landscapist = "2.4.0"
 androidGradlePlugin = "8.6.0"

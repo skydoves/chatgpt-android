@@ -8,7 +8,7 @@
   <a href="https://github.com/doveletter"><img alt="Profile" src="https://skydoves.github.io/badges/dove-letter.svg"/></a>
 </p>
 
-**ChatGPT Android** demonstrates [OpenAI's ChatGPT](https://chat.openai.com/chat) on Android with [Stream Chat SDK for Compose](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss).
+**ChatGPT Android** demonstrates [OpenAI's ChatGPT](https://chat.openai.com/chat) on Android with [Stream Chat SDK for Compose](https://getstream.io/chat/sdk/android/?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025).
 
 The primary objective of this repository is to showcase the following:
 
@@ -31,7 +31,7 @@ The primary objective of this repository is to showcase the following:
 </a>
 
 ## 🛥 Stream Chat & Video SDKs
-**ChatGPT Android** is built with __[Stream Chat SDK for Compose](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ to implement messaging systems. If you’re interested in adding powerful In-App Messaging or real-time Video Chat to your app, check out the __[Android Chat Messaging Tutorial](https://getstream.io/tutorials/android-chat?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ or __[Android Video Call Tutorial](https://getstream.io/video/docs/android/tutorials/video-calling?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ !
+**ChatGPT Android** is built with __[Stream Chat SDK for Compose](https://getstream.io/chat/sdk/android/?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025)__ to implement messaging systems. If you’re interested in adding powerful In-App Messaging or real-time Video Chat to your app, check out the __[Android Chat Messaging Tutorial](https://getstream.io/tutorials/android-chat?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025)__ or __[Android Video Call Tutorial](https://getstream.io/video/docs/android/tutorials/video-calling?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025)__ !
 
 - [Stream Chat SDK for Android on GitHub](https://github.com/getStream/stream-chat-android)
 - [Android Samples for Stream Chat SDK on GitHub](https://github.com/getStream/android-samples)
@@ -40,19 +40,19 @@ The primary objective of this repository is to showcase the following:
 If you're interested in building a real-time meeting room with video/audio calling, audio room, or livestreaming, check out the references below:
 
 - [Stream Video SDK for Android on GitHub](https://github.com/getstream/stream-video-android)
-- [Video Call Tutorial](https://getstream.io/video/docs/android/tutorials/video-calling?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss) / [Audio Room Tutorial](https://getstream.io/video/docs/android/tutorials/audio-room?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss) / [Livestream Tutorial](https://getstream.io/video/docs/android/tutorials/livestream?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)
+- [Video Call Tutorial](https://getstream.io/video/docs/android/tutorials/video-calling?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025) / [Audio Room Tutorial](https://getstream.io/video/docs/android/tutorials/audio-room?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025) / [Livestream Tutorial](https://getstream.io/video/docs/android/tutorials/livestream?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025)
 
 ## 💻 How to build the project?
 
 For proper project setup, it's essential to follow the instructions below. In most cases, you can complete all configuration steps within 10 to 20 minutes:
 
-1. Go to the __[Stream login page](https://getstream.io/try-for-free?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__.
+1. Go to the __[Stream login page](https://getstream.io/try-for-free?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025)__.
 
 2. If you have your GitHub or Google account, click the **Continue with GitHub** or **Continue with Google** button and you can sign up within a couple of seconds. 
 
 ![stream](figures/stream0.png)
 
-3. Go to the __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ and click the **Create App** button like the below.
+3. Go to the __[Dashboard](https://dashboard.getstream.io?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025)__ and click the **Create App** button like the below.
 
 ![stream](figures/stream1.png)
 
@@ -72,7 +72,7 @@ For proper project setup, it's essential to follow the instructions below. In mo
 STREAM_API_KEY=..
 ```
 
-7. Go to your __[Dashboard](https://dashboard.getstream.io?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss)__ again and click your App.
+7. Go to your __[Dashboard](https://dashboard.getstream.io?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025)__ again and click your App.
 
 9. In the **Overview** menu, you can find the **Authentication** category by scrolling to the middle of the page.
 10. Switch on the **Disable Auth Checks** option and click the **Submit** button like the figure below.
@@ -141,7 +141,7 @@ If you encounter this error from the outset, it's likely that your rate limits d
 ## 🛠 Tech Stack & Open Source Libraries
 - Minimum SDK level 21.
 - 100% [Jetpack Compose](https://developer.android.com/jetpack/compose) based + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous and cold streams.
-- [Compose Chat SDK for Messaging](https://getstream.io/chat/sdk/compose?utm_source=Github&utm_medium=Jaewoong_OSS&utm_content=Developer&utm_campaign=Github_April2024_Jaewoong_ChatGPT&utm_term=DevRelOss): The Jetpack Compose Chat Messaging SDK is built on a low-level chat client and provides modular, customizable Compose UI components that you can easily drop into your app.
+- [Compose Chat SDK for Messaging](https://getstream.io/chat/sdk/compose?utm_source=github&utm_medium=referral&utm_content=&utm_campaign=Jaewoong_github_2025): The Jetpack Compose Chat Messaging SDK is built on a low-level chat client and provides modular, customizable Compose UI components that you can easily drop into your app.
 - [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat): Given a list of messages comprising a conversation, the model will return a response.
 - Jetpack
   - Compose: Android’s modern toolkit for building native UI.
